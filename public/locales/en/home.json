@@ -1,0 +1,66 @@
+{
+  "hero": {
+    "title": "Save Money on Every Purchase",
+    "subtitle": "Find the best deals, coupons, and cash back offers all in one place",
+    "cta": "Start Saving Now"
+  },
+  "featured": {
+    "title": "Featured Deals",
+    "subtitle": "Handpicked offers to save you money",
+    "viewAll": "View All Deals"
+  },
+  "popular": {
+    "title": "Popular Stores",
+    "subtitle": "Top brands with the best savings",
+    "viewAll": "View All Stores"
+  },
+  "categories": {
+    "title": "Shop by Category",
+    "subtitle": "Find deals in your favorite categories",
+    "viewAll": "View All Categories"
+  },
+  "trending": {
+    "title": "Trending Now",
+    "subtitle": "What's hot in savings today",
+    "viewAll": "View All Trending Deals"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Saving money has never been easier",
+    "steps": {
+      "find": {
+        "title": "Find Deals",
+        "description": "Browse thousands of coupons and cash back offers"
+      },
+      "shop": {
+        "title": "Shop Online",
+        "description": "Click through to the store and shop as usual"
+      },
+      "save": {
+        "title": "Save Money",
+        "description": "Use coupons at checkout and earn cash back on purchases"
+      },
+      "cashOut": {
+        "title": "Cash Out",
+        "description": "Transfer your earnings to PayPal or get gift cards"
+      }
+    }
+  },
+  "newsletter": {
+    "title": "Get the Best Deals in Your Inbox",
+    "subtitle": "Subscribe to our newsletter for exclusive offers",
+    "placeholder": "Your email address",
+    "button": "Subscribe",
+    "privacy": "We respect your privacy and will never share your email"
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Join thousands of happy savers"
+  },
+  "app": {
+    "title": "Take CashHeros With You",
+    "subtitle": "Download our mobile app for on-the-go savings",
+    "android": "Get it on Google Play",
+    "ios": "Download on App Store"
+  }
+}

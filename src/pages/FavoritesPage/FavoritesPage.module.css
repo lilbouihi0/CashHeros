@@ -1,0 +1,312 @@
+/* src/pages/FavoritesPage/FavoritesPage.module.css */
+.favoritesPage {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.favoritesContainer {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.favoritesContainer h1 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.tabButton {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tabButton:hover {
+  color: #4a5568;
+}
+
+.tabButton.active {
+  color: #7b1fa2;
+}
+
+.tabButton.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #7b1fa2;
+}
+
+.favoritesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.favoriteCard, .couponCard, .cashbackCard {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.favoriteCard:hover, .couponCard:hover, .cashbackCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.removeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  color: #4a5568;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.removeButton:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.storeImageContainer {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.storeLogo {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.favoriteCard h3, .couponCard h3, .cashbackCard h3 {
+  font-size: 1.2rem;
+  color: #2d3748;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.storeDetails {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.cashbackRate {
+  color: #38a169;
+  font-weight: 600;
+}
+
+.couponCount {
+  color: #4a5568;
+}
+
+.viewButton, .couponButton, .cashbackButton, .browseButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 15px;
+}
+
+.viewButton:hover, .couponButton:hover, .cashbackButton:hover, .browseButton:hover {
+  background-color: #6a1b9a;
+}
+
+/* Coupon specific styles */
+.couponStore, .cashbackStore {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.couponStoreLogo, .cashbackStoreLogo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.couponDiscount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #7b1fa2;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.couponDescription, .cashbackDescription {
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.couponExpiry, .cashbackTerms {
+  color: #718096;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+/* Cashback specific styles */
+.cashbackRate {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #38a169;
+  text-align: center;
+  margin: 15px 0;
+}
+
+/* Empty state styles */
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #a0aec0;
+}
+
+.emptyState h3 {
+  font-size: 1.5rem;
+  color: #4a5568;
+  margin-bottom: 10px;
+}
+
+.emptyState p {
+  color: #718096;
+  margin-bottom: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.browseButton {
+  display: inline-block;
+  max-width: 200px;
+}
+
+/* Loading state */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #7b1fa2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+  color: #718096;
+}
+
+/* Error message */
+.errorMessage {
+  background-color: #ffcdd2;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tabButton {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .favoritesContainer {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .favoritesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+  
+  .tabButton {
+    text-align: left;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .tabButton.active::after {
+    display: none;
+  }
+  
+  .tabButton.active {
+    border-bottom: 2px solid #7b1fa2;
+  }
+}

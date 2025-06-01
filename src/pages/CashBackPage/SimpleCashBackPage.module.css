@@ -1,0 +1,789 @@
+/* Simple CashBackPage.module.css */
+
+/* Base Styles */
+.pageContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+  padding: 0;
+}
+
+/* Animation Classes */
+.animateOnScroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  padding: 80px 20px;
+  margin-bottom: 60px;
+  overflow: hidden;
+  border-radius: 0 0 30px 30px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.heroGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0E1F16 0%, #28A745 100%);
+  z-index: -1;
+}
+
+.heroContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.heroTextContent {
+  flex: 1;
+  color: white;
+  max-width: 600px;
+  animation: slideUp 0.8s ease-out;
+}
+
+.heroTagline {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.heroTitleAccent {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+
+.heroTitleAccent::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.heroCTA {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.primaryButton {
+  background: white;
+  color: #28A745;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.primaryButton:hover .buttonIcon,
+.secondaryButton:hover .buttonIcon {
+  transform: translateX(5px);
+}
+
+.trustBadges {
+  display: flex;
+  gap: 20px;
+}
+
+.trustBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 30px;
+}
+
+.trustIcon {
+  color: #B6E3C9;
+}
+
+.heroImageContainer {
+  flex: 1;
+  max-width: 500px;
+  position: relative;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
+  transition: transform 0.5s ease;
+}
+
+.heroImageWrapper:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 30px;
+  right: -20px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: pulse 3s infinite;
+}
+
+.overlayBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.badgeAmount {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #28A745;
+}
+
+.badgeText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
+}
+
+/* Search Section */
+.searchSection {
+  margin-bottom: 60px;
+  padding: 0 20px;
+}
+
+.searchContainer {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  margin-top: -100px;
+  position: relative;
+  z-index: 10;
+}
+
+.searchForm {
+  width: 100%;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.searchBar:focus-within {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  background-color: white;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 20px;
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 20px 20px 20px 60px;
+  border: none;
+  font-size: 1.1rem;
+  outline: none;
+  background: transparent;
+}
+
+.searchButton {
+  background: linear-gradient(90deg, #28A745, #0E1F16);
+  color: white;
+  border: none;
+  padding: 0 40px;
+  height: 100%;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.searchButton:hover {
+  background: linear-gradient(90deg, #0E1F16, #28A745);
+}
+
+.quickLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.quickLinksLabel {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.quickLinkButton {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quickLinkButton:hover {
+  background: #f5f5f5;
+  border-color: #28A745;
+  color: #28A745;
+  transform: translateY(-2px);
+}
+
+/* Tabs Section */
+.tabsSection {
+  margin-bottom: 80px;
+  padding: 0 20px;
+}
+
+.tabsContainer {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.tabsHeader {
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tabButton {
+  flex: 1;
+  padding: 20px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.tabButton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #28A745, #0E1F16);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.tabButton:hover {
+  color: #28A745;
+}
+
+.activeTab {
+  color: #0E1F16;
+}
+
+.activeTab::after {
+  width: 80%;
+}
+
+.tabContent {
+  padding: 40px;
+}
+
+/* Featured Deals Grid */
+.featuredDealsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.viewMoreCard {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  transition: all 0.3s ease;
+}
+
+.viewMoreCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.viewMoreContent {
+  text-align: center;
+  padding: 30px;
+}
+
+.viewMoreIcon {
+  font-size: 3rem;
+  color: #28A745;
+  margin-bottom: 20px;
+}
+
+.viewMoreContent h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.viewMoreContent p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.viewMoreButton {
+  background: linear-gradient(90deg, #28A745, #0E1F16);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+
+.viewMoreButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Stores Grid */
+.storesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.storeCard {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.storeCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.storeLogoWrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.storeLogo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  transition: transform 0.3s ease;
+}
+
+.storeCard:hover .storeLogo {
+  transform: scale(1.1);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(45deg, #0E1F16, #28A745);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.storeName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.storeCashback {
+  color: #28A745;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+}
+
+.shopButton {
+  background: linear-gradient(90deg, #28A745, #0E1F16);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 80%;
+}
+
+.shopButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Categories Grid */
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.categoryCard {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.categoryCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--category-color, #28A745);
+}
+
+.categoryCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.categoryIcon {
+  font-size: 2.5rem;
+  color: var(--category-color, #28A745);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.categoryCard:hover .categoryIcon {
+  transform: scale(1.1);
+}
+
+.categoryCard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.categoryButton {
+  background: none;
+  border: 2px solid var(--category-color, #28A745);
+  color: var(--category-color, #28A745);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+
+.categoryButton:hover {
+  background: var(--category-color, #28A745);
+  color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+  
+  .heroImageWrapper {
+    height: 350px;
+  }
+}
+
+@media (max-width: 992px) {
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .heroTextContent {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .heroCTA, .trustBadges {
+    justify-content: center;
+  }
+  
+  .heroImageContainer {
+    max-width: 100%;
+  }
+  
+  .heroImageWrapper {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .featuredDealsGrid, 
+  .storesGrid, 
+  .categoriesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 60px 20px;
+    min-height: auto;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .heroCTA {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .primaryButton, .secondaryButton {
+    width: 100%;
+  }
+  
+  .trustBadges {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .searchContainer {
+    padding: 20px;
+  }
+  
+  .searchBar {
+    flex-direction: column;
+    border-radius: 15px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .searchButton {
+    width: 100%;
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  .tabButton {
+    padding: 15px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .tabContent {
+    padding: 20px;
+  }
+  
+  .featuredDealsGrid, 
+  .storesGrid, 
+  .categoriesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroImageWrapper {
+    height: 250px;
+  }
+  
+  .imageOverlay {
+    right: 0;
+    bottom: 10px;
+    padding: 10px;
+  }
+  
+  .badgeAmount {
+    font-size: 1.4rem;
+  }
+  
+  .badgeText {
+    font-size: 0.8rem;
+  }
+  
+  .searchIcon {
+    left: 15px;
+    font-size: 1rem;
+  }
+  
+  .searchInput {
+    padding: 15px 15px 15px 40px;
+    font-size: 1rem;
+  }
+  
+  .quickLinks {
+    justify-content: center;
+  }
+}

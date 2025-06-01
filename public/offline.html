@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Offline - CashHeros</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #2d3748;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background-color: #0E1F16;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      max-width: 150px;
+      height: auto;
+    }
+    
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: #28A745;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #2d3748;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
+      color: #4a5568;
+    }
+    
+    .button {
+      background-color: #28A745;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    
+    .button:hover {
+      background-color: #218838;
+    }
+    
+    .cached-content {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 800px;
+    }
+    
+    .cached-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #2d3748;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    .cached-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .cached-item {
+      padding: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .cached-item:before {
+      content: "✓";
+      color: #28A745;
+      margin-right: 0.5rem;
+    }
+    
+    .footer {
+      background-color: #0E1F16;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+      
+      .icon {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <img src="/logo192.png" alt="CashHeros Logo" class="logo">
+  </header>
+  
+  <main class="main">
+    <div class="icon">📶</div>
+    <h1>You're Offline</h1>
+    <p>It looks like you've lost your internet connection. Don't worry, you can still access some features of CashHeros while offline.</p>
+    <p>We'll automatically reconnect you when your internet connection is restored.</p>
+    
+    <button class="button" id="retry-button">Try Again</button>
+    
+    <div class="cached-content">
+      <h2 class="cached-title">Available Offline</h2>
+      <ul class="cached-list">
+        <li class="cached-item">Previously viewed coupons</li>
+        <li class="cached-item">Your favorite stores</li>
+        <li class="cached-item">Saved deals</li>
+      </ul>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    &copy; 2023 CashHeros - All rights reserved
+  </footer>
+  
+  <script>
+    // Check if we're back online
+    function checkOnlineStatus() {
+      if (navigator.onLine) {
+        window.location.href = '/';
+      }
+    }
+    
+    // Add event listener to retry button
+    document.getElementById('retry-button').addEventListener('click', function() {
+      checkOnlineStatus();
+    });
+    
+    // Check online status when the page loads
+    window.addEventListener('load', checkOnlineStatus);
+    
+    // Listen for online event
+    window.addEventListener('online', checkOnlineStatus);
+  </script>
+</body>
+</html>

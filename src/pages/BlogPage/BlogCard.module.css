@@ -1,0 +1,379 @@
+/* src/pages/BlogPage/BlogCard.module.css */
+.blogCard {
+  background-color: var(--blog-card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Only apply hover effects when not in expanded mode */
+.blogCard:not(.expanded):hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(34, 197, 94, 0.15);
+}
+
+.blogCard:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #8a2be2, #9370db);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.blogCard:not(.expanded):hover:before {
+  opacity: 1;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.blogImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blogCard:not(.expanded):hover .blogImage {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.cardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  z-index: 2;
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  margin: 0 0 8px;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.categoryLabel {
+  font-size: 0.8rem;
+  background-color: #8a2be2;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.date {
+  font-size: 0.8rem;
+  margin-top: 8px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+}
+
+.heartIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #fff;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.heartIcon:hover {
+  color: #ff6b6b;
+  transform: scale(1.2);
+}
+
+.deleteIcon {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.deleteIcon:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
+/* Expanded blog card styles */
+.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 1100px;
+  height: 90vh; /* Fixed height */
+  max-height: 90vh;
+  z-index: 1000;
+  overflow: auto; /* Changed from hidden to auto */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* Disable all transitions when expanded to prevent shaking */
+  transition: none;
+  /* Override any hover effects */
+  transform: translate(-50%, -50%) !important;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  overflow-y: visible;
+  scrollbar-width: thin;
+  scrollbar-color: #8a2be2 #f0f0f0;
+  /* Prevent any hover effects from triggering */
+  pointer-events: auto;
+  /* Ensure content doesn't inherit hover transitions */
+  transition: none;
+  /* Make sure it takes up the full space */
+  flex: 1;
+}
+
+.modalContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background-color: #8a2be2;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+
+.modalHeader {
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid #e9d8fd;
+  position: relative;
+}
+
+.modalHeader h2 {
+  color: #6b46c1;
+  margin: 0 0 15px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.topCloseButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #8a2be2;
+  color: white;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1101;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.topCloseButton:hover {
+  background-color: #7928ca;
+}
+
+.topCloseButton:active {
+  background-color: #6b21a8;
+}
+
+.modalMeta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.modalCategory {
+  font-size: 0.9rem;
+  background-color: #8a2be2;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.modalDate {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.modalImageContainer {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.fullContent {
+  background-color: white;
+  color: #333;
+  padding: 30px 40px 40px;
+  border-radius: 0 0 12px 12px;
+  flex: 1;
+}
+
+.blogExcerpt {
+  font-style: italic;
+  color: #4a5568;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9d8fd;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.blogContent {
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: #2d3748;
+  font-size: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.closeButton {
+  background-color: #8a2be2;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+  margin-top: 20px;
+  position: relative;
+  z-index: 1100; /* Ensure it's above other content */
+}
+
+.closeButton:hover {
+  background-color: #7928ca;
+}
+
+.closeButton:active {
+  background-color: #6b21a8;
+  box-shadow: 0 2px 5px rgba(138, 43, 226, 0.3);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .expanded {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    top: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+  }
+  
+  .modalImageContainer {
+    height: 300px;
+  }
+  
+  .modalHeader h2 {
+    font-size: 1.8rem;
+  }
+  
+  .fullContent {
+    padding: 20px;
+  }
+  
+  .blogExcerpt {
+    font-size: 1.1rem;
+  }
+  
+  .blogContent {
+    font-size: 1rem;
+  }
+}

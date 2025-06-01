@@ -1,0 +1,126 @@
+/* Loading component styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.loading-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.loading-spinner::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #e0e0e0;
+  border-top-color: #7b1fa2;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container p {
+  margin: 0.5rem 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.loading-suggestion {
+  font-size: 0.875rem;
+  color: #777;
+  margin-top: 1rem;
+}
+
+/* Skeleton loader styles */
+.skeleton-loader {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loading-container p {
+    color: #e0e0e0;
+  }
+  
+  .loading-suggestion {
+    color: #aaa;
+  }
+  
+  .loading-spinner::before {
+    border-color: #444;
+    border-top-color: #bb86fc;
+  }
+  
+  .skeleton-loader {
+    background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+    background-size: 200% 100%;
+  }
+}
+
+/* Offline indicator styles */
+.offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f39c12;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  z-index: 1100;
+  font-weight: 500;
+  animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #7b1fa2;
+  color: white;
+  padding: 8px;
+  z-index: 1200;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}

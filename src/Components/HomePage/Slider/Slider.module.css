@@ -1,0 +1,267 @@
+/* src/Components/HomePage/Slider/Slider.module.css */
+.slider {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  margin: 0 auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.slideContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  overflow: hidden;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+.slide.active .image {
+  transform: scale(1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  max-width: 600px;
+  z-index: 2;
+  text-align: left;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+}
+
+.slide.active .content {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.caption {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 15px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subCaption {
+  font-size: 1.2rem;
+  margin: 0 0 30px;
+  line-height: 1.5;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid var(--primary-green);
+}
+
+.button:hover {
+  background-color: transparent;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.leftButton, .rightButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.leftButton:hover, .rightButton:hover {
+  background-color: var(--primary-green);
+  opacity: 1;
+}
+
+.leftButton:disabled, .rightButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.leftButton { left: 20px; }
+.rightButton { right: 20px; }
+
+.indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Tablet Styles */
+@media (max-width: 992px) {
+  .slider {
+    height: 500px;
+  }
+  
+  .caption {
+    font-size: 2.5rem;
+  }
+  
+  .subCaption {
+    font-size: 1.1rem;
+  }
+  
+  .content {
+    left: 8%;
+    max-width: 500px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .slider {
+    height: 400px;
+  }
+  
+  .caption {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .subCaption {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .content {
+    left: 5%;
+    max-width: 90%;
+  }
+  
+  .leftButton, .rightButton {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 576px) {
+  .slider {
+    height: 350px;
+  }
+  
+  .caption {
+    font-size: 1.5rem;
+  }
+  
+  .subCaption {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .leftButton, .rightButton {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .image,
+  .content,
+  .button,
+  .leftButton,
+  .rightButton,
+  .indicator {
+    transition: none;
+  }
+}

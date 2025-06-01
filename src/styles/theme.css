@@ -1,0 +1,299 @@
+:root {
+  /* Global Color Variables (CSS Ready) */
+  --primary-green: #22C55E;        /* Main buttons, highlights, tags */
+  --green-hover: #16A34A;          /* Hover for green buttons */
+  --header-footer-bg: #34D399;     /* Brighter, friendly header/footer background */
+  --text-on-header: #0F172A;       /* Dark text on green background */
+  --neutral-bg: #F8FAFC;           /* Light page background */
+  --card-bg: #FFFFFF;              /* Card/module background */
+  --border-color: #E5E7EB;         /* Borders, dividers */
+  --text-main: #0F172A;            /* Headings, main text */
+  --text-secondary: #64748B;       /* Paragraphs, subtext */
+  --accent-blue: #3B82F6;          /* Optional highlight color for tabs/info */
+  --error-red: #EF4444;            /* "Sale" or error indicators */
+  --sale-orange: #F97316;          /* Limited-time offers, urgent promos */
+  
+  /* Light theme variables - Enhanced Modern Color Scheme */
+  --bg-primary: var(--neutral-bg);
+  --bg-secondary: var(--card-bg);
+  --bg-tertiary: #f0f7ff;
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-secondary);
+  --text-tertiary: #5d6e8f;
+  --border-color: var(--border-color);
+  --accent-color: var(--primary-green);
+  --accent-hover: var(--green-hover);
+  --success-color: var(--primary-green);
+  --error-color: var(--error-red);
+  --warning-color: var(--sale-orange);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --sidebar-bg: var(--text-main);
+  --sidebar-text: var(--neutral-bg);
+  --sidebar-hover: #2d3f66;
+  --sidebar-active: var(--primary-green);
+  --transition-speed: 0.3s;
+  
+  /* Additional modern colors */
+  --primary-blue: var(--accent-blue);
+  --secondary-blue: #4cc9f0;
+  --light-blue: #c5e5ff;
+  --dark-blue: #0057b8;
+  
+  /* Blog Section Colors */
+  --blog-header-bg: #22C55E;      /* Bold, bright green – same as CTA buttons */
+  --blog-card-bg: #FFFFFF;        /* Clean white cards */
+  --blog-section-bg: #F8FAFC;     /* Light neutral gray (very subtle tone) */
+  --blog-title-text: #0F172A;     /* Bold, dark navy black */
+  --blog-description-text: #475569; /* Muted dark slate for paragraphs */
+  --blog-featured-tag: #16A34A;   /* Darker green – feels serious, solid */
+  --blog-secondary-tag: #3B82F6;  /* Soft blue – adds variety, still professional */
+  --blog-borders: #E2E8F0;        /* Soft gray for clean separation */
+  --blog-cta: #22C55E;            /* Same bold green as homepage */
+  --blog-cta-hover: #16A34A;      /* Darker green for hover states */
+  --blog-newsletter-bg: #22C55E;  /* Bright green, with white text */
+  --blog-button-text: #FFFFFF;    /* Always white for clarity on green */
+  
+  --neutral-light: var(--neutral-bg);
+  --neutral-medium: var(--border-color);
+  
+  /* Card and UI colors */
+  --card-bg: var(--card-bg);
+  --card-hover: #f5f9ff;
+  --input-bg: var(--card-bg);
+  --disabled-color: #a0a8c0;
+  --primary-color: var(--primary-green);
+  --primary-color-light: #dcfce7;
+  --primary-color-dark: var(--green-hover);
+  --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--header-footer-bg));
+  --gradient-success: linear-gradient(135deg, var(--primary-green), var(--header-footer-bg));
+  --gradient-warning: linear-gradient(135deg, #ffd166, var(--sale-orange));
+  --gradient-error: linear-gradient(135deg, var(--error-red), #ff006e);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  /* Dark theme color overrides */
+  --primary-green: #22C55E;        /* Keep the same green for consistency */
+  --green-hover: #16A34A;          /* Keep the same hover state */
+  --header-footer-bg: #059669;     /* Darker green for header/footer in dark mode */
+  --text-on-header: #F8FAFC;       /* Light text on dark green background */
+  --neutral-bg: #0F172A;           /* Dark background */
+  --card-bg: #1E293B;              /* Dark card background */
+  --border-color: #334155;         /* Darker borders */
+  --text-main: #F8FAFC;            /* Light text for headings */
+  --text-secondary: #94A3B8;       /* Light gray for paragraphs */
+  
+  /* Dark theme variables */
+  --bg-primary: var(--neutral-bg);
+  --bg-secondary: var(--card-bg);
+  --bg-tertiary: #2c3e50;
+  --text-primary: var(--text-main);
+  --text-secondary: var(--text-secondary);
+  --text-tertiary: #98adc7;
+  --border-color: var(--border-color);
+  --accent-color: var(--primary-green);
+  --accent-hover: var(--green-hover);
+  --success-color: var(--primary-green);
+  --error-color: var(--error-red);
+  --warning-color: var(--sale-orange);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+  --sidebar-bg: #0F172A;
+  --sidebar-text: #F8FAFC;
+  --sidebar-hover: #1E293B;
+  --sidebar-active: var(--primary-green);
+  
+  /* Additional modern colors - dark theme */
+  --primary-blue: var(--accent-blue);
+  --secondary-blue: #4cc9f0;
+  --light-blue: #2c3e50;
+  --dark-blue: #0057b8;
+  
+  /* Blog Section Colors - Dark Theme */
+  --blog-header-bg: #16A34A;      /* Darker green for dark mode */
+  --blog-card-bg: #1E293B;        /* Dark card background */
+  --blog-section-bg: #0F172A;     /* Dark background */
+  --blog-title-text: #F8FAFC;     /* Light text for headings */
+  --blog-description-text: #94A3B8; /* Light gray for paragraphs */
+  --blog-featured-tag: #22C55E;   /* Bright green for tags */
+  --blog-secondary-tag: #3B82F6;  /* Soft blue for secondary tags */
+  --blog-borders: #334155;        /* Darker borders */
+  --blog-cta: #22C55E;            /* Same bright green for CTAs */
+  --blog-cta-hover: #16A34A;      /* Darker green for hover states */
+  --blog-newsletter-bg: #16A34A;  /* Darker green for newsletter */
+  --blog-button-text: #FFFFFF;    /* White text on buttons */
+  
+  --neutral-light: #2c3e50;
+  --neutral-medium: #1b263b;
+  
+  /* Card and UI colors - dark theme */
+  --card-bg: var(--card-bg);
+  --card-hover: #2c3e50;
+  --input-bg: var(--neutral-bg);
+  --disabled-color: #4d5d73;
+  --primary-color: var(--primary-green);
+  --primary-color-light: #1b263b;
+  --primary-color-dark: var(--green-hover);
+  --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--header-footer-bg));
+  --gradient-success: linear-gradient(135deg, var(--primary-green), var(--header-footer-bg));
+  --gradient-warning: linear-gradient(135deg, #ffd166, var(--sale-orange));
+  --gradient-error: linear-gradient(135deg, var(--error-red), #ff006e);
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Accessibility focus styles */
+:focus {
+  outline: 2px solid var(--primary-green);
+  outline-offset: 2px;
+}
+
+/* Skip to content link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-green);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive breakpoints */
+/* These are used in media queries throughout the app */
+:root {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+/* Utility classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+/* Transitions */
+.fade-transition {
+  transition: opacity var(--transition-speed) ease;
+}
+
+.scale-transition {
+  transition: transform var(--transition-speed) ease;
+}
+
+.scale-transition:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive image */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lazy load image placeholder */
+.img-placeholder {
+  background-color: var(--bg-tertiary);
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+/* Improved scrollbars for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-hover);
+}

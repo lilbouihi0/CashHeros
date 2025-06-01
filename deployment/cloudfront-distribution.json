@@ -1,0 +1,91 @@
+{
+  "Comment": "CloudFront Distribution for CashHeros Website",
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Id": "S3-cashheros-website",
+        "DomainName": "cashheros-website-prod.s3.amazonaws.com",
+        "S3OriginConfig": {
+          "OriginAccessIdentity": "origin-access-identity/cloudfront/EXXXXXXXXXXXXX"
+        }
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-cashheros-website",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "Compress": true,
+    "MinTTL": 0,
+    "DefaultTTL": 86400,
+    "MaxTTL": 31536000,
+    "ForwardedValues": {
+      "QueryString": false,
+      "Cookies": {
+        "Forward": "none"
+      }
+    }
+  },
+  "CacheBehaviors": {
+    "Quantity": 2,
+    "Items": [
+      {
+        "PathPattern": "*.js",
+        "TargetOriginId": "S3-cashheros-website",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "Compress": true,
+        "MinTTL": 0,
+        "DefaultTTL": 86400,
+        "MaxTTL": 31536000,
+        "ForwardedValues": {
+          "QueryString": false,
+          "Cookies": {
+            "Forward": "none"
+          }
+        }
+      },
+      {
+        "PathPattern": "*.css",
+        "TargetOriginId": "S3-cashheros-website",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "Compress": true,
+        "MinTTL": 0,
+        "DefaultTTL": 86400,
+        "MaxTTL": 31536000,
+        "ForwardedValues": {
+          "QueryString": false,
+          "Cookies": {
+            "Forward": "none"
+          }
+        }
+      }
+    ]
+  },
+  "CustomErrorResponses": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "ErrorCode": 404,
+        "ResponsePagePath": "/index.html",
+        "ResponseCode": "200",
+        "ErrorCachingMinTTL": 300
+      }
+    ]
+  },
+  "PriceClass": "PriceClass_100",
+  "Enabled": true,
+  "ViewerCertificate": {
+    "ACMCertificateArn": "arn:aws:acm:us-east-1:XXXXXXXXXXXX:certificate/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "SSLSupportMethod": "sni-only",
+    "MinimumProtocolVersion": "TLSv1.2_2021"
+  },
+  "Aliases": {
+    "Quantity": 2,
+    "Items": [
+      "cashheros.com",
+      "www.cashheros.com"
+    ]
+  },
+  "HttpVersion": "http2",
+  "IsIPV6Enabled": true
+}

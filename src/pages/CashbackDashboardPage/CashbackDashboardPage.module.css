@@ -1,0 +1,625 @@
+/* src/pages/CashbackDashboardPage/CashbackDashboardPage.module.css */
+.dashboardPage {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.dashboardContainer {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.dashboardContainer h1 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.dashboardContainer h2 {
+  color: #4a5568;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+/* Balance Summary Section */
+.balanceSummary {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.balanceCard {
+  flex: 1;
+  background-color: #7b1fa2;
+  color: white;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(123, 31, 162, 0.2);
+}
+
+.balanceCard h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.balanceAmount {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.redeemButton {
+  background-color: white;
+  color: #7b1fa2;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.redeemButton:hover:not(:disabled) {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.redeemButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.statsCards {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.statCard {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statCard h4 {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 10px;
+}
+
+.statAmount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.tabButton {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  color: #4a5568;
+}
+
+.tabButton.active {
+  color: #7b1fa2;
+}
+
+.tabButton.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #7b1fa2;
+}
+
+/* Activity List */
+.activityList {
+  margin-bottom: 30px;
+}
+
+.activityItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.activityItem:last-child {
+  border-bottom: none;
+}
+
+.activityIcon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  background-color: #f8f9fa;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activityDetails {
+  flex: 1;
+}
+
+.activityHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.activityHeader h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2d3748;
+}
+
+.activityDate {
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.activityBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activityStatus {
+  font-size: 0.85rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.activityStatus.pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.activityStatus.approved {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.activityStatus.processing {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.activityStatus.completed {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.activityStatus.rejected {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.activityAmount {
+  font-weight: bold;
+  color: #2d3748;
+}
+
+/* Cashback Tips */
+.cashbackTips {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.cashbackTips h3 {
+  color: #4a5568;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.cashbackTips ul {
+  padding-left: 20px;
+}
+
+.cashbackTips li {
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+/* Table Styles */
+.cashbackTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.tableHeader {
+  display: flex;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #4a5568;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.tableRow {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableCell {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.storeInfo {
+  display: flex;
+  align-items: center;
+}
+
+.storeIcon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.statusBadge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.statusBadge.pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.statusBadge.approved {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.statusBadge.processing {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.statusBadge.completed {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.statusBadge.rejected {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+/* Pending Info */
+.pendingInfo {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.pendingInfo h4 {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.pendingInfo p {
+  color: #718096;
+  line-height: 1.6;
+}
+
+/* Redeem Form */
+.redeemForm {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.availableBalance {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #4a5568;
+}
+
+.availableBalance span {
+  font-weight: bold;
+  color: #7b1fa2;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.formGroup input, .formGroup textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+  outline: none;
+  border-color: #7b1fa2;
+  box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.1);
+}
+
+.inputError {
+  border-color: #e53e3e !important;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.helperText {
+  color: #718096;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.redeemMethods {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.methodOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.methodOption input {
+  margin-right: 8px;
+  width: auto;
+}
+
+.methodLabel {
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+.redeemTerms {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.redeemTerms p {
+  color: #718096;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.submitButton {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.submitButton:hover {
+  background-color: #6a1b9a;
+}
+
+.minimumBalanceWarning {
+  background-color: #fef3c7;
+  color: #d97706;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.minimumBalanceWarning p {
+  margin-bottom: 15px;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.emptyState p {
+  color: #718096;
+  margin-bottom: 20px;
+}
+
+.browseButton {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.browseButton:hover {
+  background-color: #6a1b9a;
+}
+
+/* Loading state */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #7b1fa2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+  color: #718096;
+}
+
+/* Messages */
+.errorMessage {
+  background-color: #ffcdd2;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.successMessage {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .balanceSummary {
+    flex-direction: column;
+  }
+  
+  .statsCards {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboardContainer {
+    padding: 20px;
+  }
+  
+  .tableHeader, .tableRow {
+    display: none;
+  }
+  
+  .cashbackTable {
+    display: block;
+  }
+  
+  .tableRow {
+    display: block;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  
+  .tableCell {
+    display: flex;
+    padding: 8px 0;
+    justify-content: space-between;
+  }
+  
+  .tableCell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tabButton {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  
+  .redeemMethods {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

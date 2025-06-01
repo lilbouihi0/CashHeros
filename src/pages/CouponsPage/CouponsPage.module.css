@@ -1,0 +1,214 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.pageTitle {
+  font-size: 2.5rem;
+  color: #0d6832; /* Deep Green from CashHeros palette */
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.pageDescription {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.couponsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.couponCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.couponCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.storeInfo {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.storeLogo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 0.75rem;
+  border-radius: 4px;
+}
+
+.storeTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.couponDetails {
+  padding: 1rem;
+}
+
+.couponTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0d6832; /* Deep Green */
+  margin: 0 0 0.5rem 0;
+}
+
+.couponDescription {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.discountInfo {
+  display: inline-block;
+  background-color: #e8f5e9; /* Light green background */
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.discountValue {
+  font-weight: 600;
+  color: #0d6832; /* Deep Green */
+}
+
+.couponCode {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.codeContainer {
+  background-color: #fff;
+  border: 1px dashed #0d6832; /* Deep Green */
+  border-radius: 4px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.code {
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0d6832; /* Deep Green */
+  letter-spacing: 1px;
+}
+
+.copyButton {
+  background-color: #0d6832; /* Deep Green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.copyButton:hover {
+  background-color: #0a5228; /* Darker shade of Deep Green */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.paginationButton {
+  background-color: #0d6832; /* Deep Green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.paginationButton:hover:not(.disabled) {
+  background-color: #0a5228; /* Darker shade of Deep Green */
+}
+
+.paginationButton.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.loadingSpinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #0d6832; /* Deep Green */
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorMessage {
+  background-color: #ffebee; /* Light red background */
+  color: #c62828; /* Dark red text */
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.noCoupons {
+  text-align: center;
+  padding: 3rem 0;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2rem;
+  }
+
+  .couponsGrid {
+    grid-template-columns: 1fr;
+  }
+}

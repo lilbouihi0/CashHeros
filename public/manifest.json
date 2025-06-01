@@ -1,0 +1,78 @@
+{
+  "short_name": "CashHeros",
+  "name": "CashHeros - Coupons & Cash Back",
+  "description": "Find the best coupons, promo codes, and cash back offers for your favorite stores.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo192-maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "logo512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshot2.png",
+      "type": "image/png",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#7b1fa2",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "finance", "lifestyle"],
+  "dir": "ltr",
+  "lang": "en-US",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "shortcuts": [
+    {
+      "name": "Latest Coupons",
+      "short_name": "Coupons",
+      "description": "View the latest coupons",
+      "url": "/coupons",
+      "icons": [{ "src": "coupon-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Cash Back Offers",
+      "short_name": "Cash Back",
+      "description": "View cash back offers",
+      "url": "/cashback",
+      "icons": [{ "src": "cashback-icon.png", "sizes": "96x96" }]
+    }
+  ]
+}

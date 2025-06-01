@@ -1,0 +1,15 @@
+:root {
+  --primary-green: #22C55E;        /* Main buttons, highlights, tags */
+  --primary-green-rgb: 34, 197, 94; /* RGB values for primary green */
+  --green-hover: #16A34A;          /* Hover for green buttons */
+  --header-footer-bg: #34D399;     /* Brighter, friendly header/footer background */
+  --text-on-header: #0F172A;       /* Dark text on green background */
+  --neutral-bg: #F8FAFC;           /* Light page background */
+  --card-bg: #FFFFFF;              /* Card/module background */
+  --border-color: #E5E7EB;         /* Borders, dividers */
+  --text-main: #0F172A;            /* Headings, main text */
+  --text-secondary: #64748B;       /* Paragraphs, subtext */
+  --accent-blue: #3B82F6;          /* Optional highlight color for tabs/info */
+  --error-red: #EF4444;            /* "Sale" or error indicators */
+  --sale-orange: #F97316;          /* Limited-time offers, urgent promos */
+}

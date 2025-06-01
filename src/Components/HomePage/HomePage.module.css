@@ -1,0 +1,3902 @@
+/* Base variables for consistent styling */
+:root {
+  --section-margin: 15px;
+  --card-radius: 10px;
+  --trans: 0.3s;
+  --shadow-sm: 0 3px 10px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --font-sm: 0.8rem;
+  --font-md: 0.9rem;
+  --font-lg: 1rem;
+  --font-xl: 1.5rem;
+}
+
+/* Main layout and common elements */
+.homePage {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: var(--white);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all content */
+}
+
+/* Common styles for full-width sections */
+[class*="Section"], .loadingContainer, .categoryPillsContainer, 
+.aiRecommendationsWrapper, .newsletterContainer, .section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+/* Loading state */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: var(--font-lg);
+  color: var(--primary-green);
+}
+
+/* Hero section with search */
+.heroSection {
+  position: relative;
+  margin-bottom: var(--section-margin);
+}
+
+.searchBarContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: var(--card-radius);
+  padding: 15px;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(5px);
+}
+
+.searchForm {
+  display: flex;
+  width: 100%;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid var(--light-gray);
+  border-radius: 8px 0 0 8px;
+  font-size: var(--font-lg);
+  transition: border-color var(--trans) ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary-green);
+}
+
+.searchButton {
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  padding: 0 25px;
+  cursor: pointer;
+  transition: background-color var(--trans) ease;
+}
+
+.searchButton:hover {
+  background-color: var(--dark-green);
+}
+
+.popularSearches {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: var(--font-md);
+}
+
+.popularSearches span {
+  color: var(--neutral-gray);
+}
+
+.popularSearches a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.popularSearches a:hover {
+  color: var(--dark-green);
+  text-decoration: underline;
+}
+
+/* Category navigation and filters */
+.categoryPillsContainer, .couponCategoriesNav, 
+.cashBackCategoriesNav, .dealsCategoriesNav, 
+.topStoresFilter, .trendingDealsScroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.categoryPillsContainer::-webkit-scrollbar,
+[class*="CategoriesNav"]::-webkit-scrollbar,
+.topStoresFilter::-webkit-scrollbar,
+.trendingDealsScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.categoryPillsContainer {
+  padding: 10px 15px;
+  margin: 0 auto 15px;
+}
+
+[class*="CategoriesNav"], .topStoresFilter {
+  padding: 0 0 10px;
+  margin-bottom: 15px;
+}
+
+.categoryPill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  background-color: var(--light-gray);
+  border-radius: 50px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--neutral-gray);
+  transition: all var(--trans) ease;
+  font-size: var(--font-md);
+}
+
+.categoryPill:hover {
+  background-color: var(--primary-green);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.categoryIcon {
+  font-size: var(--font-lg);
+}
+
+.categoryName {
+  font-weight: 500;
+}
+
+/* Category buttons */
+[class*="CategoryButton"], .topStoresFilterButton {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  border: none;
+  background-color: var(--light-gray);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[class*="CategoryButton"].active, .topStoresFilterButton.active,
+[class*="CategoryButton"]:hover, .topStoresFilterButton:hover {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+/* AI Recommendations */
+.aiRecommendationsWrapper {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.aiRecommendationsWrapper h2 {
+  color: var(--neutral-gray);
+  font-size: var(--font-xl);
+  margin-bottom: 10px;
+}
+
+.aiRecommendationsWrapper p {
+  color: var(--neutral-gray);
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Trending Deals */
+.trendingSection {
+  padding: 0 15px;
+}
+
+.trendingSection h2 {
+  font-size: var(--font-xl);
+  color: var(--neutral-gray);
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.trendingSection h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--primary-green);
+  transition: width var(--trans) ease;
+}
+
+.trendingDealsContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.trendingDealsScroll {
+  padding: 5px 0 15px;
+  scroll-behavior: smooth;
+}
+
+/* Card styles */
+.trendingDealCard {
+  min-width: 250px;
+  background-color: white;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--trans) ease, box-shadow var(--trans) ease;
+  flex: 0 0 auto;
+}
+
+.trendingDealCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.trendingDealImage {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+.trendingDealImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.trendingDealCard:hover .trendingDealImage img {
+  transform: scale(1.05);
+}
+
+.trendingLabel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.trendingDealContent {
+  padding: 15px;
+}
+
+.trendingDealContent h3 {
+  margin: 0 0 8px;
+  font-size: var(--font-lg);
+  color: var(--neutral-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  line-clamp: 2; /* Standard property for compatibility */
+  -webkit-box-orient: vertical;
+}
+
+.trendingDealBrand {
+  color: var(--neutral-gray);
+  margin: 0 0 10px;
+  font-size: var(--font-sm);
+}
+
+/* Button styles */
+.getCodeButton, .subscribeButton {
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all var(--trans) ease;
+  font-size: var(--font-md);
+}
+
+.getCodeButton {
+  background-color: var(--primary-green);
+  color: white;
+  padding: 8px 15px;
+  width: 100%;
+}
+
+.getCodeButton:hover, .subscribeButton:hover {
+  background-color: var(--dark-green);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Banner Images */
+.dealsBanner {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.dealsBannerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.dealsBanner:hover .dealsBannerImage {
+  transform: scale(1.02);
+}
+
+/* Newsletter */
+.newsletterContainer {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+  border-radius: var(--card-radius);
+  padding: 25px;
+  color: white;
+  box-shadow: var(--shadow-lg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.newsletterContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: var(--card-radius);
+}
+
+.newsletterContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.newsletterContent h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.newsletterContent p {
+  font-size: var(--font-md);
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.subscriptionForm {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-md);
+}
+
+.emailInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.subscribeButton {
+  background-color: white;
+  color: var(--primary-green);
+  padding: 0 15px;
+}
+
+.newsletterBenefits {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-sm);
+}
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+/* Section styling */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+[class*="Section"] .sectionHeader {
+  margin-bottom: 12px;
+}
+
+.section h2, [class*="Section"] h2, .sectionTitle {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  position: relative;
+  margin: 0 0 20px 0;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #27ae60;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Animated underline for section headings */
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-green);
+  transition: width var(--trans) ease;
+}
+
+.section:hover h2::after {
+  width: 70px;
+}
+
+/* View all link */
+.viewAllLink, [class*="Section"] .viewAllLink {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  font-size: var(--font-md);
+}
+
+.viewAllLink:hover {
+  color: var(--dark-green);
+}
+
+.viewAllLink svg {
+  transition: transform 0.2s ease;
+  width: 14px;
+  height: 14px;
+}
+
+.viewAllLink:hover svg {
+  transform: translateX(3px);
+}
+
+/* Grid layouts */
+.cardsGrid, [class*="Grid"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+/* Intro and footer sections */
+[class*="Intro"] {
+  margin-bottom: 15px;
+  font-size: var(--font-md);
+}
+
+[class*="Footer"] {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Stats display */
+[class*="Stats"] {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+[class*="Stat"] {
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.statLabel {
+  font-size: var(--font-sm);
+  color: var(--neutral-gray);
+}
+
+/* Why Cash Back Section Compact Styles */
+.whyCashBackContent {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 15px;
+}
+
+.whyCashBackIntro {
+  grid-column: span 12;
+  margin-bottom: 15px;
+}
+
+.whyCashBackIntro h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.whyCashBackIntro p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.whyCashBackCards {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.whyCashBackCard {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+.whyCashBackIcon {
+  margin-bottom: 10px;
+  color: var(--primary-green);
+}
+
+.whyCashBackCard h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.whyCashBackCard p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.whyCashBackSteps {
+  grid-column: span 12;
+  margin-bottom: 20px;
+}
+
+.whyCashBackSteps h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.stepsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.stepNumber {
+  width: 30px;
+  height: 30px;
+  background-color: var(--primary-green);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.stepContent h4 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.stepContent p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.stepArrow {
+  color: var(--neutral-gray);
+  margin: 0 10px;
+  display: none;
+}
+
+.whyCashBackCTA {
+  grid-column: span 12;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.whyCashBackCTA h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.whyCashBackCTA p {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.whyCashBackButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.signupButton, .learnMoreButton {
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.signupButton {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+.learnMoreButton {
+  background-color: transparent;
+  border: 1px solid var(--primary-green);
+  color: var(--primary-green);
+}
+
+@media (min-width: 768px) {
+  .whyCashBackSteps .stepArrow {
+    display: block;
+  }
+  
+  .whyCashBackSteps .stepsContainer {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .whyCashBackCards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .whyCashBackSteps .step {
+    width: 100%;
+  }
+}
+
+/* Two-column layout for some sections on larger screens */
+/* Remove the grid layout that was causing stretching */
+@media (min-width: 992px) {
+  .enhancedCouponsSection,
+  .enhancedCashBackSection {
+    display: block; /* Change from grid to block */
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+}
+
+/* Tablet Styles */
+@media (max-width: 992px) {
+  .searchBarContainer {
+    width: 90%;
+  }
+  
+  .section {
+    margin: 20px 15px;
+  }
+  
+  .cardsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .newsletterContainer {
+    padding: 20px;
+    margin: 25px 15px;
+  }
+  
+  .newsletterContent h2 {
+    font-size: 1.5rem;
+  }
+  
+  .newsletterBenefits {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .searchBarContainer {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 90%;
+    margin: -30px auto 20px;
+  }
+  
+  .searchInput {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .searchButton {
+    padding: 0 15px;
+  }
+  
+  .section {
+    margin: 20px 10px;
+  }
+  
+  .cardsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  
+  .section h2, 
+  .enhancedCouponsSection h2, 
+  .enhancedCashBackSection h2, 
+  .enhancedDealsSection h2 {
+    font-size: 1.3rem;
+  }
+  
+  .newsletterContainer {
+    padding: 20px 15px;
+    margin: 20px 10px;
+  }
+  
+  .newsletterContent h2 {
+    font-size: 1.4rem;
+  }
+  
+  .newsletterContent p {
+    font-size: 0.9rem;
+  }
+  
+  .subscriptionForm {
+    flex-direction: column;
+  }
+  
+  .emailInput, .subscribeButton {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .trendingDealCard {
+    min-width: 220px;
+  }
+  
+  .categoryPill {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .categoryIcon {
+    font-size: 0.9rem;
+  }
+  
+  /* Enhanced sections mobile styles */
+  .enhancedCouponsSection,
+  .enhancedCashBackSection,
+  .enhancedDealsSection,
+  .enhancedFavoriteStoresSection,
+  .enhancedTopStoresSection,
+  .enhancedTodayDealsSection,
+  .enhancedWhyCashBackSection {
+    margin: 20px 10px;
+    padding: 0;
+  }
+  
+  .cashBackPromo {
+    flex-direction: column;
+  }
+  
+  .promoContent {
+    padding: 15px;
+  }
+  
+  .promoContent h3 {
+    font-size: 1.3rem;
+  }
+  
+  .promoContent p {
+    font-size: 0.9rem;
+  }
+  
+  .promoForm {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .promoInput, .promoButton {
+    width: 100%;
+  }
+  
+  .cashBackIntro {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .dealsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  
+  .dealContent h3 {
+    font-size: 1rem;
+  }
+  
+  .currentPrice {
+    font-size: 1.1rem;
+  }
+  
+  .viewDealButton {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 576px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .section {
+    margin: 15px 10px;
+  }
+  
+  .section h2,
+  .enhancedCouponsSection h2,
+  .enhancedCashBackSection h2,
+  .enhancedDealsSection h2 {
+    font-size: 1.2rem;
+  }
+  
+  .section h2::after,
+  .enhancedCouponsSection h2::after,
+  .enhancedCashBackSection h2::after,
+  .enhancedDealsSection h2::after {
+    bottom: -6px;
+    height: 2px;
+    width: 30px;
+  }
+  
+  .sectionHeader {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .viewAllLink {
+    font-size: 0.8rem;
+  }
+  
+  .newsletterContainer {
+    padding: 15px 12px;
+    margin: 15px 10px;
+  }
+  
+  .newsletterContent h2 {
+    font-size: 1.3rem;
+  }
+  
+  .newsletterBenefits {
+    gap: 8px;
+  }
+  
+  .benefit {
+    font-size: 0.75rem;
+  }
+  
+  .trendingDealCard {
+    min-width: 180px;
+  }
+  
+  /* Compact layout for small screens */
+  .enhancedCouponsSection,
+  .enhancedCashBackSection,
+  .enhancedDealsSection,
+  .enhancedFavoriteStoresSection,
+  .enhancedTopStoresSection,
+  .enhancedTodayDealsSection,
+  .enhancedWhyCashBackSection {
+    margin: 15px 8px;
+  }
+}
+
+.trendingDealImage {
+  height: 150px;
+}
+
+.trendingDealContent {
+  padding: 15px;
+}
+
+.trendingDealContent h3 {
+  font-size: 1.1rem;
+}
+
+/* Enhanced sections small mobile styles - overriding previous styles */
+@media (max-width: 480px) {
+  .enhancedCouponsSection,
+  .enhancedCashBackSection,
+  .enhancedDealsSection {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .enhancedCouponsSection h2,
+  .enhancedCashBackSection h2 {
+    font-size: 1.4rem;
+  }
+  
+  .featuredCouponImage {
+    height: 160px;
+    max-height: 160px;
+  }
+  
+  .featuredCouponContent {
+    padding: 15px;
+  }
+  
+  .featuredCouponTitle {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  
+  .featuredCouponDescription {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  
+  .featuredCouponCode {
+    padding: 8px 12px;
+    margin-bottom: 12px;
+  }
+  
+  .featuredCouponCode span {
+    font-size: 1rem;
+  }
+  
+  .copyCodeButton {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .shopNowLink {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .couponsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.couponStat,
+.cashBackStat {
+  padding: 15px;
+}
+
+.statNumber {
+  font-size: 1.5rem;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+}
+
+.exploreAllCouponsButton,
+.viewAllCashBackButton,
+.viewAllDealsButton {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+}
+
+.cashBackInfoCard h3 {
+  font-size: 1.3rem;
+}
+
+.cashBackInfoCard p {
+  font-size: 0.9rem;
+}
+
+.promoContent h3 {
+  font-size: 1.3rem;
+}
+
+.promoContent p {
+  font-size: 0.9rem;
+}
+
+.dealCard {
+  margin-bottom: 15px;
+}
+
+.dealImage {
+  height: 150px;
+}
+
+.dealContent {
+  padding: 15px;
+}
+
+.dealContent h3 {
+  font-size: 1rem;
+}
+
+.currentPrice {
+  font-size: 1.1rem;
+}
+
+.originalPrice {
+  font-size: 0.9rem;
+}
+
+.discountPercent {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+}
+
+/* Enhanced Coupons Section */
+.enhancedCouponsSection {
+  margin: 40px auto;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  max-width: 1200px; /* Set maximum width */
+  width: calc(100% - 40px); /* Ensure proper width calculation */
+  box-sizing: border-box; /* Include padding in width calculation */
+  display: block; /* Ensure block display */
+}
+
+/* Enhanced Cash Back Section */
+.enhancedCashBackSection {
+  margin: 40px auto;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  max-width: 1200px; /* Set maximum width */
+  width: calc(100% - 40px); /* Ensure proper width calculation */
+  box-sizing: border-box; /* Include padding in width calculation */
+  display: block; /* Ensure block display */
+}
+
+.enhancedCouponsSection h2 {
+  color: var(--neutral-gray);
+  font-size: 1.8rem; /* Slightly reduced for better proportions */
+  position: relative;
+  margin: 0 0 10px 0; /* Add bottom margin for spacing */
+  line-height: 1.3; /* Improve readability */
+}
+
+/* Coupon Stats */
+.couponStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.couponStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  min-width: 150px;
+}
+
+.couponsSectionFooter {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.exploreAllCouponsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.exploreAllCouponsButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.couponCategoriesNav {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.couponCategoriesNav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.couponCategoryButton {
+  background: none;
+  border: 2px solid var(--light-gray);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.couponCategoryButton:hover, .couponCategoryButton.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.featuredCoupon {
+  margin-bottom: 30px;
+  width: 100%; /* Ensure full width */
+}
+
+.featuredCouponCard {
+  display: flex;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  max-height: 350px; /* Limit height to prevent stretching */
+}
+
+.featuredCouponCard:hover {
+  transform: translateY(-5px);
+}
+
+.featuredCouponImage {
+  width: 40%;
+  position: relative;
+  overflow: hidden;
+  max-height: 350px; /* Match card height */
+}
+
+.featuredCouponImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  max-height: 350px; /* Ensure image doesn't stretch */
+}
+
+.featuredCouponCard:hover .featuredCouponImage img {
+  transform: scale(1.05);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.featuredCouponContent {
+  flex: 1;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 350px; /* Match card height */
+  overflow: auto; /* Allow scrolling if content is too long */
+}
+
+.featuredCouponBrand {
+  display: inline-block;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  align-self: flex-start; /* Align to the left */
+}
+
+.featuredCouponTitle {
+  font-size: 1.5rem; /* Reduced size for better proportions */
+  color: var(--neutral-gray);
+  margin: 0 0 12px;
+  line-height: 1.3;
+  max-width: 100%; /* Prevent text overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  line-clamp: 2; /* Standard property for compatibility */
+  -webkit-box-orient: vertical;
+}
+
+.featuredCouponDescription {
+  color: #718096;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 100%; /* Prevent text overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  line-clamp: 3; /* Standard property for compatibility */
+  -webkit-box-orient: vertical;
+}
+
+.featuredCouponCode {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #F7FAFC;
+  border: 2px dashed #CBD5E0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  max-width: 100%; /* Prevent overflow */
+}
+
+.featuredCouponCode span {
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4A5568;
+  letter-spacing: 1px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copyCodeButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Prevent button text wrapping */
+  flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.copyCodeButton:hover {
+  background-color: var(--dark-green);
+}
+
+.copyCodeButton svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.shopNowLink {
+  display: inline-block;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 5px;
+  align-self: flex-start; /* Align to the left */
+}
+
+.shopNowLink:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.couponsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%; /* Ensure full width */
+}
+
+.couponsSectionFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid #E2E8F0;
+  width: 100%; /* Ensure full width */
+}
+
+.couponStats {
+  display: flex;
+  gap: 40px;
+}
+
+.couponStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statNumber {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 5px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.exploreAllCouponsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.exploreAllCouponsButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.exploreAllCouponsButton svg {
+  transition: transform 0.2s ease;
+}
+
+.exploreAllCouponsButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* Responsive styles for enhanced sections */
+@media (max-width: 992px) {
+  .enhancedCouponsSection,
+  .enhancedCashBackSection {
+    padding: 25px;
+    margin: 40px auto;
+    max-width: 90%;
+  }
+  
+  .featuredCouponTitle {
+    font-size: 1.4rem;
+  }
+  
+  .couponsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .couponStats {
+    gap: 25px;
+  }
+  
+  .statNumber {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .enhancedCouponsSection,
+  .enhancedCashBackSection {
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 95%;
+  }
+  
+  .featuredCouponCard {
+    flex-direction: column;
+  }
+  
+  .featuredCouponImage {
+    width: 100%;
+    height: 180px;
+    max-height: 180px;
+  }
+  
+  .featuredCouponContent {
+    padding: 20px;
+    max-height: none; /* Remove height restriction on mobile */
+  }
+  
+  .featuredCouponTitle {
+    font-size: 1.3rem;
+  }
+  
+  .couponsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  
+  .couponsSectionFooter,
+  .cashBackSectionFooter {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .couponStats,
+  .cashBackStats {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .exploreAllCouponsButton,
+  .viewAllCashBackButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .enhancedCouponsSection,
+  .enhancedCashBackSection {
+    padding: 15px;
+    margin: 25px auto;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  
+  .couponCategoriesNav {
+    margin: 15px 0;
+  }
+  
+  .couponCategoryButton {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .featuredCouponImage {
+    height: 180px;
+  }
+  
+  .featuredBadge {
+    top: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .featuredCouponContent {
+    padding: 15px;
+  }
+  
+  .featuredCouponTitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .featuredCouponDescription {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .featuredCouponCode {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+  }
+  
+  .featuredCouponCode span {
+    font-size: 1rem;
+  }
+  
+  .copyCodeButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .couponsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .couponStats {
+    gap: 15px;
+  }
+  
+  .statNumber {
+    font-size: 1.4rem;
+  }
+  
+  .statLabel {
+    font-size: 0.8rem;
+  }
+}
+
+/* Enhanced Cash Back Section */
+.enhancedCashBackSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cashBackIntro {
+  display: flex;
+  gap: 30px;
+  margin: 25px 0 35px;
+}
+
+.cashBackInfoCard {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cashBackInfoIcon {
+  background-color: #e6f7ef;
+  color: var(--primary-green, #4CAF50);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cashBackInfoCard h3 {
+  font-size: 1.4rem;
+  color: #2d3748;
+  margin: 0 0 15px;
+}
+
+.cashBackInfoCard p {
+  color: #718096;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.learnMoreLink {
+  color: var(--primary-green, #4CAF50);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease;
+}
+
+.learnMoreLink:hover {
+  color: var(--dark-green, #388E3C);
+  text-decoration: underline;
+}
+
+.cashBackStats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cashBackStat {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.cashBackStat .statNumber {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-green, #4CAF50);
+  margin-bottom: 5px;
+}
+
+.cashBackStat .statLabel {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.cashBackCategoriesNav {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 25px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.cashBackCategoriesNav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.cashBackCategoryButton {
+  background: none;
+  border: 2px solid var(--light-gray);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.cashBackCategoryButton:hover, .cashBackCategoryButton.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.cashBackGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.cashBackPromo {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+  border-radius: 12px;
+  padding: 30px;
+  margin: 40px 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.promoContent {
+  flex: 2;
+}
+
+.promoContent h3 {
+  font-size: 1.8rem;
+  margin: 0 0 15px;
+}
+
+.promoContent p {
+  opacity: 0.9;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.promoForm {
+  display: flex;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.promoInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.promoInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.promoButton {
+  background-color: white;
+  color: var(--primary-green);
+  border: none;
+  border-radius: 6px;
+  padding: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.promoButton:hover {
+  background-color: #f8f8f8;
+  transform: translateY(-2px);
+}
+
+.promoImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.cashBackFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.viewAllCashBackButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viewAllCashBackButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.viewAllCashBackButton svg {
+  transition: transform 0.2s ease;
+}
+
+.viewAllCashBackButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* Responsive styles for enhanced cash back section */
+@media (max-width: 992px) {
+  .enhancedCashBackSection {
+    padding: 25px;
+    margin: 50px 15px;
+  }
+  
+  .cashBackIntro {
+    gap: 20px;
+  }
+  
+  .cashBackInfoCard h3 {
+    font-size: 1.3rem;
+  }
+  
+  .cashBackStat .statNumber {
+    font-size: 1.8rem;
+  }
+  
+  .cashBackGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .promoContent h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .enhancedCashBackSection {
+    padding: 20px;
+    margin: 40px 10px;
+  }
+  
+  .cashBackIntro {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .cashBackStats {
+    flex-direction: row;
+  }
+  
+  .cashBackStat {
+    padding: 15px;
+  }
+  
+  .cashBackStat .statNumber {
+    font-size: 1.6rem;
+  }
+  
+  .cashBackGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  
+  .cashBackPromo {
+    flex-direction: column;
+    padding: 25px;
+  }
+  
+  .promoContent {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .promoContent h3 {
+    font-size: 1.5rem;
+  }
+  
+  .promoForm {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  
+  .promoInput, .promoButton {
+    width: 100%;
+    padding: 12px;
+  }
+  
+  .promoImage {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .enhancedCashBackSection {
+    padding: 15px;
+    margin: 30px 10px;
+  }
+  
+  .cashBackInfoCard {
+    padding: 20px;
+  }
+  
+  .cashBackInfoIcon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cashBackInfoCard h3 {
+    font-size: 1.2rem;
+  }
+  
+  .cashBackStats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .cashBackStat {
+    padding: 15px 10px;
+  }
+  
+  .cashBackStat .statNumber {
+    font-size: 1.4rem;
+  }
+  
+  .cashBackCategoriesNav {
+    margin: 0 0 20px;
+  }
+  
+  .cashBackCategoryButton {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .cashBackGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cashBackPromo {
+    padding: 20px;
+    margin: 30px 0;
+  }
+  
+  .promoContent h3 {
+    font-size: 1.3rem;
+  }
+  
+  .viewAllCashBackButton {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Enhanced Top Deals Section */
+.enhancedDealsSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dealsIntro {
+  margin: 25px 0 35px;
+}
+
+.dealsBanner {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dealsBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background-image: url('https://via.placeholder.com/500x300');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+}
+
+.dealsHighlight {
+  padding: 30px;
+  color: white;
+  width: 60%;
+  position: relative;
+  z-index: 2;
+}
+
+.dealsHighlight h3 {
+  font-size: 1.8rem;
+  margin: 0 0 15px;
+  font-weight: 700;
+}
+
+.dealsHighlight p {
+  margin: 0 0 20px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.hotDealsButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  color: #6a11cb;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotDealsButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dealsCategoriesNav {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 25px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.dealsCategoriesNav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.dealsCategoryButton {
+  background: none;
+  border: 2px solid var(--light-gray);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.dealsCategoryButton:hover, .dealsCategoryButton.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.dealsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.dealsFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.dealsStats {
+  display: flex;
+  gap: 40px;
+}
+
+.dealsStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dealsStat .statNumber {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 5px;
+}
+
+.dealsStat .statLabel {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.viewAllDealsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viewAllDealsButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.viewAllDealsButton svg {
+  transition: transform 0.2s ease;
+}
+
+.viewAllDealsButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* Responsive styles for enhanced deals section */
+@media (max-width: 992px) {
+  .enhancedDealsSection {
+    padding: 25px;
+    margin: 50px 15px;
+  }
+  
+  .dealsBanner {
+    height: 160px;
+  }
+  
+  .dealsHighlight h3 {
+    font-size: 1.6rem;
+  }
+  
+  .dealsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .dealsStats {
+    gap: 30px;
+  }
+  
+  .dealsStat .statNumber {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .enhancedDealsSection {
+    padding: 20px;
+    margin: 40px 10px;
+  }
+  
+  .dealsBanner {
+    height: auto;
+  }
+  
+  .dealsBanner::before {
+    display: none;
+  }
+  
+  .dealsHighlight {
+    width: 100%;
+    padding: 25px;
+  }
+  
+  .dealsHighlight h3 {
+    font-size: 1.4rem;
+  }
+  
+  .dealsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  
+  .dealsFooter {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .dealsStats {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .viewAllDealsButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .enhancedDealsSection {
+    padding: 15px;
+    margin: 30px 10px;
+  }
+  
+  .dealsHighlight {
+    padding: 20px;
+  }
+  
+  .dealsHighlight h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+  .dealsHighlight p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .hotDealsButton {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .dealsCategoriesNav {
+    margin: 0 0 20px;
+  }
+  
+  .dealsCategoryButton {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .dealsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dealsStats {
+    gap: 15px;
+  }
+  
+  .dealsStat .statNumber {
+    font-size: 1.4rem;
+  }
+  
+  .dealsStat .statLabel {
+    font-size: 0.8rem;
+  }
+  
+  .viewAllDealsButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Enhanced Favorite Stores Section */
+.enhancedFavoriteStoresSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.favoriteStoresIntro {
+  margin: 15px 0 25px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.favoriteStoresIntro p {
+  color: #718096;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.favoriteStoresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.favoriteStoreCard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.favoriteStoreCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.storeLogoContainer {
+  position: relative;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.storeLogo {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.popularBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--primary-green);
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.storeInfo {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.storeName {
+  font-size: 1.1rem;
+  color: #2d3748;
+  margin: 0 0 10px;
+}
+
+.cashbackRate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rateValue {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.rateLabel {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.storeActions {
+  padding: 0 20px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.shopNowButton {
+  flex: 1;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.shopNowButton:hover {
+  background-color: var(--dark-green);
+}
+
+.favoriteButton {
+  background: none;
+  border: 1px solid #e2e8f0;
+  color: #cbd5e0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.favoriteButton:hover {
+  color: #f56565;
+  background-color: #fff5f5;
+  border-color: #f56565;
+}
+
+.favoriteStoresFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.viewAllStoresButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viewAllStoresButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.viewAllStoresButton svg {
+  transition: transform 0.2s ease;
+}
+
+.viewAllStoresButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* Enhanced Today's Top Deals Section */
+.enhancedTodayDealsSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.todayDealsTimer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.timerIcon {
+  background-color: #fff5f5;
+  color: #f56565;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timerInfo {
+  flex: 1;
+}
+
+.timerLabel {
+  font-size: 0.9rem;
+  color: #718096;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.timerUnits {
+  display: flex;
+  align-items: center;
+}
+
+.timerUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timerValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.timerUnitLabel {
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.timerSeparator {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 10px;
+}
+
+.todayDealsCarousel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.carouselArrow {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  color: #718096;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carouselArrow:hover {
+  color: var(--primary-green);
+  background-color: #f0fff4;
+  border-color: var(--primary-green);
+}
+
+.todayDealsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 5px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.todayDealsGrid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.todayDealCard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.todayDealCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.todayDealHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.todayDealDiscount {
+  background-color: #f56565;
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.todayDealBadge {
+  background-color: #4299e1;
+  color: white;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.todayDealImageContainer {
+  height: 160px;
+  overflow: hidden;
+}
+
+.todayDealImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.todayDealCard:hover .todayDealImage {
+  transform: scale(1.05);
+}
+
+.todayDealContent {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.todayDealTitle {
+  font-size: 1rem;
+  color: #2d3748;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.todayDealStore {
+  font-size: 0.9rem;
+  color: #718096;
+  margin-bottom: 12px;
+}
+
+.todayDealPrices {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.todayDealSalePrice {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.todayDealOriginalPrice {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  text-decoration: line-through;
+}
+
+.checkPriceButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: auto;
+}
+
+.checkPriceButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.checkPriceButton svg {
+  transition: transform 0.2s ease;
+}
+
+.checkPriceButton:hover svg {
+  transform: translateX(3px);
+}
+
+.todayDealFooter {
+  padding: 12px 15px;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+}
+
+.todayDealExpiry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #718096;
+  font-size: 0.8rem;
+}
+
+.todayDealSaveButton {
+  background: none;
+  border: none;
+  color: #cbd5e0;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.todayDealSaveButton:hover {
+  color: #f56565;
+  background-color: #fff5f5;
+}
+
+.todayDealsFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.viewAllTodayDealsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viewAllTodayDealsButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.viewAllTodayDealsButton svg {
+  transition: transform 0.2s ease;
+}
+
+.viewAllTodayDealsButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* Enhanced Top Stores Section */
+.enhancedTopStoresSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.topStoresIntro {
+  margin: 15px 0 25px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.topStoresIntro p {
+  color: #718096;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.topStoresFilter {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 25px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  justify-content: center;
+}
+
+.topStoresFilter::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.topStoresFilterButton {
+  background: none;
+  border: 2px solid var(--light-gray);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.topStoresFilterButton:hover, .topStoresFilterButton.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.topStoresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.topStoreCard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.topStoreCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.topStoreRank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--primary-green);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+.topStoreLogoContainer {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.topStoreLogo {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.topStoreInfo {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.topStoreName {
+  font-size: 1.1rem;
+  color: #2d3748;
+  margin: 0;
+}
+
+.topStoreCategory {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.topStoreCashback {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.topStoreCashbackValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.topStoreCashbackLabel {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.topStoreRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ratingStars {
+  display: flex;
+  gap: 2px;
+  color: #f6ad55;
+}
+
+.ratingValue {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.topStoreActions {
+  padding: 0 20px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.topStoreShopButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.topStoreShopButton:hover {
+  background-color: var(--dark-green);
+}
+
+.topStoreShopButton svg {
+  transition: transform 0.2s ease;
+}
+
+.topStoreShopButton:hover svg {
+  transform: translateX(3px);
+}
+
+.topStoreFavoriteButton {
+  background: none;
+  border: 1px solid #e2e8f0;
+  color: #cbd5e0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.topStoreFavoriteButton:hover {
+  color: #f56565;
+  background-color: #fff5f5;
+  border-color: #f56565;
+}
+
+.topStoresFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.viewAllTopStoresButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.viewAllTopStoresButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.viewAllTopStoresButton svg {
+  transition: transform 0.2s ease;
+}
+
+.viewAllTopStoresButton:hover svg {
+  transform: translateX(3px);
+}
+
+/* Enhanced Why Cash Back Section */
+.enhancedWhyCashBackSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.whyCashBackContent {
+  margin-top: 25px;
+}
+
+.whyCashBackIntro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.whyCashBackIntro h3 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin: 0 0 15px;
+}
+
+.whyCashBackIntro p {
+  color: #718096;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.whyCashBackCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.whyCashBackCard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whyCashBackCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.whyCashBackIcon {
+  background-color: #e6f7ef;
+  color: var(--primary-green);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.whyCashBackCard h4 {
+  font-size: 1.3rem;
+  color: #2d3748;
+  margin: 0 0 15px;
+}
+
+.whyCashBackCard p {
+  color: #718096;
+  line-height: 1.6;
+}
+
+.whyCashBackSteps {
+  margin-bottom: 50px;
+}
+
+.whyCashBackSteps h3 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin: 0 0 30px;
+  text-align: center;
+}
+
+.stepsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  width: calc(25% - 30px);
+}
+
+.stepNumber {
+  background-color: var(--primary-green);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.stepContent h4 {
+  font-size: 1.2rem;
+  color: #2d3748;
+  margin: 0 0 10px;
+}
+
+.stepContent p {
+  color: #718096;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.stepArrow {
+  color: var(--primary-green);
+  flex-shrink: 0;
+}
+
+.whyCashBackCTA {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+  border-radius: 12px;
+  padding: 40px;
+  color: white;
+  text-align: center;
+}
+
+.whyCashBackCTA h3 {
+  font-size: 1.8rem;
+  margin: 0 0 15px;
+}
+
+.whyCashBackCTA p {
+  opacity: 0.9;
+  margin: 0 0 25px;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.whyCashBackButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.signupButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  color: var(--primary-green);
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signupButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.signupButton svg {
+  transition: transform 0.2s ease;
+}
+
+.signupButton:hover svg {
+  transform: translateX(3px);
+}
+
+.learnMoreButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.learnMoreButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive styles for all enhanced sections */
+@media (max-width: 992px) {
+  .enhancedFavoriteStoresSection,
+  .enhancedTodayDealsSection,
+  .enhancedTopStoresSection,
+  .enhancedWhyCashBackSection {
+    padding: 25px;
+    margin: 50px 15px;
+  }
+  
+  .favoriteStoresGrid,
+  .topStoresGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .todayDealsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  
+  .whyCashBackIntro h3,
+  .whyCashBackSteps h3,
+  .whyCashBackCTA h3 {
+    font-size: 1.6rem;
+  }
+  
+  .step {
+    width: calc(50% - 30px);
+    margin-bottom: 20px;
+  }
+  
+  .stepArrow {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .enhancedFavoriteStoresSection,
+  .enhancedTodayDealsSection,
+  .enhancedTopStoresSection,
+  .enhancedWhyCashBackSection {
+    padding: 20px;
+    margin: 40px 10px;
+  }
+  
+  .favoriteStoresGrid,
+  .topStoresGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  
+  .todayDealsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .whyCashBackCards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .step {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .whyCashBackCTA {
+    padding: 30px 20px;
+  }
+  
+  .whyCashBackButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .signupButton, .learnMoreButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .enhancedFavoriteStoresSection,
+  .enhancedTodayDealsSection,
+  .enhancedTopStoresSection,
+  .enhancedWhyCashBackSection {
+    padding: 15px;
+    margin: 30px 10px;
+  }
+  
+  .favoriteStoresGrid,
+  .topStoresGrid,
+  .todayDealsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .todayDealsTimer {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .timerUnits {
+    justify-content: center;
+  }
+  
+  .carouselArrow {
+    display: none;
+  }
+  
+  .whyCashBackIntro h3,
+  .whyCashBackSteps h3,
+  .whyCashBackCTA h3 {
+    font-size: 1.4rem;
+  }
+  
+  .whyCashBackIntro p,
+  .whyCashBackCTA p {
+    font-size: 1rem;
+  }
+  
+  .whyCashBackCard {
+    padding: 20px;
+  }
+  
+  .whyCashBackIcon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .whyCashBackCard h4 {
+    font-size: 1.2rem;
+  }
+  
+  .viewAllStoresButton,
+  .viewAllTodayDealsButton,
+  .viewAllTopStoresButton {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .section h2::after,
+  .viewAllLink svg,
+  .trendingDealImage img,
+  .trendingDealCard,
+  .categoryPill,
+  .subscribeButton,
+  .featuredCouponCard,
+  .featuredCouponImage img,
+  .shopNowLink,
+  .exploreAllCouponsButton,
+  .exploreAllCouponsButton svg,
+  .cashBackCategoryButton,
+  .viewAllCashBackButton,
+  .viewAllCashBackButton svg,
+  .promoButton,
+  .dealsCategoryButton,
+  .viewAllDealsButton,
+  .viewAllDealsButton svg,
+  .hotDealsButton,
+  .favoriteStoreCard,
+  .shopNowButton,
+  .favoriteButton,
+  .viewAllStoresButton,
+  .viewAllStoresButton svg,
+  .todayDealCard,
+  .todayDealImage,
+  .checkPriceButton,
+  .checkPriceButton svg,
+  .todayDealSaveButton,
+  .viewAllTodayDealsButton,
+  .viewAllTodayDealsButton svg,
+  .topStoreCard,
+  .topStoreShopButton,
+  .topStoreShopButton svg,
+  .topStoreFavoriteButton,
+  .viewAllTopStoresButton,
+  .viewAllTopStoresButton svg,
+  .whyCashBackCard,
+  .signupButton,
+  .signupButton svg,
+  .learnMoreButton {
+    transition: none;
+  }
+}
+
+/* Styles for the inline FavoriteStore component */
+.favoriteStore {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favoriteStore:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.storeImage {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.storeImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.favoriteStore:hover .storeImage img {
+  transform: scale(1.05);
+}
+
+.storeDetails {
+  padding: 20px;
+  text-align: center;
+}
+
+.cashbackPercent {
+  color: var(--primary-green);
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: block;
+}
+
+/* Enhanced Cash Back Section */
+.enhancedCashBackSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.enhancedCashBackSection h2 {
+  color: var(--neutral-gray);
+  font-size: 2rem;
+  position: relative;
+  margin: 0;
+}
+
+/* Enhanced Deals Section */
+.enhancedDealsSection {
+  margin: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.enhancedDealsSection h2 {
+  color: var(--neutral-gray);
+  font-size: 2rem;
+  position: relative;
+  margin: 0;
+}
+
+/* Deals Categories Navigation */
+.dealsCategoriesNav {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.dealsCategoriesNav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.dealsCategoryButton {
+  background: none;
+  border: 2px solid var(--light-gray);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.dealsCategoryButton:hover, .dealsCategoryButton.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.dealsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.dealCard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dealCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dealImage {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dealImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dealCard:hover .dealImage img {
+  transform: scale(1.05);
+}
+
+.dealContent {
+  padding: 20px;
+}
+
+.dealContent h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: var(--neutral-gray);
+}
+
+.dealPrice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.currentPrice {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.originalPrice {
+  font-size: 1rem;
+  text-decoration: line-through;
+  color: var(--neutral-gray);
+  opacity: 0.7;
+}
+
+.discountPercent {
+  background-color: var(--accent-gold);
+  color: var(--deep-blue);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.dealFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.viewDealButton {
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewDealButton:hover {
+  background-color: var(--dark-green);
+}
+
+.dealsFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.viewAllDealsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.viewAllDealsButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+/* Cash Back Intro Section */
+.cashBackIntro {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Cash Back Info Card */
+.cashBackInfoCard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  flex: 1;
+}
+
+.cashBackInfoCard h3 {
+  color: var(--neutral-gray);
+  font-size: 1.5rem;
+  margin: 15px 0 10px;
+}
+
+.cashBackInfoCard p {
+  color: #718096;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.cashBackInfoIcon {
+  color: var(--primary-green);
+}
+
+.learnMoreLink {
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease;
+}
+
+.learnMoreLink:hover {
+  color: var(--dark-green);
+}
+
+/* Cash Back Stats */
+.cashBackStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Cash Back Categories Navigation */
+.cashBackCategoriesNav {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.cashBackCategoriesNav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.cashBackCategoryButton {
+  background: none;
+  border: 2px solid var(--light-gray);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.cashBackCategoryButton:hover, .cashBackCategoryButton.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.cashBackStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  min-width: 150px;
+}
+
+.statNumber {
+  color: var(--primary-green);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.statLabel {
+  color: var(--neutral-gray);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Cash Back Promo Section */
+.cashBackPromo {
+  display: flex;
+  background: linear-gradient(135deg, #1e5fcf 0%, #0a2e7a 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 30px 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.promoContent {
+  flex: 1;
+  padding: 30px;
+  color: white;
+}
+
+.promoContent h3 {
+  font-size: 1.8rem;
+  margin: 0 0 15px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.promoContent p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  color: white;
+}
+
+.promoForm {
+  display: flex;
+  gap: 10px;
+}
+
+.promoInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.promoButton {
+  background-color: #ffc107;
+  color: #0a2e7a;
+  border: none;
+  border-radius: 8px;
+  padding: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.promoButton:hover {
+  background-color: #ffca28;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.promoImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.promoImage svg {
+  color: #ffc107;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.cashBackFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.viewAllCashBackButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.viewAllCashBackButton:hover {
+  background-color: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .favoriteStore, .storeImage img {
+    transition: none;
+  }
+}

@@ -1,0 +1,292 @@
+/* CashHeros Theme Styles - Based on Color System */
+
+/* Import color variables */
+@import './colors.css';
+
+/* Header Styles */
+header, .header, .app-header {
+  background-color: var(--header-footer-bg);
+  color: var(--text-on-header);
+}
+
+header a, .header a, .app-header a, 
+.nav-link, .navbar-link {
+  color: var(--text-on-header);
+  transition: 0.2s;
+}
+
+header a:hover, .header a:hover, .app-header a:hover,
+.nav-link:hover, .navbar-link:hover {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.header-button, .login-button, .signup-button, .auth-button {
+  background-color: var(--primary-green);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.header-button:hover, .login-button:hover, .signup-button:hover, .auth-button:hover {
+  background-color: var(--green-hover);
+}
+
+/* Footer Styles */
+footer, .footer, .app-footer {
+  background-color: var(--header-footer-bg);
+  color: #0F172A;
+}
+
+footer a, .footer a, .app-footer a {
+  color: #1E293B;
+}
+
+footer .icon, .footer .icon, .app-footer .icon,
+.social-icon, .footer-icon {
+  color: #CBD5E1;
+}
+
+/* Button Styles */
+.btn, 
+button.primary,
+.cta-button,
+.primary-button,
+.action-button,
+.submit-button {
+  background-color: var(--primary-green);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.btn:hover, 
+button.primary:hover,
+.cta-button:hover,
+.primary-button:hover,
+.action-button:hover,
+.submit-button:hover {
+  background-color: var(--green-hover);
+}
+
+/* Card Styles */
+.card, 
+.offer-card, 
+.store-card, 
+.coupon-card,
+.cashback-card,
+.deal-card {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card .subtext, 
+.card-subtext,
+.card-description,
+.offer-description,
+.store-description,
+.coupon-description {
+  color: var(--text-secondary);
+}
+
+/* Tags Styles */
+.tag, .badge, .label {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tag-trending, .trending, .popular {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+.tag-sale, .sale, .discount {
+  background-color: var(--error-red);
+  color: white;
+}
+
+.tag-info, .tag-new, .info, .new {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+.tag-discount, .discount-percent, .percent-off {
+  background-color: var(--sale-orange);
+  color: white;
+}
+
+/* Section Background Colors */
+.hero-section, .hero, .banner {
+  background-color: var(--neutral-bg);
+}
+
+.deals-section, .deals-container, .offers-section {
+  background-color: var(--neutral-bg);
+}
+
+.how-it-works, .explainer, .process-section {
+  background-color: var(--card-bg);
+}
+
+.newsletter-section, .cta-section, .signup-section, .subscribe-section {
+  background-color: var(--header-footer-bg);
+}
+
+.blog-section, .articles-section, .news-section {
+  background-color: var(--neutral-bg);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6, .heading, .title, .subtitle {
+  color: var(--text-main);
+}
+
+p, span, li, .text, .paragraph, .description {
+  color: var(--text-secondary);
+}
+
+a, .link, .text-link {
+  color: var(--accent-blue);
+}
+
+a:hover, .link:hover, .text-link:hover {
+  text-decoration: underline;
+}
+
+/* Blog Section Specific Styles */
+.blog-header, .article-header, .post-header {
+  background-color: var(--blog-header-bg, #22C55E);
+}
+
+.blog-card, .article-card, .post-card {
+  background-color: var(--blog-card-bg, #FFFFFF);
+}
+
+.blog-section, .articles-section, .posts-section {
+  background-color: var(--blog-section-bg, #F8FAFC);
+}
+
+.blog-title, .article-title, .post-title {
+  color: var(--blog-title-text, #0F172A);
+}
+
+.blog-description, .article-description, .post-description {
+  color: var(--blog-description-text, #475569);
+}
+
+.blog-tag-featured, .featured-tag, .primary-tag {
+  background-color: var(--blog-featured-tag, #16A34A);
+  color: white;
+}
+
+.blog-tag-secondary, .secondary-tag, .category-tag {
+  background-color: var(--blog-secondary-tag, #3B82F6);
+  color: white;
+}
+
+.blog-divider, .article-divider, .content-divider {
+  background-color: var(--blog-borders, #E2E8F0);
+}
+
+.blog-cta, .article-cta, .read-more {
+  background-color: var(--blog-cta-button, #22C55E);
+  color: white;
+}
+
+.blog-cta:hover, .article-cta:hover, .read-more:hover {
+  background-color: var(--blog-cta-hover, #16A34A);
+}
+
+.blog-newsletter, .subscribe-box, .newsletter-container {
+  background-color: var(--blog-newsletter-bg, #22C55E);
+  color: white;
+}
+
+.blog-newsletter .btn, .subscribe-box .btn, .newsletter-container .btn {
+  background-color: white;
+  color: var(--blog-cta-button, #22C55E);
+}
+
+.blog-newsletter .btn:hover, .subscribe-box .btn:hover, .newsletter-container .btn:hover {
+  background-color: #F8FAFC;
+}
+
+/* Form elements */
+input, select, textarea {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary-green);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: var(--neutral-bg);
+  color: var(--text-main);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem;
+}
+
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+tr:hover {
+  background-color: var(--neutral-bg);
+}
+
+/* Alerts and notifications */
+.alert, .notification {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.alert-success, .notification-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid var(--primary-green);
+  color: var(--primary-green);
+}
+
+.alert-error, .notification-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error-red);
+  color: var(--error-red);
+}
+
+.alert-warning, .notification-warning {
+  background-color: rgba(249, 115, 22, 0.1);
+  border: 1px solid var(--sale-orange);
+  color: var(--sale-orange);
+}
+
+.alert-info, .notification-info {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+}

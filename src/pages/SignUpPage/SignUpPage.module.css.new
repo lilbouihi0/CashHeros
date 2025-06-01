@@ -1,0 +1,461 @@
+/* src/pages/SignUpPage/SignUpPage.module.css */
+.signUpPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, var(--light-green-accent), var(--white)); /* Light Green Accent to White gradient */
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.formCard {
+  background-color: var(--deep-green); /* Deep Green background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  color: var(--white); /* White text */
+  animation: slideUp 0.5s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.title {
+  color: var(--white); /* White text */
+  font-size: 2rem;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-green);
+  border-radius: 3px;
+}
+
+.alreadyHaveAccount {
+  color: var(--neutral-gray); /* Neutral Gray text */
+  margin-bottom: 15px;
+}
+
+.alreadyHaveAccount a {
+  color: var(--primary-green); /* Primary Green links */
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.alreadyHaveAccount a:hover {
+  text-decoration: underline;
+  color: var(--light-green-accent);
+}
+
+.termsText {
+  color: var(--neutral-gray); /* Neutral Gray text */
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.termsText a {
+  color: var(--primary-green); /* Primary Green links */
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.termsText a:hover {
+  text-decoration: underline;
+  color: var(--light-green-accent);
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.googleBtn,
+.facebookBtn,
+.appleBtn {
+  background-color: var(--white); /* White background */
+  border: 1px solid var(--primary-green); /* Primary Green border */
+  color: var(--neutral-gray); /* Neutral Gray text */
+  padding: 12px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.googleBtn:hover,
+.facebookBtn:hover,
+.appleBtn:hover {
+  background-color: var(--light-green-accent); /* Light Green Accent on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.googleBtn:active,
+.facebookBtn:active,
+.appleBtn:active {
+  transform: translateY(0);
+}
+
+.googleBtn {
+  background-color: var(--white);
+  color: var(--neutral-gray);
+  border-color: var(--primary-green);
+}
+
+.facebookBtn {
+  background-color: #4267b2; /* Facebook blue */
+  color: var(--white); /* White text */
+  border: none;
+}
+
+.appleBtn {
+  background-color: #000; /* Black for Apple */
+  color: var(--white); /* White text */
+  border: none;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 25px 0;
+  color: var(--neutral-gray); /* Neutral Gray text */
+  font-weight: bold;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.separator::before {
+  margin-right: 10px;
+}
+
+.separator::after {
+  margin-left: 10px;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formGroup {
+  margin-bottom: 5px;
+}
+
+.formGroup label {
+  margin-bottom: 8px;
+  color: var(--white); /* White text */
+  font-weight: 500;
+  text-align: left;
+  display: block;
+  font-size: 0.95rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  color: var(--neutral-gray); /* Neutral Gray text */
+  transition: all 0.3s ease;
+}
+
+.formInput:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+  outline: none;
+}
+
+.passwordInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.passwordToggle:hover {
+  color: var(--primary-green);
+}
+
+.passwordStrengthContainer {
+  margin-top: 8px;
+  text-align: left;
+}
+
+.passwordStrengthLabel {
+  font-size: 0.8rem;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+
+.strengthWeak {
+  color: var(--error-color, #e53e3e);
+}
+
+.strengthMedium {
+  color: var(--warning-color, #ed8936);
+}
+
+.strengthGood {
+  color: var(--primary-green);
+}
+
+.strengthStrong {
+  color: var(--success-color, #48bb78);
+}
+
+.passwordStrengthMeter {
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.passwordStrengthIndicator {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.passwordRequirements {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.requirementsTitle {
+  color: var(--white);
+  font-size: 0.9rem;
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.requirementsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.requirementMet,
+.requirementNotMet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.requirementMet {
+  color: var(--success-color, #48bb78);
+}
+
+.requirementNotMet {
+  color: var(--neutral-gray);
+  opacity: 0.8;
+}
+
+.errorContainer {
+  background-color: rgba(229, 62, 62, 0.1);
+  border-left: 3px solid var(--error-color, #e53e3e);
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin: 5px 0;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error {
+  color: var(--error-color, #e53e3e);
+  text-align: left;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.signUpButton {
+  background-color: var(--primary-green); /* Primary Green background */
+  color: var(--white); /* White text */
+  padding: 14px;
+  border: none;
+  border-radius: 8px; /* Rounded button */
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.signUpButton:hover {
+  background-color: #219a3a; /* Slightly darker green */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.signUpButton:active {
+  transform: translateY(0);
+}
+
+.signUpButton:disabled {
+  background-color: rgba(40, 167, 69, 0.6);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.signUpButton::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.signUpButton:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.loginLink {
+  color: var(--primary-green); /* Primary Green links */
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+  transition: all 0.2s ease;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+  color: var(--light-green-accent);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .formCard {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .socialButtons button {
+    padding: 10px 16px;
+  }
+  
+  .formInput {
+    padding: 10px 12px;
+  }
+  
+  .signUpButton {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .formCard {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+  }
+  
+  .requirementsList {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,263 @@
+.recommendationsContainer {
+  margin: 20px 0;
+  border-radius: 12px;
+  background-color: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: var(--primary-color-light);
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.aiIcon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.recommendationsList {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.recommendationCard {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recommendationCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.recommendationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.typeIndicator {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.typeIcon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.confidenceScore {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.confidenceMeter {
+  width: 60px;
+  height: 4px;
+  background-color: var(--bg-tertiary);
+  border-radius: 2px;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.confidenceMeter::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--confidence, 0%);
+  background-color: var(--color, var(--primary-color));
+  border-radius: 2px;
+}
+
+.recommendationContent {
+  padding: 16px;
+}
+
+.recommendationContent h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.storeInfo {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.couponDetails, .storeDetails {
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.couponCode, .cashbackRate, .expiryDate {
+  margin-bottom: 4px;
+}
+
+.couponCode span, .cashbackRate span, .expiryDate span {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.expiryWarning {
+  color: var(--error-color);
+  font-size: 0.8rem;
+}
+
+.recommendationReason {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  background-color: var(--bg-secondary);
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+.reasonIcon {
+  margin-right: 8px;
+  margin-top: 3px;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+.recommendationReason p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+.recommendationActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+.actionButton {
+  padding: 8px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.actionButton:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.feedbackButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.feedbackButton {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.feedbackButton:hover:not(:disabled) {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.feedbackButton.active {
+  color: var(--primary-color);
+}
+
+.feedbackButton:disabled {
+  cursor: default;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.loader {
+  border: 3px solid var(--bg-secondary);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorContainer, .emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.errorIcon {
+  color: var(--error-color);
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.infoIcon {
+  color: var(--info-color);
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .recommendationsList {
+    grid-template-columns: 1fr;
+  }
+}

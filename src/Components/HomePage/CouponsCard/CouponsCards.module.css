@@ -1,0 +1,229 @@
+.Card {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  margin: 15px auto;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.Card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+}
+
+.Details {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.Logo {
+  background-color: var(--primary-green, #4CAF50);
+  color: white;
+  padding: 6px 12px;
+  width: fit-content;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.Discount {
+  background-color: #FF6B6B;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.Title {
+  font-weight: bold;
+  margin: 5px 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.ExpiryDate {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #718096;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.CodeContainer {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F7FAFC;
+  border: 1px dashed #CBD5E0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.Code:hover {
+  background-color: #EDF2F7;
+}
+
+.Code span {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4A5568;
+  letter-spacing: 1px;
+}
+
+.CopyButton {
+  background: none;
+  border: none;
+  color: var(--primary-green, #4CAF50);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CopyStatus {
+  font-size: 0.75rem;
+  color: #718096;
+  text-align: right;
+}
+
+.Link {
+  margin-top: auto;
+}
+
+.ShopNowButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-green, #4CAF50);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.ShopNowButton:hover {
+  color: var(--dark-green, #388E3C);
+}
+
+.ShopNowButton svg {
+  transition: transform 0.2s ease;
+}
+
+.ShopNowButton:hover svg {
+  transform: translateX(3px);
+}
+
+.Image {
+  width: 40%;
+  max-width: 220px;
+  min-height: 200px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.Image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  transition: transform 0.5s ease;
+}
+
+.Card:hover .Image img {
+  transform: scale(1.05);
+}
+
+.DiscountBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #FF6B6B;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+  .Card {
+    flex-direction: column;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .Image {
+    width: 100%;
+    max-width: 100%;
+    height: 180px;
+    order: -1;
+  }
+  
+  .Image img {
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .Details {
+    padding: 15px;
+  }
+  
+  .Title {
+    font-size: 1rem;
+  }
+  
+  .ShopNowButton {
+    padding: 10px 0;
+    font-size: 0.9rem;
+  }
+  
+  .DiscountBadge {
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* Support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .Card,
+  .Image img,
+  .ShopNowButton svg {
+    transition: none;
+  }
+}

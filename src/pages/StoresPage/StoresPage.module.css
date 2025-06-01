@@ -1,0 +1,348 @@
+/* src/pages/StoresPage/StoresPage.module.css */
+:root {
+  --primary-green: #28A745;
+  --deep-green: #0E1F16;
+  --light-green-accent: #B6E3C9;
+  --light-gray: #f9f9f9;
+  --medium-gray: #ddd;
+  --dark-gray: #555;
+  --white: #FFFFFF;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+.storesPage {
+  padding: 40px 20px;
+  background-color: var(--light-gray);
+  min-height: 100vh;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchAndFilterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  gap: 20px;
+}
+
+.searchContainer {
+  flex: 1;
+  max-width: 600px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid var(--primary-green);
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--transition-speed);
+}
+
+.searchInput:focus {
+  border-color: var(--light-green-accent);
+  box-shadow: 0 0 0 3px rgba(182, 227, 201, 0.3);
+}
+
+.filterToggleButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: var(--white);
+  border: 2px solid var(--primary-green);
+  border-radius: 25px;
+  color: var(--primary-green);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.filterToggleButton:hover {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.filterMenu {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+.filterMenu.open {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.filterSection {
+  margin-bottom: 20px;
+}
+
+.filterTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.categoryButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.categoryButton {
+  padding: 8px 16px;
+  background-color: var(--light-gray);
+  border: 1px solid var(--medium-gray);
+  border-radius: 20px;
+  color: var(--dark-gray);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.categoryButton:hover {
+  background-color: var(--medium-gray);
+}
+
+.categoryButton.active {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-color: var(--primary-green);
+}
+
+.sortSelect {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-green);
+}
+
+.clearFiltersButton {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid var(--medium-gray);
+  border-radius: 20px;
+  color: var(--dark-gray);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  margin-top: 10px;
+}
+
+.clearFiltersButton:hover {
+  background-color: var(--light-gray);
+  color: var(--deep-green);
+}
+
+.resultsInfo {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  font-size: 1rem;
+  color: var(--dark-gray);
+}
+
+.resultCount {
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.storesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.storesPagination {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.storesInfo {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.storesInfo h2 {
+  font-size: 1.8rem;
+  color: var(--primary-green);
+  margin-bottom: 30px;
+}
+
+.stepsContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.step {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 20px;
+  position: relative;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 auto 15px;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.error {
+  padding: 20px;
+  background-color: #ffebee;
+  color: #d32f2f;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  padding: 40px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.noResultsIcon {
+  font-size: 3rem;
+  color: var(--medium-gray);
+  margin-bottom: 20px;
+}
+
+.noResults p {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .searchAndFilterContainer {
+    flex-direction: column;
+  }
+  
+  .searchContainer {
+    max-width: 100%;
+  }
+  
+  .filterToggleButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .stepsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .categoryButtons {
+    justify-content: center;
+  }
+}

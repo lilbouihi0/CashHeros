@@ -1,0 +1,184 @@
+/* src/styles/responsive.css */
+/* Responsive utilities for images and media */
+
+/* Responsive image container */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive video container */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.video-container iframe,
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive background images */
+.bg-responsive {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Different aspect ratios for responsive containers */
+.aspect-1-1 {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 aspect ratio */
+}
+
+.aspect-4-3 {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 aspect ratio */
+}
+
+.aspect-16-9 {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.aspect-21-9 {
+  position: relative;
+  width: 100%;
+  padding-top: 42.85%; /* 21:9 aspect ratio */
+}
+
+/* Content inside aspect ratio containers */
+.aspect-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive image sizes for different screen sizes */
+@media (max-width: 576px) {
+  .img-sm {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .img-md {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .img-lg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 993px) {
+  .img-xl {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Responsive image grid */
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .img-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+  }
+}
+
+/* Image optimization hints */
+.img-optimize {
+  content-visibility: auto; /* Modern browsers optimization */
+}
+
+/* Responsive image gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery-item {
+  flex: 1 0 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    flex: 1 0 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-item {
+    flex: 1 0 100%;
+  }
+}
+
+/* Touch-friendly image interactions */
+@media (hover: none) and (pointer: coarse) {
+  .gallery-item {
+    margin-bottom: 15px;
+  }
+  
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    pointer-events: none;
+  }
+}
+
+/* High-DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .img-hidpi {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Reduced data usage for users with data-saving enabled */
+@media (prefers-reduced-data: reduce) {
+  .img-fluid, .video-container {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .img-fluid, .video-container {
+    transition: none !important;
+    animation: none !important;
+  }
+}

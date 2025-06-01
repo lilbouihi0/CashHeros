@@ -1,0 +1,171 @@
+.aiAnalyzer {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 16px 0;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.header:hover {
+  background-color: #f0f0f0;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon {
+  color: #6200ea;
+  font-size: 18px;
+}
+
+.readingTime {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.timeIcon {
+  font-size: 14px;
+  color: #757575;
+}
+
+.readabilityBadge {
+  background-color: #e3f2fd;
+  color: #0277bd;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.expandButton {
+  background: none;
+  border: none;
+  color: #6200ea;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.expandButton:hover {
+  background-color: rgba(98, 0, 234, 0.1);
+}
+
+.analysisContent {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  background-color: white;
+}
+
+.section {
+  margin-bottom: 16px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section h4 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.keyPoints {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.keyPoints li {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.keyPoints li:last-child {
+  margin-bottom: 0;
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metricLabel {
+  width: 80px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.metricValue {
+  width: 80px;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: right;
+}
+
+.sentimentMeter, .readabilityMeter {
+  flex-grow: 1;
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sentimentFill {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 4px;
+}
+
+.readabilityFill {
+  height: 100%;
+  background-color: #2196f3;
+  border-radius: 4px;
+}
+
+.relatedTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topicTag {
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.topicTag:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}

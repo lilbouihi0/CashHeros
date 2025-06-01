@@ -1,0 +1,249 @@
+/* Content script styles for CashHeros extension */
+
+.cashheros-overlay {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cashheros-overlay.cashheros-hidden {
+  display: none;
+}
+
+.cashheros-overlay.cashheros-minimized {
+  height: 40px;
+  overflow: hidden;
+}
+
+.cashheros-header {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cashheros-header img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.cashheros-header span {
+  flex: 1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#cashheros-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+#cashheros-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cashheros-content {
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#cashheros-message {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.cashheros-coupon {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cashheros-coupon-description {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.cashheros-coupon-code {
+  background-color: #e0e0e0;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 600;
+  color: #7b1fa2;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.cashheros-copy-btn {
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s;
+}
+
+.cashheros-copy-btn:hover {
+  background-color: #4a0072;
+}
+
+.cashheros-cashback-reminder {
+  background-color: #fff8e1;
+  border-left: 4px solid #ffc107;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.cashheros-cashback-reminder p {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+#cashheros-activate-cashback {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+#cashheros-activate-cashback:hover {
+  background-color: #f57c00;
+}
+
+/* Styles for the buy button enhancement */
+.cashheros-button-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.cashheros-buy-button {
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cashheros-buy-button:hover {
+  background-color: #4a0072;
+}
+
+.cashheros-buy-button img {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+}
+
+/* Tooltip styles */
+.cashheros-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  z-index: 9999999;
+  display: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  pointer-events: none;
+}
+
+.cashheros-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+.cashheros-tooltip-header {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.cashheros-tooltip-content {
+  padding: 10px 12px;
+}
+
+.cashheros-tooltip-coupon {
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #333;
+  line-height: 1.3;
+}
+
+.cashheros-tooltip-cashback {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+.cashheros-tooltip-more {
+  font-size: 11px;
+  color: #7b1fa2;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.cashheros-tooltip-footer {
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #555;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  text-align: center;
+  font-style: italic;
+}

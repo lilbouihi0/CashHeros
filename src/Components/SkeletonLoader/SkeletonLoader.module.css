@@ -1,0 +1,107 @@
+.skeletonWrapper {
+  margin-bottom: 10px;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.text {
+  height: 12px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.title {
+  height: 24px;
+  margin-bottom: 16px;
+  width: 70%;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 12px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+}
+
+.tableRow {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cell {
+  flex: 1;
+  height: 20px;
+  margin-right: 12px;
+}
+
+.cell:last-child {
+  margin-right: 0;
+}
+
+.stats {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.statValue {
+  height: 32px;
+  width: 60%;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  height: 12px;
+  width: 80%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .thumbnail {
+    height: 140px;
+  }
+  
+  .title {
+    height: 20px;
+  }
+}

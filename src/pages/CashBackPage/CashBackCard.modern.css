@@ -1,0 +1,492 @@
+/* Modern CashBackCard.css */
+
+.cashBackCard {
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 380px;
+  cursor: pointer;
+}
+
+.cashBackCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cashBackCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #28A745, #0E1F16);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cashBackCard:hover::before {
+  opacity: 1;
+}
+
+/* Hot Deal Styling */
+.hotDeal::before {
+  background: linear-gradient(90deg, #0E1F16, #28A745);
+  opacity: 1;
+}
+
+.hotDeal {
+  box-shadow: 0 15px 35px rgba(14, 31, 22, 0.15);
+}
+
+.hotDeal:hover {
+  box-shadow: 0 25px 50px rgba(14, 31, 22, 0.25);
+}
+
+/* Card Header */
+.cardHeader {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.discountBadge {
+  background: linear-gradient(90deg, #4158D0, #C850C0);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hotDeal .discountBadge {
+  background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+}
+
+.fireIcon {
+  font-size: 0.8rem;
+}
+
+.hotDealBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+  z-index: 2;
+}
+
+.cardActions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.actionButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+.favoriteIcon {
+  color: #ff6b6b;
+}
+
+.savedIcon {
+  color: #4158D0;
+}
+
+.sharedIcon {
+  color: #48bb78;
+}
+
+/* Card Content */
+.cardContent {
+  padding: 0 15px 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cashBackCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.cashbackOverlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: linear-gradient(90deg, #4158D0, #C850C0);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hotDeal .cashbackOverlay {
+  background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.storeInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.infoIcon {
+  color: #4158D0;
+  font-size: 0.9rem;
+}
+
+.hotDeal .infoIcon {
+  color: #ff6b6b;
+}
+
+.productName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expiryInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* Card Footer */
+.cardFooter {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.checkPriceButton {
+  background: linear-gradient(90deg, #4158D0, #C850C0);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(65, 88, 208, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.hotDeal .checkPriceButton {
+  background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+}
+
+.checkPriceButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.checkPriceButton:hover::before {
+  left: 100%;
+}
+
+.checkPriceButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(65, 88, 208, 0.3);
+}
+
+.hotDeal .checkPriceButton:hover {
+  box-shadow: 0 12px 25px rgba(255, 107, 107, 0.3);
+}
+
+.linkIcon {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.checkPriceButton:hover .linkIcon {
+  transform: translateX(3px);
+}
+
+.termsButton {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+  padding: 5px;
+}
+
+.termsButton:hover {
+  color: #4158D0;
+  text-decoration: underline;
+}
+
+.hotDeal .termsButton:hover {
+  color: #ff6b6b;
+}
+
+/* Terms Popup */
+.termsPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.termsContent {
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.termsContent h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+.termsContent h4::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #4158D0, #C850C0);
+  border-radius: 3px;
+}
+
+.termsContent p {
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.termsContent button {
+  background: linear-gradient(90deg, #4158D0, #C850C0);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.termsContent button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(65, 88, 208, 0.2);
+}
+
+/* Hover Overlay */
+.hoverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cashBackCard:hover .hoverOverlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlayContent {
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.overlayContent p {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.overlayButton {
+  background: white;
+  color: #4158D0;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hotDeal .overlayButton {
+  color: #ff6b6b;
+}
+
+.overlayButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cashBackCard {
+    min-height: 350px;
+  }
+  
+  .imageContainer {
+    height: 150px;
+  }
+  
+  .productName {
+    font-size: 1.1rem;
+  }
+  
+  .checkPriceButton {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cashBackCard {
+    min-height: 320px;
+  }
+  
+  .cardHeader {
+    padding: 12px;
+  }
+  
+  .discountBadge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  
+  .hotDealBadge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  
+  .actionButton {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .imageContainer {
+    height: 130px;
+  }
+  
+  .productName {
+    font-size: 1rem;
+  }
+  
+  .termsContent {
+    padding: 20px;
+  }
+}

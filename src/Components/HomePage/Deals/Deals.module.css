@@ -1,0 +1,271 @@
+.dealCard {
+  width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.dealCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.dealHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  z-index: 10;
+}
+
+.discountBadge {
+  background-color: #ff5252;
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(255, 82, 82, 0.3);
+}
+
+.categoryTag {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.dealImageContainer {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.dealImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dealCard:hover .dealImage {
+  transform: scale(1.05);
+}
+
+.dealOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dealCard:hover .dealOverlay {
+  opacity: 1;
+}
+
+.viewDealButton {
+  background-color: var(--primary-green, #4CAF50);
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.viewDealButton:hover {
+  background-color: var(--dark-green, #388E3C);
+  transform: translateY(-2px);
+}
+
+.dealContent {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.brandContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.brandName {
+  color: #718096;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.verifiedBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-green, #4CAF50);
+  font-size: 0.75rem;
+}
+
+.dealTitle {
+  color: #2d3748;
+  margin: 0 0 15px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+}
+
+.salePrice {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.originalPrice {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+.expiryDate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #718096;
+  font-size: 0.8rem;
+}
+
+.dealFooter {
+  padding: 12px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+}
+
+.dealStats {
+  display: flex;
+  gap: 15px;
+}
+
+.dealStat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #718096;
+  font-size: 0.8rem;
+}
+
+.saveButton {
+  background: none;
+  border: none;
+  color: #cbd5e0;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.saveButton:hover {
+  color: #f56565;
+  background-color: #fff5f5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .dealImageContainer {
+    height: 160px;
+  }
+  
+  .dealContent {
+    padding: 15px;
+  }
+  
+  .dealTitle {
+    font-size: 1rem;
+  }
+  
+  .salePrice {
+    font-size: 1.2rem;
+  }
+  
+  .dealFooter {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dealImageContainer {
+    height: 140px;
+  }
+  
+  .dealContent {
+    padding: 12px;
+  }
+  
+  .dealTitle {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  
+  .salePrice {
+    font-size: 1.1rem;
+  }
+  
+  .originalPrice {
+    font-size: 0.8rem;
+  }
+  
+  .dealFooter {
+    padding: 8px 12px;
+  }
+  
+  .dealStats {
+    gap: 10px;
+  }
+}
+
+/* Support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dealCard,
+  .dealImage,
+  .viewDealButton {
+    transition: none;
+  }
+}

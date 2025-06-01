@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CashHeros - Cash Back Offers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      background-color: #0E1F16;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    
+    .main-content {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 20px 0;
+      padding: 30px;
+    }
+    
+    h1 {
+      color: #0E1F16;
+      margin-top: 0;
+    }
+    
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .featured-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ffc107;
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .card-image {
+      height: 150px;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .card-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    
+    .card-content {
+      padding: 15px;
+    }
+    
+    .card-title {
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    
+    .category-tag {
+      display: inline-block;
+      background-color: #e9ecef;
+      color: #495057;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    
+    .cashback-amount {
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    
+    .high-cashback {
+      color: #dc3545;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: #0E1F16;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .btn:hover {
+      background-color: #1a3c2a;
+    }
+    
+    .terms-container {
+      margin-top: 10px;
+      position: relative;
+    }
+    
+    .terms-toggle {
+      background: none;
+      border: none;
+      color: #6c757d;
+      cursor: pointer;
+      padding: 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .terms-popup {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 0.9rem;
+      z-index: 10;
+      margin-bottom: 5px;
+    }
+    
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .filter-group {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .filter-select {
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+      background-color: white;
+    }
+    
+    .search-box {
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+      width: 200px;
+    }
+    
+    footer {
+      background-color: #0E1F16;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+    
+    .load-more {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    
+    .page-link {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+      background-color: white;
+      color: #333;
+      text-decoration: none;
+    }
+    
+    .page-link.active {
+      background-color: #0E1F16;
+      color: white;
+      border-color: #0E1F16;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: #adb5bd;
+    }
+    
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .search-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">CashHeros</div>
+        <div class="nav-links">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Stores</a>
+          <a href="#" class="nav-link">Cash Back</a>
+          <a href="#" class="nav-link">Blog</a>
+          <a href="#" class="nav-link">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="main-content">
+      <h1>Cash Back Offers</h1>
+      <p>Find the best cash back deals from your favorite stores.</p>
+      
+      <div class="filters">
+        <div class="filter-group">
+          <select class="filter-select">
+            <option value="">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="fashion">Fashion</option>
+            <option value="home">Home</option>
+            <option value="beauty">Beauty</option>
+          </select>
+          
+          <select class="filter-select">
+            <option value="">Sort By</option>
+            <option value="highest">Highest Cash Back</option>
+            <option value="lowest">Lowest Cash Back</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+          </select>
+        </div>
+        
+        <input type="text" class="search-box" placeholder="Search stores...">
+      </div>
+      
+      <div class="card-grid">
+        <div class="card">
+          <div class="featured-badge">Featured</div>
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Amazon</h3>
+            <div class="category-tag">Electronics</div>
+            <p class="cashback-amount high-cashback">5% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/walmart.com" alt="Walmart">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Walmart</h3>
+            <div class="category-tag">Retail</div>
+            <p class="cashback-amount">3% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="featured-badge">Featured</div>
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/target.com" alt="Target">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Target</h3>
+            <div class="category-tag">Retail</div>
+            <p class="cashback-amount">4% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/bestbuy.com" alt="Best Buy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Best Buy</h3>
+            <div class="category-tag">Electronics</div>
+            <p class="cashback-amount">2% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="featured-badge">Featured</div>
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/nike.com" alt="Nike">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Nike</h3>
+            <div class="category-tag">Fashion</div>
+            <p class="cashback-amount high-cashback">8% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/adidas.com" alt="Adidas">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Adidas</h3>
+            <div class="category-tag">Fashion</div>
+            <p class="cashback-amount high-cashback">7% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="featured-badge">Featured</div>
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/apple.com" alt="Apple">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Apple</h3>
+            <div class="category-tag">Electronics</div>
+            <p class="cashback-amount">2% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="featured-badge">Featured</div>
+          <div class="card-image">
+            <img src="https://logo.clearbit.com/sephora.com" alt="Sephora">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Sephora</h3>
+            <div class="category-tag">Beauty</div>
+            <p class="cashback-amount high-cashback">6% Cash Back</p>
+            <div class="terms-container">
+              <button class="terms-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                Terms
+              </button>
+            </div>
+            <a href="#" class="btn">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="load-more">
+        <button class="btn">Load More</button>
+      </div>
+      
+      <div class="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
+        <a href="#" class="page-link">Next</a>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 CashHeros. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Simple JavaScript to toggle terms visibility
+    document.addEventListener('DOMContentLoaded', function() {
+      const termsButtons = document.querySelectorAll('.terms-toggle');
+      
+      termsButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Check if popup already exists
+          let popup = this.nextElementSibling;
+          
+          if (popup && popup.classList.contains('terms-popup')) {
+            // Remove existing popup
+            popup.remove();
+          } else {
+            // Create new popup
+            popup = document.createElement('div');
+            popup.className = 'terms-popup';
+            popup.textContent = 'Valid on all purchases. Exclusions may apply.';
+            
+            // Insert after button
+            this.parentNode.insertBefore(popup, this.nextSibling);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

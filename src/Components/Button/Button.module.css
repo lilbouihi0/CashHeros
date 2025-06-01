@@ -1,0 +1,418 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.65;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Button sizes */
+.small {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+.medium {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.large {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
+}
+
+/* Button variants */
+.primary {
+  background-color: #4299e1;
+  color: white;
+  border-color: #4299e1;
+}
+
+.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #3182ce;
+  border-color: #3182ce;
+}
+
+.primary:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #2b6cb0;
+  border-color: #2b6cb0;
+}
+
+.secondary {
+  background-color: #718096;
+  color: white;
+  border-color: #718096;
+}
+
+.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #4a5568;
+  border-color: #4a5568;
+}
+
+.secondary:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #2d3748;
+  border-color: #2d3748;
+}
+
+.tertiary {
+  background-color: transparent;
+  color: #4299e1;
+  border-color: transparent;
+}
+
+.tertiary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: rgba(66, 153, 225, 0.1);
+}
+
+.tertiary:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: rgba(66, 153, 225, 0.2);
+}
+
+.success {
+  background-color: #48bb78;
+  color: white;
+  border-color: #48bb78;
+}
+
+.success:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #38a169;
+  border-color: #38a169;
+}
+
+.success:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #2f855a;
+  border-color: #2f855a;
+}
+
+.danger {
+  background-color: #e53e3e;
+  color: white;
+  border-color: #e53e3e;
+}
+
+.danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #c53030;
+  border-color: #c53030;
+}
+
+.danger:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #9b2c2c;
+  border-color: #9b2c2c;
+}
+
+.warning {
+  background-color: #ed8936;
+  color: white;
+  border-color: #ed8936;
+}
+
+.warning:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #dd6b20;
+  border-color: #dd6b20;
+}
+
+.warning:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #c05621;
+  border-color: #c05621;
+}
+
+.info {
+  background-color: #4299e1;
+  color: white;
+  border-color: #4299e1;
+}
+
+.info:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #3182ce;
+  border-color: #3182ce;
+}
+
+.info:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #2b6cb0;
+  border-color: #2b6cb0;
+}
+
+.light {
+  background-color: #f7fafc;
+  color: #1a202c;
+  border-color: #e2e8f0;
+}
+
+.light:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.light:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #e2e8f0;
+  border-color: #a0aec0;
+}
+
+.dark {
+  background-color: #1a202c;
+  color: white;
+  border-color: #1a202c;
+}
+
+.dark:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #2d3748;
+  border-color: #2d3748;
+}
+
+.dark:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #4a5568;
+  border-color: #4a5568;
+}
+
+.link {
+  background-color: transparent;
+  color: #4299e1;
+  border-color: transparent;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.link:hover:not(:disabled):not([aria-disabled="true"]) {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.link:active:not(:disabled):not([aria-disabled="true"]) {
+  color: #2b6cb0;
+}
+
+/* Outline variants */
+.outline-primary {
+  background-color: transparent;
+  color: #4299e1;
+  border-color: #4299e1;
+}
+
+.outline-primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #4299e1;
+  color: white;
+}
+
+.outline-secondary {
+  background-color: transparent;
+  color: #718096;
+  border-color: #718096;
+}
+
+.outline-secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #718096;
+  color: white;
+}
+
+.outline-success {
+  background-color: transparent;
+  color: #48bb78;
+  border-color: #48bb78;
+}
+
+.outline-success:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #48bb78;
+  color: white;
+}
+
+.outline-danger {
+  background-color: transparent;
+  color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.outline-danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.outline-warning {
+  background-color: transparent;
+  color: #ed8936;
+  border-color: #ed8936;
+}
+
+.outline-warning:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #ed8936;
+  color: white;
+}
+
+.outline-info {
+  background-color: transparent;
+  color: #4299e1;
+  border-color: #4299e1;
+}
+
+.outline-info:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #4299e1;
+  color: white;
+}
+
+.outline-light {
+  background-color: transparent;
+  color: #718096;
+  border-color: #e2e8f0;
+}
+
+.outline-light:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #f7fafc;
+  color: #2d3748;
+}
+
+.outline-dark {
+  background-color: transparent;
+  color: #1a202c;
+  border-color: #1a202c;
+}
+
+.outline-dark:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #1a202c;
+  color: white;
+}
+
+/* Button modifiers */
+.fullWidth {
+  width: 100%;
+  display: flex;
+}
+
+.rounded {
+  border-radius: 9999px;
+}
+
+.iconOnly {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.small.iconOnly {
+  padding: 0.375rem;
+}
+
+.large.iconOnly {
+  padding: 0.625rem;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  display: inline-block;
+}
+
+.icon + .text {
+  margin-left: 0.5rem;
+}
+
+.iconRight .text + .icon {
+  margin-left: 0.5rem;
+}
+
+/* Loading state */
+.loading {
+  color: transparent !important;
+}
+
+.loading .icon,
+.loading .text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.7s linear infinite;
+}
+
+.outline-primary .spinner,
+.outline-secondary .spinner,
+.outline-success .spinner,
+.outline-danger .spinner,
+.outline-warning .spinner,
+.outline-info .spinner,
+.outline-light .spinner,
+.outline-dark .spinner,
+.tertiary .spinner,
+.link .spinner {
+  border: 2px solid rgba(66, 153, 225, 0.3);
+  border-top-color: #4299e1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark theme support */
+[data-theme="dark"] .light {
+  background-color: #2d3748;
+  color: #e2e8f0;
+  border-color: #4a5568;
+}
+
+[data-theme="dark"] .light:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #4a5568;
+  border-color: #718096;
+}
+
+[data-theme="dark"] .light:active:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #718096;
+  border-color: #a0aec0;
+}
+
+[data-theme="dark"] .outline-light {
+  color: #e2e8f0;
+  border-color: #4a5568;
+}
+
+[data-theme="dark"] .outline-light:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+/* Focus visible polyfill */
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}

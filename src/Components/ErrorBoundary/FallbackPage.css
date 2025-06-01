@@ -1,0 +1,79 @@
+.fallback-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.fallback-container {
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.fallback-container h2 {
+  color: #e53935;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.fallback-container p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.fallback-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.fallback-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 1rem;
+}
+
+.fallback-button:active {
+  transform: scale(0.98);
+}
+
+.reload {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.reload:hover {
+  background-color: #e0e0e0;
+}
+
+.home {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.home:hover {
+  background-color: #6a1b9a;
+}
+
+@media (max-width: 480px) {
+  .fallback-actions {
+    flex-direction: column;
+  }
+  
+  .fallback-button {
+    width: 100%;
+  }
+}

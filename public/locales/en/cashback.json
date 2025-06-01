@@ -1,0 +1,108 @@
+{
+  "page": {
+    "title": "Cash Back Offers",
+    "subtitle": "Earn money back on your purchases",
+    "description": "Shop at your favorite stores and earn cash back on every purchase"
+  },
+  "filters": {
+    "title": "Filter Offers",
+    "store": "Store",
+    "category": "Category",
+    "cashbackRate": "Cash Back Rate",
+    "sortBy": "Sort By",
+    "apply": "Apply Filters",
+    "clear": "Clear Filters"
+  },
+  "sortOptions": {
+    "highestRate": "Highest Rate",
+    "alphabetical": "Alphabetical",
+    "popularity": "Most Popular",
+    "trending": "Trending Now",
+    "recentlyAdded": "Recently Added"
+  },
+  "storeCard": {
+    "rate": "Up to {{rate}}% Cash Back",
+    "wasRate": "Was {{oldRate}}%",
+    "increased": "Increased",
+    "exclusive": "Exclusive",
+    "limited": "Limited Time",
+    "terms": "Terms & Conditions",
+    "activate": "Activate Cash Back",
+    "shop": "Shop Now"
+  },
+  "emptyState": {
+    "title": "No Cash Back Offers Found",
+    "description": "We couldn't find any cash back offers matching your criteria",
+    "suggestion": "Try adjusting your filters or check back later"
+  },
+  "categories": {
+    "all": "All Categories",
+    "clothing": "Clothing & Fashion",
+    "electronics": "Electronics",
+    "travel": "Travel",
+    "food": "Food & Dining",
+    "beauty": "Beauty & Health",
+    "home": "Home & Garden",
+    "toys": "Toys & Kids",
+    "sports": "Sports & Outdoors",
+    "books": "Books & Media",
+    "automotive": "Automotive",
+    "pets": "Pets",
+    "office": "Office Supplies"
+  },
+  "featured": {
+    "title": "Featured Cash Back",
+    "subtitle": "Earn more with these special offers"
+  },
+  "trending": {
+    "title": "Trending Offers",
+    "subtitle": "Popular cash back deals right now"
+  },
+  "increased": {
+    "title": "Increased Cash Back",
+    "subtitle": "Stores with recently increased rates",
+    "limited": "Limited Time Only"
+  },
+  "howItWorks": {
+    "title": "How Cash Back Works",
+    "steps": {
+      "click": {
+        "title": "Click Through",
+        "description": "Click on the 'Shop Now' button to activate cash back"
+      },
+      "shop": {
+        "title": "Shop as Usual",
+        "description": "Make your purchase as you normally would"
+      },
+      "earn": {
+        "title": "Earn Cash Back",
+        "description": "Your cash back will be credited to your account"
+      },
+      "withdraw": {
+        "title": "Get Paid",
+        "description": "Cash out via PayPal or gift cards once you reach the minimum"
+      }
+    }
+  },
+  "faq": {
+    "title": "Cash Back FAQ",
+    "questions": {
+      "howItWorks": {
+        "question": "How does cash back work?",
+        "answer": "When you click through our site to a store and make a purchase, we earn a commission. We share this commission with you as cash back."
+      },
+      "whenPaid": {
+        "question": "When will I get paid?",
+        "answer": "Cash back is typically confirmed within 30-90 days after purchase and can be withdrawn once you reach the minimum payout amount."
+      },
+      "tracking": {
+        "question": "How is my purchase tracked?",
+        "answer": "We use cookies to track your purchase. Make sure cookies are enabled in your browser and complete your purchase in the same session."
+      },
+      "missing": {
+        "question": "What if my cash back is missing?",
+        "answer": "If your cash back doesn't appear within 7 days, you can submit a missing cash back claim from your account."
+      }
+    }
+  }
+}

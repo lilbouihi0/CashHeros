@@ -1,0 +1,270 @@
+.skeleton {
+  background-color: #e2e8f0;
+  border-radius: 0.375rem;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Base skeleton types */
+.text {
+  width: 100%;
+  height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+/* Skeleton animations */
+.pulse {
+  animation: pulse 1.5s ease-in-out 0.5s infinite;
+}
+
+.wave {
+  position: relative;
+}
+
+.wave::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: wave 1.6s linear 0.5s infinite;
+}
+
+/* Skeleton variants */
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar .skeleton {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.button {
+  width: 5rem;
+  height: 2.5rem;
+  border-radius: 0.375rem;
+}
+
+.button .skeleton {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background-color: white;
+}
+
+.cardHeader {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cardHeader .skeleton {
+  width: 50%;
+  height: 1.5rem;
+}
+
+.cardBody {
+  padding: 1rem;
+}
+
+.cardBody .skeleton {
+  width: 100%;
+  height: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.cardBody .skeleton:last-child {
+  width: 80%;
+}
+
+.cardFooter {
+  padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cardFooter .skeleton {
+  width: 30%;
+  height: 1rem;
+}
+
+.list {
+  width: 100%;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.listItem .circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.listContent {
+  flex: 1;
+}
+
+.listContent .skeleton {
+  width: 100%;
+  height: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.listContent .skeleton:last-child {
+  width: 60%;
+  margin-bottom: 0;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: flex;
+  padding: 0.75rem 1rem;
+  background-color: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tableHeader .skeleton {
+  flex: 1;
+  height: 1.25rem;
+  margin-right: 1rem;
+}
+
+.tableHeader .skeleton:last-child {
+  margin-right: 0;
+}
+
+.tableRow {
+  display: flex;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableRow .skeleton {
+  flex: 1;
+  height: 1rem;
+  margin-right: 1rem;
+}
+
+.tableRow .skeleton:last-child {
+  margin-right: 0;
+}
+
+.paragraph {
+  width: 100%;
+}
+
+.paragraph .skeleton {
+  width: 100%;
+  height: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.paragraph .skeleton:nth-child(2n) {
+  width: 90%;
+}
+
+.paragraph .skeleton:nth-child(3n) {
+  width: 80%;
+}
+
+.paragraph .skeleton:last-child {
+  width: 60%;
+  margin-bottom: 0;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Dark theme support */
+[data-theme="dark"] .skeleton {
+  background-color: #4a5568;
+}
+
+[data-theme="dark"] .card {
+  background-color: #2d3748;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .cardHeader,
+[data-theme="dark"] .cardFooter,
+[data-theme="dark"] .listItem,
+[data-theme="dark"] .table,
+[data-theme="dark"] .tableHeader,
+[data-theme="dark"] .tableRow {
+  border-color: #4a5568;
+}
+
+[data-theme="dark"] .tableHeader {
+  background-color: #1a202c;
+}
+
+[data-theme="dark"] .wave::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}

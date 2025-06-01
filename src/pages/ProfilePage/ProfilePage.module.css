@@ -1,0 +1,249 @@
+/* src/pages/ProfilePage/ProfilePage.module.css */
+.profilePage {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.profileContainer {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.profileContainer h1 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+}
+
+.tabButton {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tabButton:hover {
+  color: #4a5568;
+}
+
+.tabButton.active {
+  color: #7b1fa2;
+}
+
+.tabButton.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #7b1fa2;
+}
+
+.profileForm, .passwordForm {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profileImageSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-direction: column;
+}
+
+.imagePreview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 3px solid #e2e8f0;
+}
+
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7b1fa2;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uploadButton {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.uploadButton:hover {
+  background-color: #6a1b9a;
+}
+
+.fileInput {
+  display: none;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #7b1fa2;
+  box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.1);
+}
+
+.inputError {
+  border-color: #e53e3e !important;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.helperText {
+  color: #718096;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.formRow {
+  display: flex;
+  gap: 20px;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+.formActions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #6a1b9a;
+}
+
+.submitButton:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.errorMessage {
+  background-color: #ffcdd2;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .profileContainer {
+    padding: 20px;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+  
+  .tabButton {
+    text-align: left;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .tabButton.active::after {
+    display: none;
+  }
+  
+  .tabButton.active {
+    border-bottom: 2px solid #7b1fa2;
+  }
+}

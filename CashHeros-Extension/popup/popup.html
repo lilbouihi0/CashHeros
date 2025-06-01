@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CashHeros</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../icons/icon48.png" alt="CashHeros Logo">
+      <h1>CashHeros</h1>
+    </div>
+    <nav>
+      <button id="couponsTab" class="tab-button active">Coupons</button>
+      <button id="cashbackTab" class="tab-button">Cash Back</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="couponsContent" class="tab-content active">
+      <div class="search-container">
+        <input type="text" id="couponSearch" placeholder="Search for stores...">
+      </div>
+      
+      <div id="currentStoreCoupons" class="store-coupons">
+        <!-- Current store coupons will be displayed here -->
+      </div>
+      
+      <div class="coupon-list" id="couponList">
+        <!-- Coupons will be loaded here -->
+        <div class="loading">Loading coupons...</div>
+      </div>
+    </div>
+
+    <div id="cashbackContent" class="tab-content">
+      <div class="search-container">
+        <input type="text" id="cashbackSearch" placeholder="Search for stores...">
+      </div>
+      
+      <div class="cashback-list" id="cashbackList">
+        <!-- Cashback offers will be loaded here -->
+        <div class="loading">Loading cashback offers...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <button id="optionsButton">Settings</button>
+    <a href="https://cashheros.com" target="_blank">Visit Website</a>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

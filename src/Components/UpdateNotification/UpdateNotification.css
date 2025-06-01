@@ -1,0 +1,81 @@
+.update-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 320px;
+  width: calc(100% - 40px);
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+.update-notification-content {
+  padding: 16px;
+}
+
+.update-notification p {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.update-notification-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.update-notification-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  border: none;
+}
+
+.update-notification-button:active {
+  transform: scale(0.98);
+}
+
+.update-now {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.update-now:hover {
+  background-color: #6a1b9a;
+}
+
+.update-later {
+  background-color: transparent;
+  color: #666;
+}
+
+.update-later:hover {
+  background-color: #f0f0f0;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .update-notification {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+}

@@ -1,0 +1,749 @@
+:root {
+  --primary-green: #28A745;
+  --deep-green: #0E1F16;
+  --light-green-accent: #B6E3C9;
+  --light-gray: #f9f9f9;
+  --medium-gray: #ddd;
+  --dark-gray: #555;
+  --white: #FFFFFF;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+  --featured-color: #FFD700;
+}
+
+.storeDetailPage {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--white);
+}
+
+/* Store Header */
+.storeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--light-gray);
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.storeInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  min-width: 300px;
+}
+
+.storeLogo {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  padding: 10px;
+}
+
+.storeLogo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.storeDetails {
+  flex: 1;
+}
+
+.storeName {
+  font-size: 2.2rem;
+  color: var(--deep-green);
+  margin: 0 0 10px;
+}
+
+.storeCategory {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--light-gray);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  margin-right: 10px;
+}
+
+.categoryIcon {
+  font-size: 0.8rem;
+}
+
+.featuredBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--featured-color);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  color: var(--deep-green);
+  font-weight: bold;
+}
+
+.featuredIcon {
+  font-size: 0.8rem;
+}
+
+.cashbackInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-width: 250px;
+}
+
+.cashbackAmount {
+  text-align: center;
+}
+
+.percent {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.cashbackLabel {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+.shopNowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 25px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.shopNowButton:hover {
+  background-color: var(--deep-green);
+}
+
+.externalIcon {
+  font-size: 0.9rem;
+}
+
+.termsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.termsButton:hover {
+  color: var(--primary-green);
+}
+
+/* Terms Section */
+.termsSection {
+  background-color: var(--light-gray);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.termsSection h3 {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.termsSection p {
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Tabs */
+.tabsContainer {
+  margin-bottom: 40px;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--medium-gray);
+  margin-bottom: 20px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--dark-gray);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--primary-green);
+}
+
+.tab.active {
+  color: var(--primary-green);
+  border-bottom-color: var(--primary-green);
+}
+
+.tabContent {
+  min-height: 300px;
+}
+
+/* Cash Back Tab */
+.cashbackTab h2 {
+  font-size: 1.8rem;
+  color: var(--deep-green);
+  margin-bottom: 25px;
+}
+
+.howItWorks {
+  margin-bottom: 40px;
+}
+
+.stepsContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.step {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 auto 15px;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+}
+
+.popularCategories {
+  margin-bottom: 40px;
+}
+
+.popularCategories h3 {
+  font-size: 1.4rem;
+  color: var(--deep-green);
+  margin-bottom: 15px;
+}
+
+.categoriesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.categoryItem {
+  padding: 8px 16px;
+  background-color: var(--light-gray);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+.cashbackTips h3 {
+  font-size: 1.4rem;
+  color: var(--deep-green);
+  margin-bottom: 15px;
+}
+
+.tipsList {
+  list-style-position: inside;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tipsList li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+}
+
+/* Coupons Tab */
+.couponsTab h2 {
+  font-size: 1.8rem;
+  color: var(--deep-green);
+  margin-bottom: 25px;
+}
+
+.couponsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.couponCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.couponInfo {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+
+.couponTitle {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.couponMeta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.couponCategory, .couponExpiry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+.couponAction {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.couponCode {
+  padding: 10px 15px;
+  background-color: var(--light-gray);
+  border: 1px dashed var(--medium-gray);
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--deep-green);
+  text-align: center;
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.copyButton:hover {
+  background-color: var(--deep-green);
+}
+
+.copyIcon {
+  font-size: 0.9rem;
+}
+
+.noCoupons, .noDeals {
+  text-align: center;
+  padding: 30px;
+  background-color: var(--light-gray);
+  border-radius: 10px;
+}
+
+.noCoupons p, .noDeals p {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  margin-bottom: 15px;
+}
+
+.noCoupons .shopNowButton, .noDeals .shopNowButton {
+  display: inline-flex;
+  margin-top: 10px;
+}
+
+/* Deals Tab */
+.dealsTab h2 {
+  font-size: 1.8rem;
+  color: var(--deep-green);
+  margin-bottom: 25px;
+}
+
+.dealsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dealCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dealInfo {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+
+.dealTitle {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.dealMeta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.dealCategory, .dealDiscount, .dealExpiry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+.dealAction {
+  min-width: 200px;
+}
+
+.shopDealButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.shopDealButton:hover {
+  background-color: var(--deep-green);
+}
+
+/* FAQ Tab */
+.faqTab h2 {
+  font-size: 1.8rem;
+  color: var(--deep-green);
+  margin-bottom: 25px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  padding: 20px;
+  background-color: var(--light-gray);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.faqItem h3 {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 10px;
+}
+
+.faqItem p {
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  line-height: 1.5;
+}
+
+/* Related Stores */
+.relatedStores {
+  margin-bottom: 40px;
+}
+
+.relatedStores h2 {
+  font-size: 1.8rem;
+  color: var(--deep-green);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.relatedStoresList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.relatedStoreCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: transform var(--transition-speed);
+}
+
+.relatedStoreCard:hover {
+  transform: translateY(-5px);
+}
+
+.relatedStoreLogo {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  margin-bottom: 10px;
+}
+
+.relatedStoreLogo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.relatedStoreInfo {
+  text-align: center;
+}
+
+.relatedStoreInfo h3 {
+  font-size: 1rem;
+  color: var(--deep-green);
+  margin-bottom: 5px;
+}
+
+.relatedStoreInfo p {
+  font-size: 0.9rem;
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+/* User Feedback */
+.userFeedback {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--light-gray);
+  border-radius: 10px;
+}
+
+.userFeedback h3 {
+  font-size: 1.2rem;
+  color: var(--deep-green);
+  margin-bottom: 15px;
+}
+
+.feedbackButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.feedbackButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--white);
+  border: 1px solid var(--medium-gray);
+  border-radius: 20px;
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.feedbackButton:hover {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-color: var(--primary-green);
+}
+
+/* Loading, Error, Not Found */
+.loading, .error, .notFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 1.2rem;
+}
+
+.loading {
+  color: var(--dark-gray);
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.notFound {
+  color: var(--dark-gray);
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .storeHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .storeInfo {
+    flex-direction: column;
+  }
+  
+  .cashbackInfo {
+    width: 100%;
+  }
+  
+  .tab {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .couponCard, .dealCard {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .couponInfo, .dealInfo {
+    width: 100%;
+  }
+  
+  .couponMeta, .dealMeta {
+    justify-content: center;
+  }
+  
+  .couponAction, .dealAction {
+    width: 100%;
+  }
+  
+  .relatedStoresList {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .storeName {
+    font-size: 1.8rem;
+  }
+  
+  .percent {
+    font-size: 2rem;
+  }
+  
+  .tabs {
+    justify-content: flex-start;
+  }
+  
+  .feedbackButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

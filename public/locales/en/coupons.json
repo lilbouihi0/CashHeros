@@ -1,0 +1,89 @@
+{
+  "page": {
+    "title": "Coupons & Promo Codes",
+    "subtitle": "Save with the latest coupons and promo codes",
+    "description": "Find and use verified coupons for your favorite stores"
+  },
+  "filters": {
+    "title": "Filter Coupons",
+    "store": "Store",
+    "category": "Category",
+    "discountType": "Discount Type",
+    "expiryDate": "Expiry Date",
+    "sortBy": "Sort By",
+    "apply": "Apply Filters",
+    "clear": "Clear Filters",
+    "showExpired": "Show Expired Coupons"
+  },
+  "sortOptions": {
+    "newest": "Newest First",
+    "expiringSoon": "Expiring Soon",
+    "popularity": "Most Popular",
+    "highestDiscount": "Highest Discount",
+    "alphabetical": "Alphabetical"
+  },
+  "discountTypes": {
+    "percentage": "Percentage Off",
+    "fixedAmount": "Fixed Amount",
+    "freeShipping": "Free Shipping",
+    "buyOneGetOne": "Buy One Get One",
+    "giftWithPurchase": "Gift With Purchase"
+  },
+  "couponCard": {
+    "expires": "Expires",
+    "expired": "Expired",
+    "verified": "Verified",
+    "exclusive": "Exclusive",
+    "showCode": "Show Code",
+    "hideCode": "Hide Code",
+    "copyCode": "Copy Code",
+    "getDiscount": "Get Discount",
+    "terms": "Terms & Conditions",
+    "success": "Success Rate",
+    "used": "Used {{count}} times",
+    "lastUsed": "Last used {{time}}",
+    "comments": "{{count}} Comments",
+    "report": "Report Coupon"
+  },
+  "emptyState": {
+    "title": "No Coupons Found",
+    "description": "We couldn't find any coupons matching your criteria",
+    "suggestion": "Try adjusting your filters or check back later"
+  },
+  "categories": {
+    "all": "All Categories",
+    "clothing": "Clothing & Fashion",
+    "electronics": "Electronics",
+    "travel": "Travel",
+    "food": "Food & Dining",
+    "beauty": "Beauty & Health",
+    "home": "Home & Garden",
+    "toys": "Toys & Kids",
+    "sports": "Sports & Outdoors",
+    "books": "Books & Media",
+    "automotive": "Automotive",
+    "pets": "Pets",
+    "office": "Office Supplies"
+  },
+  "featured": {
+    "title": "Featured Coupons",
+    "subtitle": "Handpicked deals you don't want to miss"
+  },
+  "trending": {
+    "title": "Trending Coupons",
+    "subtitle": "Popular coupons being used right now"
+  },
+  "expiring": {
+    "title": "Expiring Soon",
+    "subtitle": "Use these coupons before they're gone",
+    "today": "Expires Today",
+    "tomorrow": "Expires Tomorrow",
+    "thisWeek": "Expires This Week"
+  },
+  "storeHighlight": {
+    "title": "Featured Store",
+    "couponsAvailable": "{{count}} Coupons Available",
+    "averageSavings": "Average Savings {{percent}}%",
+    "viewStore": "View Store"
+  }
+}
