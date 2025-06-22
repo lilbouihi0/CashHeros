@@ -17,6 +17,9 @@ const Slider = lazy(() =>
     })
 );
 
+// Test slider for debugging
+const TestSlider = lazy(() => import('./Slider/TestSlider.jsx'));
+
 const CouponsCard = lazy(() => 
   import('./CouponsCard/CouponsCard.jsx')
     .then(module => ({ default: module.default || module.CouponsCard }))
@@ -303,13 +306,13 @@ const HomePage = () => {
 
   return (
     <div className={styles.homePage}>
-      <Suspense fallback={<div className={styles.loadingContainer}>Loading...</div>}>
-        {/* Hero section with search */}
-        <div className={styles.heroSection}>
+      <header className={styles.heroSection}>
+        <Suspense fallback={<div>Loading...</div>}>
           <Slider />
-          <SearchBar />
-        </div>
-        
+        </Suspense>
+      </header>
+
+      <main className={styles.mainContent}>
         {/* Category pills for quick navigation */}
         <CategoryPills />
         
@@ -1028,7 +1031,7 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-      </Suspense>
+      </main>
     </div>
   );
 };

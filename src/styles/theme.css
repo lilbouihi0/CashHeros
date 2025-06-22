@@ -79,29 +79,29 @@
   --green-hover: #16A34A;          /* Keep the same hover state */
   --header-footer-bg: #059669;     /* Darker green for header/footer in dark mode */
   --text-on-header: #F8FAFC;       /* Light text on dark green background */
-  --neutral-bg: #0F172A;           /* Dark background */
-  --card-bg: #1E293B;              /* Dark card background */
-  --border-color: #334155;         /* Darker borders */
-  --text-main: #F8FAFC;            /* Light text for headings */
-  --text-secondary: #94A3B8;       /* Light gray for paragraphs */
+  --neutral-bg: #FFFFFF;           /* Set background to white as requested */
+  --card-bg: #F8FAFC;              /* Light gray for cards to be visible on white */
+  --border-color: #E5E7EB;         /* Light borders to match */
+  --text-main: #0F172A;            /* Dark text for headings */
+  --text-secondary: #64748B;       /* Darker gray for paragraphs */
   
   /* Dark theme variables */
   --bg-primary: var(--neutral-bg);
   --bg-secondary: var(--card-bg);
-  --bg-tertiary: #2c3e50;
+  --bg-tertiary: #f0f7ff;
   --text-primary: var(--text-main);
   --text-secondary: var(--text-secondary);
-  --text-tertiary: #98adc7;
+  --text-tertiary: #5d6e8f;
   --border-color: var(--border-color);
   --accent-color: var(--primary-green);
   --accent-hover: var(--green-hover);
   --success-color: var(--primary-green);
   --error-color: var(--error-red);
   --warning-color: var(--sale-orange);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
-  --sidebar-bg: #0F172A;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --sidebar-bg: #1E293B;
   --sidebar-text: #F8FAFC;
   --sidebar-hover: #1E293B;
   --sidebar-active: var(--primary-green);
@@ -114,10 +114,10 @@
   
   /* Blog Section Colors - Dark Theme */
   --blog-header-bg: #16A34A;      /* Darker green for dark mode */
-  --blog-card-bg: #1E293B;        /* Dark card background */
-  --blog-section-bg: #0F172A;     /* Dark background */
-  --blog-title-text: #F8FAFC;     /* Light text for headings */
-  --blog-description-text: #94A3B8; /* Light gray for paragraphs */
+  --blog-card-bg: #F8FAFC;        /* Light card background */
+  --blog-section-bg: #FFFFFF;     /* White background */
+  --blog-title-text: #0F172A;     /* Dark text for headings */
+  --blog-description-text: #475569; /* Muted dark slate for paragraphs */
   --blog-featured-tag: #22C55E;   /* Bright green for tags */
   --blog-secondary-tag: #3B82F6;  /* Soft blue for secondary tags */
   --blog-borders: #334155;        /* Darker borders */
@@ -131,9 +131,9 @@
   
   /* Card and UI colors - dark theme */
   --card-bg: var(--card-bg);
-  --card-hover: #2c3e50;
-  --input-bg: var(--neutral-bg);
-  --disabled-color: #4d5d73;
+  --card-hover: #f0f7ff;
+  --input-bg: var(--card-bg);
+  --disabled-color: #a0a8c0;
   --primary-color: var(--primary-green);
   --primary-color-light: #1b263b;
   --primary-color-dark: var(--green-hover);

@@ -214,6 +214,15 @@ const CouponsPage = lazy(() =>
     })
 );
 
+const SearchPage = lazy(() =>
+  import(/* webpackChunkName: "search-page" */ './pages/SearchPage/SearchPage.jsx')
+    .then(module => ({ default: module.SearchPage }))
+    .catch(error => {
+      console.error('Error loading SearchPage:', error);
+      return import('./Components/ErrorBoundary/FallbackPage');
+    })
+);
+
 // Components for session management and offline functionality are now implemented
 
 // Context Providers
@@ -372,6 +381,7 @@ function App() {
                 <Route path="/category" element={<PageTransition><CategoryPage /></PageTransition>} />
                 <Route path="/category/:category" element={<PageTransition><CategoryPage /></PageTransition>} />
                 <Route path="/coupons" element={<PageTransition><CouponsPage /></PageTransition>} />
+                <Route path="/search" element={<PageTransition><SearchPage /></PageTransition>} />
                 <Route path="/admin" element={
                   <AdminRoute>
                     <PageTransition><AdminDashboard /></PageTransition>

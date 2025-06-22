@@ -1,0 +1,55 @@
+.featuredStores {
+  width: 100%;
+  padding: 40px 0;
+  background-color: #f9f9f9;
+}
+
+.storeGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.storeCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  height: 80px;
+  width: 160px;
+}
+
+.storeCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.storeLogo {
+  max-width: 120px;
+  max-height: 50px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.storeCard:hover .storeLogo {
+  filter: grayscale(0%);
+}
+
+@media (max-width: 768px) {
+  .storeCard {
+    width: 120px;
+    height: 60px;
+  }
+  .storeLogo {
+    max-width: 90px;
+  }
+} 
