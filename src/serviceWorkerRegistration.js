@@ -35,18 +35,19 @@ export function register(config) {
       window.addEventListener('load', () => {
         try {
           const swUrl = `${process.env.PUBLIC_URL || ''}/service-worker.js`;
+          const fallbackSwUrl = `${process.env.PUBLIC_URL || ''}/sw-fallback.js`;
 
           if (isLocalhost) {
             // On localhost, check if service worker still exists
-            checkValidServiceWorker(swUrl, config);
+            checkValidServiceWorker(swUrl, config, fallbackSwUrl);
 
             // Add some developer guidance
             navigator.serviceWorker.ready.then(() => {
               console.log('This web app is using a service worker for better performance and offline capabilities');
             });
           } else {
-            // On production, just register the service worker
-            registerValidSW(swUrl, config);
+            // On production, try main service worker first, then fallback
+            registerValidSW(swUrl, config, fallbackSwUrl);
           }
         } catch (error) {
           console.warn('Error during service worker registration:', error);
@@ -69,11 +70,15 @@ export function register(config) {
  * Registers a valid service worker
  * @param {string} swUrl URL to the service worker file
  * @param {Object} config Configuration options
+ * @param {string} fallbackSwUrl URL to fallback service worker
  */
-function registerValidSW(swUrl, config) {
+function registerValidSW(swUrl, config, fallbackSwUrl) {
   try {
     navigator.serviceWorker
-      .register(swUrl)
+      .register(swUrl, {
+        scope: '/',
+        type: 'classic'
+      })
       .then((registration) => {
         registration.onupdatefound = () => {
           const installingWorker = registration.installing;
@@ -106,6 +111,25 @@ function registerValidSW(swUrl, config) {
       })
       .catch((error) => {
         console.error('Error during service worker registration:', error);
+        
+        // Try fallback service worker if main one fails
+        if (fallbackSwUrl) {
+          console.log('Trying fallback service worker...');
+          navigator.serviceWorker
+            .register(fallbackSwUrl, {
+              scope: '/',
+              type: 'classic'
+            })
+            .then((registration) => {
+              console.log('Fallback service worker registered successfully');
+              if (config && config.onSuccess) {
+                config.onSuccess(registration);
+              }
+            })
+            .catch((fallbackError) => {
+              console.error('Fallback service worker registration also failed:', fallbackError);
+            });
+        }
       });
   } catch (error) {
     console.warn('Error registering service worker:', error);
@@ -116,8 +140,9 @@ function registerValidSW(swUrl, config) {
  * Checks if a service worker is valid
  * @param {string} swUrl URL to the service worker file
  * @param {Object} config Configuration options
+ * @param {string} fallbackSwUrl URL to fallback service worker
  */
-function checkValidServiceWorker(swUrl, config) {
+function checkValidServiceWorker(swUrl, config, fallbackSwUrl) {
   try {
     // Check if the service worker can be found
     fetch(swUrl, {
@@ -138,7 +163,7 @@ function checkValidServiceWorker(swUrl, config) {
           });
         } else {
           // Service worker found - proceed as normal
-          registerValidSW(swUrl, config);
+          registerValidSW(swUrl, config, fallbackSwUrl);
         }
       })
       .catch(() => {

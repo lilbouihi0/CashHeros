@@ -111,7 +111,8 @@ const setCsrfToken = (options = {}) => {
                         userAgent.includes('Firefox') || 
                         userAgent.includes('Edge');
                         
-      if (!isBrowser) {
+      // In development, be less restrictive
+      if (!isBrowser && process.env.NODE_ENV === 'production') {
         return next();
       }
       
@@ -177,6 +178,12 @@ const verifyCsrfToken = (options = {}) => {
   
   return async (req, res, next) => {
     try {
+      // In development mode, be more lenient with CSRF
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(`[CSRF] Development mode - allowing request: ${req.method} ${req.url}`);
+        return next();
+      }
+      
       // Skip for non-browser requests
       const userAgent = req.headers['user-agent'] || '';
       const isBrowser = userAgent.includes('Mozilla') || 

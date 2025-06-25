@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { buildApiUrl, API_ENDPOINTS } from '../../config/api';
 import styles from './VerifyEmailPage.module.css';
 
 const VerifyEmailPage = () => {
@@ -21,7 +22,7 @@ const VerifyEmailPage = () => {
       }
       
       try {
-        const response = await axios.get(`http://localhost:5000/api/auth/verify-email/${token}`);
+        const response = await axios.get(buildApiUrl(`${API_ENDPOINTS.AUTH.VERIFY_EMAIL}/${token}`));
         setStatus('success');
         setMessage(response.data.message || 'Your email has been successfully verified!');
       } catch (error) {

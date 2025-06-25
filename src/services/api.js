@@ -6,6 +6,7 @@
  */
 import axios from 'axios';
 import { handleApiError, ErrorTypes } from '../utils/errorHandler';
+import { setupCsrfToken, initializeCsrfToken } from '../utils/csrfUtils';
 
 // Temporary implementation until we have the full apiCache utility
 const getCachedItem = (key) => null;
@@ -24,8 +25,12 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
-  }
+  },
+  withCredentials: true // Enable cookies for CSRF tokens
 });
+
+// Setup CSRF token handling
+setupCsrfToken(api);
 
 // Request queue for offline mode
 let requestQueue = [];

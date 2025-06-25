@@ -1,7 +1,6 @@
 /**
  * Database Configuration
- * 
- * This file contains database configuration, connection management,
+ * * This file contains database configuration, connection management,
  * and performance optimization settings.
  */
 
@@ -19,14 +18,14 @@ const connectDatabase = async (uri = process.env.MONGO_URI) => {
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      autoIndex: process.env.NODE_ENV !== 'production', // Disable auto-indexing in production for performance
+      autoIndex: false, // MODIFIED THIS LINE (assuming production-like behavior for Functions)
       serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
       socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
       family: 4, // Use IPv4, skip trying IPv6
       
       // Connection pooling settings
       maxPoolSize: 10, // Maximum number of connections in the pool
-      minPoolSize: 2,  // Minimum number of connections in the pool
+      minPoolSize: 2,  // Minimum number of connections in the pool
       maxIdleTimeMS: 30000, // Close idle connections after 30 seconds
       connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
       heartbeatFrequencyMS: 10000, // Check connection health every 10 seconds
@@ -56,13 +55,12 @@ const connectDatabase = async (uri = process.env.MONGO_URI) => {
     process.on('SIGINT', async () => {
       await mongoose.connection.close();
       console.log('MongoDB connection closed due to app termination');
-      process.exit(0);
     });
 
     return conn;
   } catch (error) {
     console.error('Database connection error:', error.message);
-    process.exit(1);
+    throw error;
   }
 };
 

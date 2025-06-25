@@ -1,72 +1,66 @@
 /* eslint-disable no-restricted-globals */
 
-// This is a simplified service worker that doesn't require workbox
-// It provides basic caching and offline capabilities
+// Clean service worker without Workbox dependencies
+// This provides basic caching without causing registration errors
 
-// Cache names
-const CACHE_NAME = 'cashheros-cache-v1';
-const STATIC_CACHE_NAME = 'cashheros-static-v1';
-const DYNAMIC_CACHE_NAME = 'cashheros-dynamic-v1';
-const API_CACHE_NAME = 'cashheros-api-v1';
+console.log('[SW] Clean Service Worker loaded - v4');
 
-// Assets to cache immediately (App Shell)
+// Cache names with versioning
+const CACHE_VERSION = '4';
+const STATIC_CACHE = `static-cache-v${CACHE_VERSION}`;
+const DYNAMIC_CACHE = `dynamic-cache-v${CACHE_VERSION}`;
+const API_CACHE = `api-cache-v${CACHE_VERSION}`;
+
+// Basic assets to cache
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/static/js/main.chunk.js',
-  '/static/js/bundle.js',
-  '/static/js/vendors~main.chunk.js',
   '/manifest.json',
-  '/favicon.ico',
-  '/logo192.png',
-  '/logo512.png',
-  '/static/css/main.chunk.css'
+  '/favicon.ico'
 ];
 
 // Install event - cache static assets
 self.addEventListener('install', event => {
-  console.log('[Service Worker] Installing Service Worker...');
-  
-  // Skip waiting to activate immediately
+  console.log('[SW] Installing...');
   self.skipWaiting();
   
   event.waitUntil(
-    caches.open(STATIC_CACHE_NAME)
+    caches.open(STATIC_CACHE)
       .then(cache => {
-        console.log('[Service Worker] Precaching App Shell');
-        return cache.addAll(STATIC_ASSETS);
+        console.log('[SW] Caching static assets');
+        return Promise.allSettled(
+          STATIC_ASSETS.map(asset => 
+            cache.add(asset).catch(error => {
+              console.warn(`[SW] Failed to cache ${asset}:`, error);
+            })
+          )
+        );
       })
       .catch(error => {
-        console.error('[Service Worker] Precaching failed:', error);
+        console.error('[SW] Install failed:', error);
       })
   );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
-  console.log('[Service Worker] Activating Service Worker...');
-  
-  // Claim clients to control all open tabs
+  console.log('[SW] Activating...');
   self.clients.claim();
   
-  event.waitUntil(
-    caches.keys()
-      .then(keyList => {
-        return Promise.all(keyList.map(key => {
-          // Delete old caches except the current ones
-          if (
-            key !== STATIC_CACHE_NAME && 
-            key !== DYNAMIC_CACHE_NAME && 
-            key !== API_CACHE_NAME
-          ) {
-            console.log('[Service Worker] Removing old cache:', key);
-            return caches.delete(key);
-          }
-        }));
-      })
-  );
+  const currentCaches = [STATIC_CACHE, DYNAMIC_CACHE, API_CACHE];
   
-  return self.clients.claim();
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (!currentCaches.includes(cacheName)) {
+            console.log('[SW] Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
 });
 
 // Fetch event - serve from cache or network
@@ -131,7 +125,7 @@ self.addEventListener('fetch', event => {
             // Clone the response because it's a one-time use stream
             const responseToCache = response.clone();
             
-            caches.open(DYNAMIC_CACHE_NAME)
+            caches.open(DYNAMIC_CACHE)
               .then(cache => {
                 cache.put(event.request, responseToCache);
               });
@@ -160,7 +154,7 @@ function networkFirstStrategy(request) {
       // Clone the response to store in cache
       const clonedResponse = response.clone();
       
-      caches.open(API_CACHE_NAME)
+      caches.open(API_CACHE)
         .then(cache => {
           cache.put(request, clonedResponse);
         });
@@ -184,7 +178,7 @@ function cacheFirstStrategy(request) {
         .then(networkResponse => {
           const responseToCache = networkResponse.clone();
           
-          caches.open(DYNAMIC_CACHE_NAME)
+          caches.open(DYNAMIC_CACHE)
             .then(cache => {
               cache.put(request, responseToCache);
             });
@@ -206,7 +200,7 @@ function staleWhileRevalidateStrategy(request) {
       const fetchPromise = fetch(request)
         .then(networkResponse => {
           // Update the cache with the new response
-          caches.open(DYNAMIC_CACHE_NAME)
+          caches.open(DYNAMIC_CACHE)
             .then(cache => {
               cache.put(request, networkResponse.clone());
             });

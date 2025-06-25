@@ -1,5 +1,7 @@
 import { Routes, Route, Outlet, useNavigationType, useLocation, useMatches } from 'react-router-dom';
 import { Suspense, lazy, useState, useEffect } from 'react';
+import { initializeCsrfToken } from './utils/csrfUtils';
+import apiService from './services/api';
 // Import our modern Helmet replacement
 import ModernHelmet from './Components/HelmetWrapper/ModernHelmet';
 import { Navbar } from './Components/Navbar/Navbar';
@@ -315,6 +317,20 @@ const NetworkStatusIndicator = () => {
 function App() {
   const { i18n, t } = useTranslation();
   const [dir, setDir] = useState(RTL_LANGUAGES.includes(i18n.language) ? 'rtl' : 'ltr');
+  
+  // Initialize CSRF token on app start
+  useEffect(() => {
+    const initCsrf = async () => {
+      try {
+        await initializeCsrfToken(apiService.instance);
+        console.log('CSRF token initialized successfully');
+      } catch (error) {
+        console.warn('Failed to initialize CSRF token:', error);
+      }
+    };
+    
+    initCsrf();
+  }, []);
   
   // Update document direction when language changes
   useEffect(() => {

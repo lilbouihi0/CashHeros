@@ -3,8 +3,9 @@ const WebSocket = require('ws');
 const http = require('http');
 const url = require('url');
 const jwt = require('jsonwebtoken');
+const functions = require('firebase-functions');
 const { logger } = require('./middleware/loggingMiddleware');
-require('dotenv').config();
+// require('dotenv').config(); // COMMENTED OUT: Not needed for Firebase Functions
 
 // WebSocket event types
 const WS_EVENTS = {
@@ -99,7 +100,7 @@ const createWebSocketServer = (server) => {
       }
       
       // Verify JWT token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, functions.config().secrets.jwt_secret);
       
       if (decoded.id !== userId) {
         throw new Error('User ID mismatch');

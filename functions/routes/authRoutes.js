@@ -4,7 +4,26 @@ const { body, validationResult } = require('express-validator');
 const { authMiddleware, optionalAuthMiddleware } = require('../middleware/authMiddleware');
 const { authLimiter, strictLimiter, loginRateLimiter } = require('../middleware/rateLimitMiddleware');
 const authController = require('../controllers/authController');
-require('dotenv').config();
+const functions = require('firebase-functions');
+// require('dotenv').config(); // COMMENTED OUT: Not needed for Firebase Functions
+
+// Get CSRF token
+router.get('/csrf-token', (req, res) => {
+  // This endpoint will trigger the CSRF middleware to set the token
+  res.json({ 
+    success: true, 
+    message: 'CSRF token set in cookie and header' 
+  });
+});
+
+// Health check endpoint (no CSRF required)
+router.get('/health', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: 'Auth service is healthy',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Register a new user
 router.post('/register',
@@ -325,13 +344,13 @@ router.post('/2fa/login',
       // Generate tokens
       const accessToken = jwt.sign(
         { userId: user._id, role: user.role },
-        process.env.JWT_SECRET,
+        functions.config().secrets.jwt_secret,
         { expiresIn: '15m' }
       );
       
       const refreshToken = jwt.sign(
         { userId: user._id },
-        process.env.JWT_REFRESH_SECRET,
+        functions.config().secrets.jwt_refresh_secret,
         { expiresIn: '7d' }
       );
       
@@ -468,13 +487,13 @@ router.post('/2fa/verify-email-code',
       // Generate tokens
       const accessToken = jwt.sign(
         { userId: user._id, role: user.role },
-        process.env.JWT_SECRET,
+        functions.config().secrets.jwt_secret,
         { expiresIn: '15m' }
       );
       
       const refreshToken = jwt.sign(
         { userId: user._id },
-        process.env.JWT_REFRESH_SECRET,
+        functions.config().secrets.jwt_refresh_secret,
         { expiresIn: '7d' }
       );
       
@@ -658,13 +677,13 @@ router.post('/google',
       // Generate tokens
       const accessToken = jwt.sign(
         { userId: user._id, role: user.role },
-        process.env.JWT_SECRET,
+        functions.config().secrets.jwt_secret,
         { expiresIn: '15m' }
       );
       
       const refreshToken = jwt.sign(
         { userId: user._id },
-        process.env.JWT_REFRESH_SECRET,
+        functions.config().secrets.jwt_refresh_secret,
         { expiresIn: '7d' }
       );
       
@@ -774,13 +793,13 @@ router.post('/google/code',
       // Generate tokens
       const accessToken = jwt.sign(
         { userId: user._id, role: user.role },
-        process.env.JWT_SECRET,
+        functions.config().secrets.jwt_secret,
         { expiresIn: '15m' }
       );
       
       const refreshToken = jwt.sign(
         { userId: user._id },
-        process.env.JWT_REFRESH_SECRET,
+        functions.config().secrets.jwt_refresh_secret,
         { expiresIn: '7d' }
       );
       
@@ -886,13 +905,13 @@ router.post('/facebook',
       // Generate tokens
       const jwtAccessToken = jwt.sign(
         { userId: user._id, role: user.role },
-        process.env.JWT_SECRET,
+        functions.config().secrets.jwt_secret,
         { expiresIn: '15m' }
       );
       
       const refreshToken = jwt.sign(
         { userId: user._id },
-        process.env.JWT_REFRESH_SECRET,
+        functions.config().secrets.jwt_refresh_secret,
         { expiresIn: '7d' }
       );
       

@@ -16,6 +16,8 @@ const corsOptions = () => {
   if (process.env.NODE_ENV === 'production') {
     const allowedOrigins = [
       process.env.FRONTEND_URL,
+      'https://casheros.com',
+      'https://www.casheros.com',
       'https://cashheros.com',
       'https://www.cashheros.com',
       'https://admin.cashheros.com'
@@ -39,7 +41,7 @@ const corsOptions = () => {
   } 
   // In development, use CORS_ORIGIN if available, otherwise allow all origins
   else {
-    // Check if CORS_ORIGIN is defined in .env
+    // Check if CORS_ORIGIN is defined in environment variables
     if (process.env.CORS_ORIGIN) {
       const allowedOrigins = process.env.CORS_ORIGIN.split(',').map(origin => origin.trim());
       

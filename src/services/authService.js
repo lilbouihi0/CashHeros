@@ -13,76 +13,98 @@ import api from './api';
  * @returns {Promise} - The response promise
  */
 export const login = async (email, password, rememberMe = false) => {
-  // For development, use mock data instead of making API calls
-  // This prevents 404 errors when the backend is not available
+  // Check if we're in development mode and should use mock data
+  const isDevelopment = process.env.REACT_APP_ENV === 'development';
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  // Check for admin credentials - redirect to admin login
-  if (email === 'admin@cashheros.com' && password === 'admin123') {
-    throw new Error('Please use the admin login page at /admin-login for admin access');
-  }
-  
-  // Validate user credentials - in development mode, we'll accept only these test accounts
-  const validUsers = [
-    { email: 'user@example.com', password: 'password123' },
-    { email: 'test@cashheros.com', password: 'test123' },
-    { email: 'demo@cashheros.com', password: 'demo123' }
-  ];
-  
-  const isValidUser = validUsers.some(user => 
-    user.email === email && user.password === password
-  );
-  
-  if (!isValidUser) {
-    throw new Error('Invalid credentials. Please try again.');
-  }
-  
-  // Generate mock tokens
-  const mockAccessToken = 'mock_access_' + Math.random().toString(36).substring(2, 15);
-  const mockRefreshToken = 'mock_refresh_' + Math.random().toString(36).substring(2, 15);
-  
-  // Create mock response data
-  const mockResponseData = {
-    accessToken: mockAccessToken,
-    refreshToken: mockRefreshToken,
-    user: {
-      id: '1',
-      email: email,
-      firstName: 'Test',
-      lastName: 'User',
-      role: 'user',
-      emailVerified: true,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    }
-  };
-  
-  // Store tokens in localStorage
-  localStorage.setItem('accessToken', mockAccessToken);
-  localStorage.setItem('refreshToken', mockRefreshToken);
-  
-  // Store user data in localStorage for persistence
-  localStorage.setItem('cachedUserProfile', JSON.stringify({ user: mockResponseData.user }));
-  localStorage.setItem('cachedUserProfileTimestamp', Date.now().toString());
-  
-  return mockResponseData;
-  
-  /* Commented out actual API call for development
-  const response = await api.post('/auth/login', { email, password, rememberMe });
-  
-  // Store tokens in localStorage
-  if (response.data.accessToken) {
-    localStorage.setItem('accessToken', response.data.accessToken);
+  // If in development and using localhost API, use mock login
+  if (isDevelopment && apiBaseUrl && apiBaseUrl.includes('localhost')) {
+    console.log('Using mock login for development');
     
-    if (response.data.refreshToken) {
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Check for admin credentials - redirect to admin login
+    if (email === 'admin@cashheros.com' && password === 'admin123') {
+      throw new Error('Please use the admin login page at /admin-login for admin access');
     }
+    
+    // Check registered mock users first
+    const mockUsers = JSON.parse(localStorage.getItem('mockUsers') || '[]');
+    let validUser = mockUsers.find(user => user.email === email);
+    
+    // If not found in mock users, check default test accounts
+    if (!validUser) {
+      const defaultUsers = [
+        { email: 'user@example.com', password: 'password123', firstName: 'Test', lastName: 'User' },
+        { email: 'test@cashheros.com', password: 'test123', firstName: 'Test', lastName: 'User' },
+        { email: 'demo@cashheros.com', password: 'demo123', firstName: 'Demo', lastName: 'User' }
+      ];
+      
+      const defaultUser = defaultUsers.find(user => user.email === email && user.password === password);
+      if (defaultUser) {
+        validUser = {
+          id: Date.now().toString(),
+          email: defaultUser.email,
+          firstName: defaultUser.firstName,
+          lastName: defaultUser.lastName,
+          role: 'user',
+          emailVerified: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+      }
+    }
+    
+    if (!validUser) {
+      throw new Error('Invalid credentials. Please try again.');
+    }
+    
+    // Generate mock tokens
+    const mockAccessToken = 'mock_access_' + Math.random().toString(36).substring(2, 15);
+    const mockRefreshToken = 'mock_refresh_' + Math.random().toString(36).substring(2, 15);
+    
+    // Create mock response data
+    const mockResponseData = {
+      accessToken: mockAccessToken,
+      refreshToken: mockRefreshToken,
+      user: validUser
+    };
+    
+    // Store tokens in localStorage
+    localStorage.setItem('accessToken', mockAccessToken);
+    localStorage.setItem('refreshToken', mockRefreshToken);
+    
+    // Store user data in localStorage for persistence
+    localStorage.setItem('cachedUserProfile', JSON.stringify({ user: validUser }));
+    localStorage.setItem('cachedUserProfileTimestamp', Date.now().toString());
+    
+    return mockResponseData;
   }
   
-  return response.data;
-  */
+  // Try real API call
+  try {
+    const response = await api.post('/auth/login', { email, password, rememberMe });
+    
+    // Store tokens in localStorage
+    if (response.data.accessToken) {
+      localStorage.setItem('accessToken', response.data.accessToken);
+      
+      if (response.data.refreshToken) {
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+      }
+    }
+    
+    return response.data;
+  } catch (error) {
+    // If API fails in development, fall back to mock
+    if (isDevelopment && !error.response) {
+      console.warn('API not available, falling back to mock login');
+      return await login(email, password, rememberMe); // Recursive call will use mock path
+    }
+    
+    throw error;
+  }
 };
 
 /**
@@ -91,10 +113,67 @@ export const login = async (email, password, rememberMe = false) => {
  * @returns {Promise} - The response promise
  */
 export const register = async (userData) => {
+  // Check if we're in development mode and should use mock data
+  const isDevelopment = process.env.REACT_APP_ENV === 'development';
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  
+  // If in development and using localhost API, use mock registration
+  if (isDevelopment && apiBaseUrl && apiBaseUrl.includes('localhost')) {
+    console.log('Using mock registration for development:', userData);
+    
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Check if email already exists in localStorage (simple mock validation)
+    const existingUsers = JSON.parse(localStorage.getItem('mockUsers') || '[]');
+    const emailExists = existingUsers.some(user => user.email === userData.email);
+    
+    if (emailExists) {
+      throw {
+        type: 'VALIDATION_ERROR',
+        message: 'This email is already registered. Please use a different email or try logging in.',
+        details: null
+      };
+    }
+    
+    // Generate mock tokens
+    const mockAccessToken = 'mock_access_' + Math.random().toString(36).substring(2, 15);
+    const mockRefreshToken = 'mock_refresh_' + Math.random().toString(36).substring(2, 15);
+    
+    // Create mock user
+    const mockUser = {
+      id: Date.now().toString(),
+      email: userData.email,
+      firstName: userData.firstName || 'User',
+      lastName: userData.lastName || '',
+      role: 'user',
+      emailVerified: true,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    // Store mock user
+    existingUsers.push(mockUser);
+    localStorage.setItem('mockUsers', JSON.stringify(existingUsers));
+    
+    // Store tokens
+    localStorage.setItem('accessToken', mockAccessToken);
+    localStorage.setItem('refreshToken', mockRefreshToken);
+    
+    // Store user data for persistence
+    localStorage.setItem('cachedUserProfile', JSON.stringify({ user: mockUser }));
+    localStorage.setItem('cachedUserProfileTimestamp', Date.now().toString());
+    
+    return {
+      accessToken: mockAccessToken,
+      refreshToken: mockRefreshToken,
+      user: mockUser
+    };
+  }
+  
+  // Try real API call
   try {
     console.log('Sending registration data to API:', userData);
-    
-    // We'll skip the health check as it might be causing additional rate limiting issues
     
     const response = await api.post('/auth/register', userData);
     console.log('Registration API response:', response.data);
@@ -119,6 +198,12 @@ export const register = async (userData) => {
     
     // Check for specific error types
     if (!error.response) {
+      // If no response, it's likely a network error - fall back to mock in development
+      if (isDevelopment) {
+        console.warn('API not available, falling back to mock registration');
+        return await register(userData); // Recursive call will use mock path
+      }
+      
       throw {
         type: 'NETWORK_ERROR',
         message: 'Unable to connect to the server. Please check if the backend server is running.',

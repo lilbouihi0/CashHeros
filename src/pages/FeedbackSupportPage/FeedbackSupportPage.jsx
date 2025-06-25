@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { buildApiUrl, API_ENDPOINTS } from '../../config/api';
 import styles from './FeedbackSupportPage.module.css';
 
 export const FeedbackSupportPage = () => {
@@ -42,14 +43,14 @@ export const FeedbackSupportPage = () => {
         setLoading(true);
         
         // Fetch support tickets
-        const ticketsResponse = await axios.get('http://localhost:5000/api/support/tickets', {
+        const ticketsResponse = await axios.get(buildApiUrl(API_ENDPOINTS.SUPPORT.TICKETS), {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
         
         // Fetch feedback submissions
-        const feedbackResponse = await axios.get('http://localhost:5000/api/feedback/submissions', {
+        const feedbackResponse = await axios.get(buildApiUrl(API_ENDPOINTS.FEEDBACK.SUBMISSIONS), {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -165,7 +166,7 @@ export const FeedbackSupportPage = () => {
     try {
       setLoading(true);
       
-      const response = await axios.post('http://localhost:5000/api/support/tickets', ticketForm, {
+      const response = await axios.post(buildApiUrl(API_ENDPOINTS.SUPPORT.TICKETS), ticketForm, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -203,7 +204,7 @@ export const FeedbackSupportPage = () => {
     try {
       setLoading(true);
       
-      const response = await axios.post('http://localhost:5000/api/feedback/submit', feedbackForm, {
+      const response = await axios.post(buildApiUrl(API_ENDPOINTS.FEEDBACK.SUBMIT), feedbackForm, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashHeros Deployment Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🚀 CashHeros Deployment Test</h1>
+    <p>This page will test your API connectivity and CORS configuration.</p>
+    
+    <button onclick="testHealthEndpoint()">Test Health Endpoint</button>
+    <button onclick="testCsrfEndpoint()">Test CSRF Token</button>
+    <button onclick="testCorsHeaders()">Test CORS Headers</button>
+    <button onclick="testRegistration()">Test Registration (Mock)</button>
+    <button onclick="runAllTests()">Run All Tests</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const API_BASE_URL = 'https://api-gablgtu7na-uc.a.run.app/api';
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            resultsDiv.appendChild(div);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        async function testHealthEndpoint() {
+            addResult('Testing health endpoint...', 'warning');
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult(`✅ Health endpoint working: ${data.message}`, 'success');
+                } else {
+                    addResult(`❌ Health endpoint failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Health endpoint error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testCsrfEndpoint() {
+            addResult('Testing CSRF token endpoint...', 'warning');
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/csrf-token`, {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const csrfToken = response.headers.get('x-csrf-token');
+                    addResult(`✅ CSRF endpoint working. Token in header: ${csrfToken ? 'Yes' : 'No'}`, 'success');
+                } else {
+                    addResult(`❌ CSRF endpoint failed: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ CSRF endpoint error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testCorsHeaders() {
+            addResult('Testing CORS headers...', 'warning');
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/health`, {
+                    method: 'OPTIONS'
+                });
+                
+                const corsOrigin = response.headers.get('Access-Control-Allow-Origin');
+                const corsMethods = response.headers.get('Access-Control-Allow-Methods');
+                const corsHeaders = response.headers.get('Access-Control-Allow-Headers');
+                
+                addResult(`CORS Origin: ${corsOrigin || 'Not set'}`, corsOrigin ? 'success' : 'error');
+                addResult(`CORS Methods: ${corsMethods || 'Not set'}`, corsMethods ? 'success' : 'warning');
+                addResult(`CORS Headers: ${corsHeaders || 'Not set'}`, corsHeaders ? 'success' : 'warning');
+                
+            } catch (error) {
+                addResult(`❌ CORS test error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testRegistration() {
+            addResult('Testing registration endpoint (mock data)...', 'warning');
+            try {
+                // First get CSRF token
+                const csrfResponse = await fetch(`${API_BASE_URL}/auth/csrf-token`, {
+                    credentials: 'include'
+                });
+                
+                const csrfToken = csrfResponse.headers.get('x-csrf-token');
+                
+                if (!csrfToken) {
+                    addResult('⚠️ No CSRF token received, proceeding without it', 'warning');
+                }
+                
+                // Test registration with mock data
+                const registrationData = {
+                    email: 'test@example.com',
+                    password: 'testpassword123',
+                    firstName: 'Test',
+                    lastName: 'User'
+                };
+                
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                
+                if (csrfToken) {
+                    headers['X-CSRF-Token'] = csrfToken;
+                }
+                
+                const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: headers,
+                    credentials: 'include',
+                    body: JSON.stringify(registrationData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult(`✅ Registration endpoint accessible (mock test)`, 'success');
+                } else if (response.status === 400 && data.message && data.message.includes('already exists')) {
+                    addResult(`✅ Registration endpoint working (user already exists)`, 'success');
+                } else if (response.status === 403 && data.code === 'CSRF_ERROR') {
+                    addResult(`⚠️ CSRF protection active (expected in production)`, 'warning');
+                } else {
+                    addResult(`❌ Registration failed: ${data.message || response.statusText}`, 'error');
+                }
+                
+            } catch (error) {
+                addResult(`❌ Registration test error: ${error.message}`, 'error');
+            }
+        }
+
+        async function runAllTests() {
+            addResult('🚀 Running all tests...', 'warning');
+            resultsDiv.innerHTML = '';
+            
+            await testHealthEndpoint();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testCsrfEndpoint();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testCorsHeaders();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testRegistration();
+            
+            addResult('🎉 All tests completed!', 'success');
+        }
+
+        // Auto-run tests when page loads
+        window.addEventListener('load', () => {
+            addResult('🔧 Deployment test page loaded. Click "Run All Tests" to start.', 'warning');
+        });
+    </script>
+</body>
+</html>

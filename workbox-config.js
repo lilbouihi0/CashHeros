@@ -14,6 +14,10 @@ module.exports = {
     'manifest.json',
     'logo*.png'
   ],
+  // Additional configuration for better compatibility
+  mode: 'production',
+  skipWaiting: true,
+  clientsClaim: true,
   // Define runtime caching rules
   runtimeCaching: [
     {

@@ -4,7 +4,7 @@ const axios = require('axios');
 async function testServerConnection() {
   try {
     console.log('Testing connection to server...');
-    const response = await axios.get('http://localhost:5000/api/health');
+    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api'}/health`);
     console.log('Server is running!');
     console.log('Response:', response.data);
     return true;
