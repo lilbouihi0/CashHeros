@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcashheros=self.webpackChunkcashheros||[]).push([[764],{989:(e,s,a)=>{a.r(s),a.d(s,{CareersPage:()=>h});a(9950);const r="CareersPage_careersPage__790T+";var c=a(4414);const h=()=>(0,c.jsxs)("div",{className:r,children:[(0,c.jsx)("h1",{children:"Careers"}),(0,c.jsx)("p",{children:"Join our team and help people save money every day!"})]})}}]);

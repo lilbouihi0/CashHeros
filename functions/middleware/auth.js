@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const functions = require('firebase-functions');
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -9,7 +8,7 @@ function authenticateToken(req, res, next) {
     return res.sendStatus(401); // Unauthorized
   }
 
-  jwt.verify(token, functions.config().secrets.jwt_secret, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
       return res.sendStatus(403); // Forbidden
     }

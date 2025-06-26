@@ -26,9 +26,11 @@ const corsOptions = () => {
     return {
       origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-          callback(null, true);
+        if (!origin || allowedOrigins.includes(origin)) {
+          console.log('CORS origin allowed:', origin);
+          callback(null, origin || true); // Return the single origin, not true (which would reflect '*')
         } else {
+          console.warn('CORS blocked request from origin:', origin);
           callback(new Error('Not allowed by CORS'));
         }
       },
@@ -48,10 +50,11 @@ const corsOptions = () => {
       return {
         origin: function (origin, callback) {
           // Allow requests with no origin (like mobile apps or curl requests)
-          if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
+          if (!origin || allowedOrigins.includes(origin)) {
+            console.log('CORS origin allowed:', origin);
+            callback(null, origin || true); // Return the single origin
           } else {
-            console.warn(`CORS blocked request from origin: ${origin}`);
+            console.warn('CORS blocked request from origin:', origin);
             callback(new Error('Not allowed by CORS'));
           }
         },

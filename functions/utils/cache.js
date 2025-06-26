@@ -19,11 +19,11 @@ const config = {
   
   // Redis configuration
   redis: {
-    enabled: functions.config().redis?.enabled === 'true',
-    host: functions.config().redis?.host || 'localhost',
-    port: parseInt(functions.config().redis?.port || '6379'),
-    password: functions.config().redis?.password,
-    keyPrefix: functions.config().redis?.key_prefix || 'cashheros:'
+    enabled: process.env.REDIS_ENABLED === 'true',
+    host: process.env.REDIS_HOST || 'localhost',
+    port: parseInt(process.env.REDIS_PORT || '6379'),
+    password: process.env.REDIS_PASSWORD,
+    keyPrefix: process.env.REDIS_KEY_PREFIX || 'cashheros:'
   }
 };
 

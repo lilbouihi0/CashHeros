@@ -5,7 +5,6 @@
 
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const functions = require('firebase-functions');
 const User = require('../models/User');
 
 // In-memory token blacklist (should be replaced with Redis in production)
@@ -26,7 +25,7 @@ const generateAccessToken = (user, expiresIn = '15m') => {
       verified: user.verified,
       tokenVersion: user.tokenVersion || 0
     },
-    functions.config().secrets.jwt_secret,
+    process.env.JWT_SECRET,
     { expiresIn }
   );
 };
@@ -44,7 +43,7 @@ const generateRefreshToken = (user, expiresIn = '7d') => {
       tokenVersion: user.tokenVersion || 0,
       tokenId: crypto.randomBytes(16).toString('hex')
     },
-    functions.config().secrets.jwt_refresh_secret,
+    process.env.JWT_REFRESH_SECRET,
     { expiresIn }
   );
 };
@@ -61,7 +60,7 @@ const verifyAccessToken = (token) => {
       return null;
     }
     
-    return jwt.verify(token, functions.config().secrets.jwt_secret);
+    return jwt.verify(token, process.env.JWT_SECRET);
   } catch (error) {
     return null;
   }
@@ -74,7 +73,7 @@ const verifyAccessToken = (token) => {
  */
 const verifyRefreshToken = (token) => {
   try {
-    return jwt.verify(token, functions.config().secrets.jwt_refresh_secret);
+    return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
   } catch (error) {
     return null;
   }

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcashheros=self.webpackChunkcashheros||[]).push([[74],{4731:(e,s,r)=>{r.r(s),r.d(s,{default:()=>a});r(9950);var h=r(4414);const a=()=>(0,h.jsxs)("div",{style:{padding:"40px",textAlign:"center"},children:[(0,h.jsx)("h1",{children:"My Offers"}),(0,h.jsx)("p",{children:"View your available offers here."})]})}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcashheros=self.webpackChunkcashheros||[]).push([[758],{2462:(s,e,a)=>{a.r(e),a.d(e,{AboutPage:()=>o});a(9950);const h="AboutPage_aboutPage__shGE7";var c=a(4414);const o=()=>(0,c.jsxs)("div",{className:h,children:[(0,c.jsx)("h1",{children:"About Us"}),(0,c.jsx)("p",{children:"We help you save money with the best deals and cashback offers."})]})}}]);

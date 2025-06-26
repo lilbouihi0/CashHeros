@@ -1,0 +1,14 @@
+{
+    "zencoder.enableRepoIndexing": true,
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/build": true,
+        "**/.git": true,
+        "**/.DS_Store": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/build": true
+    },
+    "git.ignoreLimitWarning": true
+}

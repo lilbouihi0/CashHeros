@@ -5,7 +5,6 @@
  */
 
 const cache = require('../utils/cache');
-const functions = require('firebase-functions');
 
 /**
  * Get cache statistics

@@ -5,8 +5,8 @@
 
 echo "🚀 Deploying backend to Google Cloud Run..."
 
-# Set project ID (replace with your actual project ID)
-PROJECT_ID="your-project-id"
+# Set project ID
+PROJECT_ID="cashheros-d2376"
 SERVICE_NAME="cashheros-api"
 REGION="us-central1"
 

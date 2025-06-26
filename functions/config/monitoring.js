@@ -3,7 +3,6 @@
  */
 
 const winston = require('winston');
-const functions = require('firebase-functions');
 const { createLogger, format, transports } = winston;
 const { combine, timestamp, printf, colorize, json } = format;
 
@@ -14,10 +13,10 @@ const isStaging = environment === 'staging';
 
 // Sentry configuration (if enabled)
 let Sentry;
-if (functions.config().monitoring?.sentry_dsn) {
+if (process.env.MONITORING_SENTRY_DSN) {
   Sentry = require('@sentry/node');
   Sentry.init({
-    dsn: functions.config().monitoring.sentry_dsn,
+    dsn: process.env.MONITORING_SENTRY_DSN,
     environment,
     tracesSampleRate: isProduction ? 0.1 : 1.0,
     integrations: [
@@ -69,15 +68,15 @@ const logger = createLogger({
 });
 
 // Add CloudWatch transport in production if configured
-if (isProduction && functions.config().aws?.cloudwatch_enabled === 'true') {
+if (isProduction && process.env.AWS_CLOUDWATCH_ENABLED === 'true') {
   const CloudWatchTransport = require('winston-cloudwatch');
   
   logger.add(new CloudWatchTransport({
-    logGroupName: functions.config().aws?.cloudwatch_group || 'cashheros-backend',
+    logGroupName: process.env.AWS_CLOUDWATCH_GROUP || 'cashheros-backend',
     logStreamName: `${environment}-${new Date().toISOString().split('T')[0]}`,
-    awsAccessKeyId: functions.config().aws?.access_key_id,
-    awsSecretKey: functions.config().aws?.secret_access_key,
-    awsRegion: functions.config().aws?.region || 'us-east-1',
+    awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
+    awsRegion: process.env.AWS_REGION || 'us-east-1',
     messageFormatter: ({ level, message, ...meta }) => JSON.stringify({
       level,
       message,
@@ -94,7 +93,7 @@ const healthCheck = async () => {
   const checks = {
     timestamp: new Date().toISOString(),
     status: 'ok',
-    version: functions.config().app?.version || '1.0.0',
+    version: process.env.APP_VERSION || '1.0.0',
     services: {
       database: {
         status: 'unknown'
@@ -128,16 +127,16 @@ const healthCheck = async () => {
   }
   
   // Check Redis connection if enabled
-  if (functions.config().redis?.enabled === 'true') {
+  if (process.env.REDIS_ENABLED === 'true') {
     checks.services.redis = {
       status: 'unknown'
     };
     
     try {
       const redis = new Redis({
-        host: functions.config().redis?.host,
-        port: functions.config().redis?.port,
-        password: functions.config().redis?.password || undefined
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT,
+        password: process.env.REDIS_PASSWORD || undefined
       });
       
       const startTime = Date.now();
@@ -241,7 +240,7 @@ const setupMonitoring = (app) => {
   app.get('/health/detailed', async (req, res) => {
     // Check if request has admin authorization
     const apiKey = req.headers['x-api-key'];
-    if (apiKey !== functions.config().admin?.api_key) {
+    if (apiKey !== process.env.ADMIN_API_KEY) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
     

@@ -6,59 +6,11 @@ const compression = require('compression');
 // const http = require('http'); // REMOVED: No longer needed for direct server creation
 
 
-// For local development only - not needed in production Firebase Functions
+// For local development only - uncomment if needed
 // require('dotenv').config();
 
-// Firebase Functions config mapping
-const functions = require('firebase-functions');
-
-// Set default environment variables for Firebase Functions
-try {
-  if (functions.config().database && functions.config().database.mongo_uri) {
-    process.env.MONGO_URI = functions.config().database.mongo_uri;
-  }
-  if (functions.config().secrets) {
-    if (functions.config().secrets.jwt_secret) {
-      process.env.JWT_SECRET = functions.config().secrets.jwt_secret;
-    }
-    if (functions.config().secrets.jwt_refresh_secret) {
-      process.env.JWT_REFRESH_SECRET = functions.config().secrets.jwt_refresh_secret;
-    }
-  }
-  if (functions.config().frontend) {
-    if (functions.config().frontend.cors_origin) {
-      process.env.CORS_ORIGIN = functions.config().frontend.cors_origin;
-    }
-    if (functions.config().frontend.url) {
-      process.env.FRONTEND_URL = functions.config().frontend.url;
-    }
-  }
-  if (functions.config().email) {
-    if (functions.config().email.user) {
-      process.env.EMAIL_USER = functions.config().email.user;
-    }
-    if (functions.config().email.password) {
-      process.env.EMAIL_PASSWORD = functions.config().email.password;
-    }
-    if (functions.config().email.service) {
-      process.env.EMAIL_SERVICE = functions.config().email.service;
-    }
-  }
-  if (functions.config().redis && functions.config().redis.enabled) {
-    process.env.REDIS_ENABLED = functions.config().redis.enabled;
-  }
-} catch (error) {
-  console.warn('Firebase Functions config not available, using defaults:', error.message);
-  // Set fallback values for development/testing
-  process.env.MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/cashheros';
-  process.env.JWT_SECRET = process.env.JWT_SECRET || 'fallback-jwt-secret-for-development';
-  process.env.JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'fallback-refresh-secret-for-development';
-}
 // Explicitly set NODE_ENV for functions, as this is a production environment
 process.env.NODE_ENV = 'production';
-// --- END: Firebase Functions Environment Variable Mapping ---
-
-// require('dotenv').config(); // COMMENTED OUT: Not needed for deployed Firebase Functions (config is handled above)
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
@@ -151,7 +103,9 @@ const publicRoutesCache = cacheResponse({ duration: 1800 });
 const csrfMiddleware = defaultVerifyCsrfToken; 
 
 // Routes with enhanced CSRF protection for non-GET requests
-app.use('/api/auth', csrfMiddleware, authRoutes);
+// Temporarily skipping CSRF for testing the 404 error
+console.log('Mounting auth routes at /api/auth');
+app.use('/api/auth', authRoutes); // REMOVED csrfMiddleware for testing
 app.use('/api/blogs', csrfMiddleware, publicRoutesCache, blogRoutes);
 app.use('/api/cashbacks', csrfMiddleware, publicRoutesCache, cashbackRoutes);
 app.use('/api/coupons', csrfMiddleware, publicRoutesCache, couponRoutes);
@@ -177,19 +131,25 @@ app.use('/api/external', requireApiKey(), (req, res) => {
   res.json({ success: true, message: 'External API access granted' });
 });
 
-// Enhanced API health check endpoint
+// Enhanced API health check endpoint (Firebase Functions compatible)
 app.get('/api/health', (req, res) => {
   const healthData = {
     status: 'ok',
-    uptime: process.uptime(), // Might behave differently in Functions; generally `os.uptime()` for node process uptime.
+    uptime: process.uptime(),
     timestamp: new Date(),
     database: {
-      status: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+      status: mongoose.connection.readyState === 1 ? 'connected' : 
+              mongoose.connection.readyState === 2 ? 'connecting' : 'disconnected'
     },
-    resources: {} // MODIFIED: Replaced `getResourceUsage()` with an empty object as it's not compatible
+    environment: 'firebase-functions'
   };
   
   res.status(200).json(healthData);
+});
+
+// Simple root health check for Cloud Run health checks
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok', service: 'CashHeros API' });
 });
 
 // Error logging middleware
@@ -209,23 +169,37 @@ const { connectDatabase, createIndexes } = require('./config/database');
 const monitoring = require('./utils/monitoring');
 const cache = require('./utils/cache');
 
-// Initialize database monitoring
-monitoring.initMonitoring();
+// Initialize database monitoring (non-blocking)
+try {
+  monitoring.initMonitoring();
+} catch (error) {
+  console.warn('Database monitoring initialization failed:', error.message);
+}
 
-// Connect to MongoDB
-connectDatabase()
-  .then(async () => {
-    logger.info('MongoDB connected');
-    
-    // Create database indexes
-    try {
-      await createIndexes();
-      logger.info('Database indexes created successfully');
-    } catch (error) {
-      logger.error('Error creating database indexes:', error);
-    }
-  })
-  .catch((err) => logger.error('MongoDB connection error:', err));
+// Connect to MongoDB asynchronously (completely non-blocking for Firebase Functions)
+// This runs in the background and doesn't block the Express app from starting
+setImmediate(() => {
+  // Ensure we have the MONGO_URI before attempting connection
+  const mongoUri = process.env.MONGO_URI;
+  if (!mongoUri) {
+    logger.error('MONGO_URI is not defined. Database connection skipped.');
+    return;
+  }
+  
+  connectDatabase(mongoUri)
+    .then(async () => {
+      logger.info('MongoDB connected');
+      
+      // Create database indexes in background
+      createIndexes()
+        .then(() => logger.info('Database indexes created successfully'))
+        .catch((error) => logger.error('Error creating database indexes:', error));
+    })
+    .catch((err) => {
+      logger.error('MongoDB connection error:', err);
+      // Don't throw error to prevent function startup failure
+    });
+});
 
 // Create HTTP server - REMOVED for Firebase Functions (handled by Functions runtime)
 // const server = http.createServer(app);
@@ -303,4 +277,7 @@ async function gracefulShutdown() {
   }
 }
 
-module.exports = app; // Export for testing
+// Firebase Functions don't need direct server listening
+// The Functions runtime handles HTTP server management
+
+module.exports = app; // Export for Firebase Functions

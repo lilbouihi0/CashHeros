@@ -7,12 +7,12 @@ const Redis = require('ioredis');
 const functions = require('firebase-functions');
 
 // Check if Redis is enabled
-const isRedisEnabled = functions.config().redis?.enabled === 'true';
+const isRedisEnabled = process.env.REDIS_ENABLED === 'true';
 let client = null;
 
 if (isRedisEnabled) {
   // Create Redis client only if enabled
-  const redisUrl = functions.config().redis?.url || 'redis://localhost:6379';
+  const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
   client = new Redis(redisUrl, {
     retryStrategy: function(times) {
       if (times > 10) {

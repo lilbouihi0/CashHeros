@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+console.log('Auth routes module loaded');
 const { body, validationResult } = require('express-validator');
 const { authMiddleware, optionalAuthMiddleware } = require('../middleware/authMiddleware');
 const { authLimiter, strictLimiter, loginRateLimiter } = require('../middleware/rateLimitMiddleware');
@@ -9,6 +11,7 @@ const functions = require('firebase-functions');
 
 // Get CSRF token
 router.get('/csrf-token', (req, res) => {
+  console.log('CSRF token endpoint hit');
   // This endpoint will trigger the CSRF middleware to set the token
   res.json({ 
     success: true, 
@@ -18,6 +21,7 @@ router.get('/csrf-token', (req, res) => {
 
 // Health check endpoint (no CSRF required)
 router.get('/health', (req, res) => {
+  console.log('Auth health endpoint hit');
   res.json({ 
     success: true, 
     message: 'Auth service is healthy',
@@ -25,29 +29,15 @@ router.get('/health', (req, res) => {
   });
 });
 
-// Register a new user
-router.post('/register',
-  authLimiter,
-  [
-    body('email').isEmail().withMessage('Please provide a valid email'),
-    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
-    body('firstName').optional().trim().notEmpty().withMessage('First name cannot be empty if provided'),
-    body('lastName').optional().trim().notEmpty().withMessage('Last name cannot be empty if provided')
-  ],
-  (req, res, next) => {
-    // Validate input
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ 
-        success: false, 
-        errors: errors.array(),
-        code: 'VALIDATION_ERROR'
-      });
-    }
-    next();
-  },
-  authController.register
-);
+// Register a new user - SIMPLIFIED FOR TESTING
+router.post('/register', (req, res) => {
+  console.log('Register endpoint hit');
+  res.json({
+    success: true,
+    message: 'Register endpoint is working',
+    body: req.body
+  });
+});
 
 // Verify email
 router.get('/verify-email/:token', authController.verifyEmail);

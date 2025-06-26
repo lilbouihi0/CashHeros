@@ -98,8 +98,8 @@ export const login = async (email, password, rememberMe = false) => {
     return response.data;
   } catch (error) {
     // If API fails in development, fall back to mock
-    if (isDevelopment && !error.response) {
-      console.warn('API not available, falling back to mock login');
+    if (isDevelopment && (!error.response || error.response.status === 404)) {
+      console.warn('API not available or endpoint not found, falling back to mock login');
       return await login(email, password, rememberMe); // Recursive call will use mock path
     }
     
@@ -208,6 +208,21 @@ export const register = async (userData) => {
         type: 'NETWORK_ERROR',
         message: 'Unable to connect to the server. Please check if the backend server is running.',
         details: null,
+        originalError: error
+      };
+    }
+    
+    if (error.response.status === 404) {
+      // API endpoint not found - likely deployment issue
+      if (isDevelopment) {
+        console.warn('API endpoint not found (404), falling back to mock registration');
+        return await register(userData); // Recursive call will use mock path
+      }
+      
+      throw {
+        type: 'API_ERROR',
+        message: 'Registration service is temporarily unavailable. Please try again later.',
+        details: 'The registration endpoint could not be found.',
         originalError: error
       };
     }

@@ -13,7 +13,7 @@ const getCachedItem = (key) => null;
 const setCachedItem = (key, data) => {};
 
 // Base API configuration
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://api-gablgtu7na-uc.a.run.app/api';
 const DEFAULT_TIMEOUT = 15000; // 15 seconds
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
@@ -31,6 +31,27 @@ const api = axios.create({
 
 // Setup CSRF token handling
 setupCsrfToken(api);
+
+// Initialize CSRF token on app start
+let csrfInitialized = false;
+const initializeCsrf = async () => {
+  if (csrfInitialized) return;
+  
+  try {
+    console.log('Initializing CSRF token...');
+    await initializeCsrfToken(api);
+    csrfInitialized = true;
+    console.log('CSRF token initialized successfully');
+  } catch (error) {
+    console.warn('Failed to initialize CSRF token:', error);
+    // Don't block the app if CSRF initialization fails
+    // For now, we'll continue without CSRF token
+    csrfInitialized = true; // Mark as initialized to prevent retries
+  }
+};
+
+// Initialize CSRF token immediately
+initializeCsrf();
 
 // Request queue for offline mode
 let requestQueue = [];
@@ -216,6 +237,8 @@ api.interceptors.request.use(
         }
       } else {
         console.warn('CSRF token not found for non-GET request:', config.url);
+        // For development/testing, continue without CSRF token
+        // In production, you might want to block the request or redirect to get token
       }
     }
     

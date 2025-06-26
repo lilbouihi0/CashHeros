@@ -1,108 +1,120 @@
 /* eslint-disable no-restricted-globals */
 
-// Import Workbox modules
-import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
-import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate, CacheFirst, NetworkFirst } from 'workbox-strategies';
-import { ExpirationPlugin } from 'workbox-expiration';
-import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+// Import Workbox modules using importScripts for better compatibility
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.6.0/workbox-sw.js');
 
 console.log('[SW] Workbox Service Worker loaded');
 
-// Clean up outdated caches
-cleanupOutdatedCaches();
+// Check if workbox loaded successfully
+if (workbox) {
+  console.log('[SW] Workbox is loaded');
+  
+  // Enable workbox logging in development
+  // __DEV__ is replaced at build time by most bundlers, or you can use a comment to instruct replacement
+  // Remove process.env.NODE_ENV usage for browser compatibility
+  // if (process.env.NODE_ENV === 'development') {
+  //   workbox.setConfig({ debug: true });
+  // }
+  // Default: do not enable debug in service worker
 
-// Precache all static assets
-precacheAndRoute(self.__WB_MANIFEST);
+  // Clean up outdated caches
+  workbox.precaching.cleanupOutdatedCaches();
 
-// Cache images with CacheFirst strategy
-registerRoute(
-  ({ request }) => request.destination === 'image',
-  new CacheFirst({
-    cacheName: 'images-cache',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 100,
-        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
-      }),
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-    ],
-  })
-);
+  // Precache all static assets
+  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
-// Cache CSS and JS files with StaleWhileRevalidate
-registerRoute(
-  ({ request }) => 
-    request.destination === 'style' || 
-    request.destination === 'script',
-  new StaleWhileRevalidate({
-    cacheName: 'static-resources',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 60,
-        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
-      }),
-    ],
-  })
-);
+  // Cache images with CacheFirst strategy
+  workbox.routing.registerRoute(
+    ({ request }) => request.destination === 'image',
+    new workbox.strategies.CacheFirst({
+      cacheName: 'images-cache',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 100,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
 
-// Cache API requests with NetworkFirst strategy
-registerRoute(
-  ({ url }) => url.pathname.startsWith('/api/'),
-  new NetworkFirst({
-    cacheName: 'api-cache',
-    networkTimeoutSeconds: 10,
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 5 * 60, // 5 minutes
-      }),
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-    ],
-  })
-);
+  // Cache CSS and JS files with StaleWhileRevalidate
+  workbox.routing.registerRoute(
+    ({ request }) => 
+      request.destination === 'style' || 
+      request.destination === 'script',
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: 'static-resources',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 60,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        }),
+      ],
+    })
+  );
 
-// Cache Google Fonts stylesheets
-registerRoute(
-  ({ url }) => url.origin === 'https://fonts.googleapis.com',
-  new StaleWhileRevalidate({
-    cacheName: 'google-fonts-stylesheets',
-  })
-);
+  // Cache API requests with NetworkFirst strategy
+  workbox.routing.registerRoute(
+    ({ url }) => url.pathname.startsWith('/api/'),
+    new workbox.strategies.NetworkFirst({
+      cacheName: 'api-cache',
+      networkTimeoutSeconds: 10,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 50,
+          maxAgeSeconds: 5 * 60, // 5 minutes
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
 
-// Cache Google Fonts webfont files
-registerRoute(
-  ({ url }) => url.origin === 'https://fonts.gstatic.com',
-  new CacheFirst({
-    cacheName: 'google-fonts-webfonts',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
-      }),
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-    ],
-  })
-);
+  // Cache Google Fonts stylesheets
+  workbox.routing.registerRoute(
+    ({ url }) => url.origin === 'https://fonts.googleapis.com',
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: 'google-fonts-stylesheets',
+    })
+  );
 
-// Handle navigation requests (SPA routing)
-registerRoute(
-  ({ request }) => request.mode === 'navigate',
-  new NetworkFirst({
-    cacheName: 'pages-cache',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-    ],
-  })
-);
+  // Cache Google Fonts webfont files
+  workbox.routing.registerRoute(
+    ({ url }) => url.origin === 'https://fonts.gstatic.com',
+    new workbox.strategies.CacheFirst({
+      cacheName: 'google-fonts-webfonts',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 30,
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // Handle navigation requests (SPA routing)
+  workbox.routing.registerRoute(
+    ({ request }) => request.mode === 'navigate',
+    new workbox.strategies.NetworkFirst({
+      cacheName: 'pages-cache',
+      plugins: [
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+} else {
+  console.log('[SW] Workbox failed to load');
+}
 
 // Handle messages from clients
 self.addEventListener('message', event => {

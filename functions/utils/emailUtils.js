@@ -1,6 +1,5 @@
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const functions = require('firebase-functions');
 
 // Generate a random token
 const generateToken = () => {
@@ -16,19 +15,19 @@ const generateOTP = (length = 6) => {
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: functions.config().email?.service || 'gmail',
+  service: process.env.EMAIL_SERVICE || 'gmail',
   auth: {
-    user: functions.config().email?.user,
-    pass: functions.config().email?.password
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
 // Send verification email
 const sendVerificationEmail = async (email, token) => {
-  const verificationUrl = `${functions.config().frontend?.url}/verify-email?token=${token}`;
+  const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
   
   const mailOptions = {
-    from: functions.config().email?.user,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: 'CashHeros - Verify Your Email',
     html: `
@@ -58,10 +57,10 @@ const sendVerificationEmail = async (email, token) => {
 
 // Send password reset email
 const sendPasswordResetEmail = async (email, token) => {
-  const resetUrl = `${functions.config().frontend?.url}/reset-password?token=${token}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
   
   const mailOptions = {
-    from: functions.config().email?.user,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: 'CashHeros - Reset Your Password',
     html: `
@@ -92,7 +91,7 @@ const sendPasswordResetEmail = async (email, token) => {
 // Send two-factor authentication code
 const sendTwoFactorCode = async (email, code) => {
   const mailOptions = {
-    from: functions.config().email?.user,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: 'CashHeros - Your Two-Factor Authentication Code',
     html: `
@@ -121,7 +120,7 @@ const sendTwoFactorCode = async (email, code) => {
 // Send backup codes email
 const sendBackupCodesEmail = async (email, codes) => {
   const mailOptions = {
-    from: functions.config().email?.user,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: 'CashHeros - Your Two-Factor Authentication Backup Codes',
     html: `
@@ -172,7 +171,7 @@ const sendAccountActivityEmail = async (email, activity) => {
   }
   
   const mailOptions = {
-    from: functions.config().email?.user,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: 'CashHeros - Account Activity Alert',
     html: `

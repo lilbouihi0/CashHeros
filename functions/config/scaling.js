@@ -7,59 +7,58 @@
 
 const os = require('os');
 const cluster = require('cluster');
-const functions = require('firebase-functions');
 
 // Configuration
 const config = {
   // Enable auto-scaling
-  enabled: functions.config().scaling?.auto_scaling_enabled === 'true',
+  enabled: process.env.SCALING_AUTO_SCALING_ENABLED === 'true',
   
   // Cluster configuration
   cluster: {
     // Enable cluster mode (horizontal scaling)
-    enabled: functions.config().scaling?.cluster_enabled === 'true',
+    enabled: process.env.SCALING_CLUSTER_ENABLED === 'true',
     
     // Number of worker processes
     // If set to 'auto', will use number of CPU cores
-    workers: functions.config().scaling?.cluster_workers === 'auto' 
+    workers: process.env.SCALING_CLUSTER_WORKERS === 'auto' 
       ? os.cpus().length 
-      : (parseInt(functions.config().scaling?.cluster_workers) || 1),
+      : (parseInt(process.env.SCALING_CLUSTER_WORKERS) || 1),
     
     // Maximum number of workers
-    maxWorkers: parseInt(functions.config().scaling?.cluster_max_workers) || 8,
+    maxWorkers: parseInt(process.env.SCALING_CLUSTER_MAX_WORKERS) || 8,
     
     // Minimum number of workers
-    minWorkers: parseInt(functions.config().scaling?.cluster_min_workers) || 1
+    minWorkers: parseInt(process.env.SCALING_CLUSTER_MIN_WORKERS) || 1
   },
   
   // Load balancing configuration
   loadBalancing: {
     // Strategy for distributing connections
     // Options: 'round-robin', 'least-connections'
-    strategy: functions.config().scaling?.load_balancing_strategy || 'round-robin'
+    strategy: process.env.SCALING_LOAD_BALANCING_STRATEGY || 'round-robin'
   },
   
   // Health check configuration
   healthCheck: {
     // Interval for health checks in milliseconds
-    interval: parseInt(functions.config().scaling?.health_check_interval) || 30000,
+    interval: parseInt(process.env.SCALING_HEALTH_CHECK_INTERVAL) || 30000,
     
     // Timeout for health checks in milliseconds
-    timeout: parseInt(functions.config().scaling?.health_check_timeout) || 5000,
+    timeout: parseInt(process.env.SCALING_HEALTH_CHECK_TIMEOUT) || 5000,
     
     // Path for health check endpoint
-    path: functions.config().scaling?.health_check_path || '/api/health'
+    path: process.env.SCALING_HEALTH_CHECK_PATH || '/api/health'
   },
   
   // Resource limits
   resources: {
     // Memory limit in MB
     // If process exceeds this limit, it will be restarted
-    memoryLimit: parseInt(functions.config().scaling?.memory_limit) || 1024,
+    memoryLimit: parseInt(process.env.SCALING_MEMORY_LIMIT) || 1024,
     
     // CPU usage threshold (percentage)
     // If process exceeds this threshold, scaling may occur
-    cpuThreshold: parseInt(functions.config().scaling?.cpu_threshold) || 80
+    cpuThreshold: parseInt(process.env.SCALING_CPU_THRESHOLD) || 80
   }
 };
 

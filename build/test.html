@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Test</title>
+  <link rel="stylesheet" href="/static/css/main.chunk.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CSS Loading Test</h1>
+    <p>This page tests if CSS files are loading correctly with the proper MIME type.</p>
+    
+    <div id="result">Checking CSS loading...</div>
+    
+    <script>
+      // Check if the CSS file loaded correctly
+      window.onload = function() {
+        const styleSheets = document.styleSheets;
+        let mainCssLoaded = false;
+        
+        for (let i = 0; i < styleSheets.length; i++) {
+          const sheet = styleSheets[i];
+          if (sheet.href && sheet.href.includes('main.chunk.css')) {
+            mainCssLoaded = true;
+            break;
+          }
+        }
+        
+        const resultElement = document.getElementById('result');
+        if (mainCssLoaded) {
+          resultElement.className = 'success';
+          resultElement.textContent = 'SUCCESS: The CSS file loaded correctly!';
+        } else {
+          resultElement.className = 'error';
+          resultElement.textContent = 'ERROR: The CSS file did not load correctly. Check the console for details.';
+        }
+      };
+    </script>
+  </div>
+</body>
+</html>
