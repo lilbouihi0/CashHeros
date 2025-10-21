@@ -4,13 +4,13 @@ const router = express.Router();
 console.log('Auth routes module loaded');
 const { body, validationResult } = require('express-validator');
 const { authMiddleware, optionalAuthMiddleware } = require('../middleware/authMiddleware');
-const { authLimiter, strictLimiter, loginRateLimiter } = require('../middleware/rateLimitMiddleware');
+const { authLimiter, strictLimiter, loginRateLimiter, csrfLimiter } = require('../middleware/rateLimitMiddleware');
 const authController = require('../controllers/authController');
 const functions = require('firebase-functions');
 // require('dotenv').config(); // COMMENTED OUT: Not needed for Firebase Functions
 
 // Get CSRF token
-router.get('/csrf-token', (req, res) => {
+router.get('/csrf-token', csrfLimiter, (req, res) => {
   console.log('CSRF token endpoint hit');
   // This endpoint will trigger the CSRF middleware to set the token
   res.json({ 
@@ -29,15 +29,29 @@ router.get('/health', (req, res) => {
   });
 });
 
-// Register a new user - SIMPLIFIED FOR TESTING
-router.post('/register', (req, res) => {
-  console.log('Register endpoint hit');
-  res.json({
-    success: true,
-    message: 'Register endpoint is working',
-    body: req.body
-  });
-});
+// Register a new user
+router.post('/register',
+  authLimiter,
+  [
+    body('email').isEmail().withMessage('Please provide a valid email'),
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+    body('firstName').notEmpty().withMessage('First name is required'),
+    body('lastName').notEmpty().withMessage('Last name is required')
+  ],
+  (req, res, next) => {
+    // Validate input
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ 
+        success: false, 
+        errors: errors.array(),
+        code: 'VALIDATION_ERROR'
+      });
+    }
+    next();
+  },
+  authController.register
+);
 
 // Verify email
 router.get('/verify-email/:token', authController.verifyEmail);
@@ -159,7 +173,7 @@ router.post('/refresh',
 
 // Logout
 router.post('/logout',
-  authMiddleware,
+  optionalAuthMiddleware,
   [
     body('refreshToken').optional()
   ],
@@ -170,6 +184,12 @@ router.post('/logout',
 router.post('/logout-all',
   authMiddleware,
   authController.logoutAll
+);
+
+// Get current user profile
+router.get('/me',
+  authMiddleware,
+  authController.getProfile
 );
 
 // Setup two-factor authentication

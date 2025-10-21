@@ -34,20 +34,6 @@
       "purpose": "maskable"
     }
   ],
-  "screenshots": [
-    {
-      "src": "screenshot1.png",
-      "type": "image/png",
-      "sizes": "540x720",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "screenshot2.png",
-      "type": "image/png",
-      "sizes": "720x540",
-      "form_factor": "wide"
-    }
-  ],
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -64,15 +50,13 @@
       "name": "Latest Coupons",
       "short_name": "Coupons",
       "description": "View the latest coupons",
-      "url": "/coupons",
-      "icons": [{ "src": "coupon-icon.png", "sizes": "96x96" }]
+      "url": "/coupons"
     },
     {
       "name": "Cash Back Offers",
       "short_name": "Cash Back",
       "description": "View cash back offers",
-      "url": "/cashback",
-      "icons": [{ "src": "cashback-icon.png", "sizes": "96x96" }]
+      "url": "/cashback"
     }
   ]
 }

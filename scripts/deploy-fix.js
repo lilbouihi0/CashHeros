@@ -98,12 +98,12 @@ const testScript = `
 async function testAPI() {
   try {
     // Test health endpoint
-    const healthResponse = await fetch('${process.env.REACT_APP_API_BASE_URL || 'https://api-gablgtu7na-uc.a.run.app/api'}/auth/health');
+    const healthResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL || 'https://cashheros-api-gablgtu7na-uc.a.run.app/api'}/auth/health`);
     const healthData = await healthResponse.json();
     console.log('Health check:', healthData);
     
     // Test CSRF token endpoint
-    const csrfResponse = await fetch('${process.env.REACT_APP_API_BASE_URL || 'https://api-gablgtu7na-uc.a.run.app/api'}/auth/csrf-token', {
+    const csrfResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL || 'https://cashheros-api-gablgtu7na-uc.a.run.app/api'}/auth/csrf-token`, {
       credentials: 'include'
     });
     const csrfData = await csrfResponse.json();

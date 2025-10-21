@@ -103,6 +103,48 @@ export const login = async (email, password, rememberMe = false) => {
       return await login(email, password, rememberMe); // Recursive call will use mock path
     }
     
+    // Handle specific error cases
+    if (error.response) {
+      const { status, data } = error.response;
+      
+      if (status === 401) {
+        throw {
+          type: 'AUTHENTICATION_ERROR',
+          message: data.message || 'Invalid email or password. Please check your credentials and try again.',
+          details: data,
+          originalError: error
+        };
+      }
+      
+      if (status === 403) {
+        throw {
+          type: 'ACCOUNT_LOCKED',
+          message: data.message || 'Your account has been temporarily locked. Please try again later.',
+          details: data,
+          originalError: error
+        };
+      }
+      
+      if (status === 429) {
+        throw {
+          type: 'RATE_LIMIT_ERROR',
+          message: data.message || 'Too many login attempts. Please try again later.',
+          details: data,
+          originalError: error
+        };
+      }
+    }
+    
+    // For network errors or other issues
+    if (!error.response) {
+      throw {
+        type: 'NETWORK_ERROR',
+        message: 'Unable to connect to the server. Please check your internet connection.',
+        details: null,
+        originalError: error
+      };
+    }
+    
     throw error;
   }
 };
@@ -334,31 +376,38 @@ export const getCurrentUser = async () => {
   }
   
   try {
-    // For development, use mock data instead of making API calls
-    // This prevents 404 errors when the backend is not available
-    const mockUserData = {
-      user: {
-        id: '1',
-        email: 'user@example.com',
-        firstName: 'Test',
-        lastName: 'User',
-        role: 'user',
-        emailVerified: true,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      }
-    };
+    // Check if we're in development mode
+    const isDevelopment = process.env.REACT_APP_ENV === 'development';
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
     
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 300));
+    // Only use mock data in development with localhost
+    if (isDevelopment && apiBaseUrl && apiBaseUrl.includes('localhost')) {
+      // For development, use mock data instead of making API calls
+      // This prevents 404 errors when the backend is not available
+      const mockUserData = {
+        user: {
+          id: '1',
+          email: 'user@example.com',
+          firstName: 'Test',
+          lastName: 'User',
+          role: 'user',
+          emailVerified: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        }
+      };
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Cache the mock user profile
+      localStorage.setItem('cachedUserProfile', JSON.stringify(mockUserData));
+      localStorage.setItem('cachedUserProfileTimestamp', Date.now().toString());
+      
+      return mockUserData;
+    }
     
-    // Cache the mock user profile
-    localStorage.setItem('cachedUserProfile', JSON.stringify(mockUserData));
-    localStorage.setItem('cachedUserProfileTimestamp', Date.now().toString());
-    
-    return mockUserData;
-    
-    /* Commented out actual API call for development
+    // Use actual API call for production
     const response = await api.get('/auth/me', {
       // This will use the retry logic in api.js
       retryCount: 0
@@ -369,7 +418,6 @@ export const getCurrentUser = async () => {
     localStorage.setItem('cachedUserProfileTimestamp', Date.now().toString());
     
     return response.data;
-    */
   } catch (error) {
     // If we have a cached profile and get a rate limit error, use the cache regardless of age
     if (error.response?.status === 429 && cachedUser) {
@@ -416,25 +464,28 @@ export const refreshAuthToken = async () => {
   }
   
   try {
-    // For development, use mock data instead of making API calls
-    // This prevents 404 errors when the backend is not available
+    // Check if we're in development mode
+    const isDevelopment = process.env.REACT_APP_ENV === 'development';
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
     
-    // Generate a mock token
-    const mockToken = 'mock_' + Math.random().toString(36).substring(2, 15);
+    // Only use mock data in development with localhost
+    if (isDevelopment && apiBaseUrl && apiBaseUrl.includes('localhost')) {
+      // Generate a mock token
+      const mockToken = 'mock_' + Math.random().toString(36).substring(2, 15);
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Store the mock token
+      localStorage.setItem('accessToken', mockToken);
+      
+      return {
+        accessToken: mockToken,
+        refreshToken: refreshToken
+      };
+    }
     
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    // Store the mock token
-    localStorage.setItem('accessToken', mockToken);
-    
-    return {
-      accessToken: mockToken,
-      refreshToken: refreshToken
-    };
-    
-    /* Commented out actual API call for development
-    // Use the retry option from api.js
+    // Use actual API call for production
     const response = await api.post('/auth/refresh', 
       { refreshToken },
       { retryCount: 0 } // This enables the retry logic in api.js
@@ -449,7 +500,6 @@ export const refreshAuthToken = async () => {
     }
     
     return response.data;
-    */
   } catch (error) {
     // If rate limited, throw a specific error
     if (error.response?.status === 429) {

@@ -11,6 +11,7 @@ import FormField from '../Form/FormField';
 import Button from '../Button/Button';
 import { useForm, useAsyncOperation, useApp } from '../../hooks';
 import { validateForm, isValidEmail } from '../../utils/validationUtils';
+import { getPlaceholderImage } from '../../utils/imageUtils';
 
 const SocialButton = ({ provider, onClick, icon: Icon }) => (
   <Button 
@@ -88,13 +89,13 @@ const LoginForm = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.illustrationWrapper}>
-        <img src={illustration} alt="Shopping" onError={(e) => (e.target.src = 'https://via.placeholder.com/400')} />
+        <img src={illustration} alt="Shopping" onError={(e) => (e.target.src = getPlaceholderImage(400, 400))} />
       </div>
       <div className={styles.formWrapper}>
         <h1>Log In</h1>
         {error && <p className={styles.error}>{error}</p>}
         <p className={styles.signUpPrompt}>
-          Don’t have an account? <a href="/signup">Sign Up</a>
+          Don't have an account? <a href="/signup">Sign Up</a>
         </p>
         <p className={styles.termsText}>
           By logging in, you agree to our <a href="/terms">Terms of Service</a> and{' '}

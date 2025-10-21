@@ -4,27 +4,34 @@
  * Provides helper functions for handling images, including placeholders
  */
 
+// Get the API base URL for the proxy endpoint
+const getApiBaseUrl = () => {
+  // Use the same logic as api.js to determine the base URL
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+  
+  // For production, use the Cloud Run service URL
+  if (process.env.NODE_ENV === 'production' || window.location.hostname === 'casheros.com') {
+    return 'https://cashheros-api-121222242956.us-central1.run.app/api';
+  }
+  
+  return apiBaseUrl;
+};
+
 /**
- * Get a placeholder image URL
+ * Get a placeholder image URL using our proxy endpoint
  * @param {number} width - Width of the placeholder image
  * @param {number} height - Height of the placeholder image
  * @param {string} text - Text to display on the placeholder
  * @returns {string} - Placeholder image URL
  */
 export const getPlaceholderImage = (width = 200, height = 150, text = 'No+Image') => {
-  // Use a more reliable placeholder service with multiple fallbacks
+  const apiBaseUrl = getApiBaseUrl();
   
-  // First try: placehold.co (reliable external service)
-  const placeholdCoUrl = `https://placehold.co/${width}x${height}/e0e0e0/808080?text=${text}`;
+  // Use our proxy endpoint to avoid CORS issues
+  const placeholderUrl = `https://via.placeholder.com/${width}x${height}/e0e0e0/808080?text=${text}`;
+  const proxyUrl = `${apiBaseUrl}/proxy-image?url=${encodeURIComponent(placeholderUrl)}`;
   
-  // Second try: dummyimage.com (alternative service)
-  const dummyImageUrl = `https://dummyimage.com/${width}x${height}/e0e0e0/808080&text=${text}`;
-  
-  // Third try: Data URI (works offline, most reliable)
-  const dataUri = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'%3E%3Crect width='${width}' height='${height}' fill='%23e0e0e0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23808080'%3ENo Image%3C/text%3E%3C/svg%3E`;
-  
-  // Try to load placehold.co first, with fallbacks
-  return placeholdCoUrl;
+  return proxyUrl;
 };
 
 /**
@@ -39,28 +46,19 @@ export const handleImageError = (event) => {
   // Track which fallback we're using
   const currentSrc = element.src || '';
   
-  // If we're already using placehold.co and it failed, try dummyimage.com
-  if (currentSrc.includes('placehold.co')) {
-    const dummyImageUrl = `https://dummyimage.com/${width}x${height}/e0e0e0/808080&text=No+Image`;
-    element.src = dummyImageUrl;
-  } 
-  // If we're using dummyimage.com and it failed, use data URI as final fallback
-  else if (currentSrc.includes('dummyimage.com')) {
+  // If we're already using the proxy and it failed, use data URI as final fallback
+  if (currentSrc.includes('/proxy-image')) {
     const dataUri = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'%3E%3Crect width='${width}' height='${height}' fill='%23e0e0e0'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23808080'%3ENo Image%3C/text%3E%3C/svg%3E`;
     element.src = dataUri;
+    element.onerror = null; // Prevent infinite loop
   }
-  // Start with placehold.co
+  // Start with proxy endpoint
   else {
     element.src = getPlaceholderImage(width, height);
   }
   
   // Add a class to indicate it's a placeholder
   element.classList.add('placeholder-image');
-  
-  // Prevent infinite error loop if we're on our last fallback
-  if (currentSrc.includes('dummyimage.com')) {
-    element.onerror = null;
-  }
 };
 
 export default {

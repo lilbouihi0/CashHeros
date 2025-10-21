@@ -3,7 +3,7 @@
 // Import Workbox modules using importScripts for better compatibility
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.6.0/workbox-sw.js');
 
-console.log('[SW] Workbox Service Worker loaded');
+console.log('[SW] Workbox Service Worker loaded - v3');
 
 // Check if workbox loaded successfully
 if (workbox) {
@@ -23,15 +23,47 @@ if (workbox) {
   // Precache all static assets
   workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
-  // Cache images with CacheFirst strategy
+  // Cache images with CacheFirst strategy, but exclude placeholder and proxy images
   workbox.routing.registerRoute(
-    ({ request }) => request.destination === 'image',
+    ({ request }) => {
+      const isImage = request.destination === 'image';
+      const isPlaceholder = request.url.includes('via.placeholder.com') || 
+                           request.url.includes('placehold.co') || 
+                           request.url.includes('dummyimage.com') ||
+                           request.url.includes('placeholder');
+      const isProxyImage = request.url.includes('/api/proxy-image') || 
+                          request.url.includes('proxy-image');
+      return isImage && !isPlaceholder && !isProxyImage;
+    },
     new workbox.strategies.CacheFirst({
-      cacheName: 'images-cache',
+      cacheName: 'images-cache-v3',
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 100,
           maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // Handle proxy images with NetworkFirst strategy to avoid caching issues
+  workbox.routing.registerRoute(
+    ({ request, url }) => {
+      const isImage = request.destination === 'image';
+      const isProxyImage = url.pathname.includes('/api/proxy-image') || 
+                          url.pathname.includes('proxy-image');
+      return isImage && isProxyImage;
+    },
+    new workbox.strategies.NetworkFirst({
+      cacheName: 'proxy-images-cache-v3',
+      networkTimeoutSeconds: 10,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 20,
+          maxAgeSeconds: 5 * 60, // 5 minutes - short cache for proxy images
         }),
         new workbox.cacheableResponse.CacheableResponsePlugin({
           statuses: [0, 200],
@@ -46,7 +78,7 @@ if (workbox) {
       request.destination === 'style' || 
       request.destination === 'script',
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'static-resources',
+      cacheName: 'static-resources-v3',
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 60,
@@ -56,11 +88,16 @@ if (workbox) {
     })
   );
 
-  // Cache API requests with NetworkFirst strategy
+  // Cache API requests with NetworkFirst strategy (only same-origin)
   workbox.routing.registerRoute(
-    ({ url }) => url.pathname.startsWith('/api/'),
+    ({ url }) => {
+      // Only cache same-origin API requests
+      const isApiRequest = url.pathname.startsWith('/api/');
+      const isSameOrigin = url.origin === self.location.origin;
+      return isApiRequest && isSameOrigin;
+    },
     new workbox.strategies.NetworkFirst({
-      cacheName: 'api-cache',
+      cacheName: 'api-cache-v3',
       networkTimeoutSeconds: 10,
       plugins: [
         new workbox.expiration.ExpirationPlugin({
@@ -78,7 +115,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ url }) => url.origin === 'https://fonts.googleapis.com',
     new workbox.strategies.StaleWhileRevalidate({
-      cacheName: 'google-fonts-stylesheets',
+      cacheName: 'google-fonts-stylesheets-v3',
     })
   );
 
@@ -86,7 +123,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ url }) => url.origin === 'https://fonts.gstatic.com',
     new workbox.strategies.CacheFirst({
-      cacheName: 'google-fonts-webfonts',
+      cacheName: 'google-fonts-webfonts-v3',
       plugins: [
         new workbox.expiration.ExpirationPlugin({
           maxEntries: 30,
@@ -103,7 +140,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ request }) => request.mode === 'navigate',
     new workbox.strategies.NetworkFirst({
-      cacheName: 'pages-cache',
+      cacheName: 'pages-cache-v3',
       plugins: [
         new workbox.cacheableResponse.CacheableResponsePlugin({
           statuses: [0, 200],
@@ -134,4 +171,15 @@ self.addEventListener('sync', event => {
   }
 });
 
-console.log('[SW] Workbox Service Worker setup complete');
+// Force immediate activation
+self.addEventListener('install', event => {
+  console.log('[SW] Installing new version...');
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  console.log('[SW] Activating new version...');
+  self.clients.claim();
+});
+
+console.log('[SW] Workbox Service Worker setup complete - v3');

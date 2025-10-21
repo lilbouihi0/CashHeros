@@ -15,3 +15,9 @@
 {"level":"info","message":"Database indexes created successfully","service":"api","timestamp":"2025-06-26 00:14:59"}
 {"level":"info","message":"MongoDB connected","service":"api","timestamp":"2025-06-26 00:23:45"}
 {"level":"info","message":"Database indexes created successfully","service":"api","timestamp":"2025-06-26 00:23:57"}
+{"level":"error","message":"MONGO_URI is not defined. Database connection skipped.","service":"api","timestamp":"2025-06-27 21:42:17"}
+{"level":"error","message":"MONGO_URI is not defined. Database connection skipped.","service":"api","timestamp":"2025-06-27 21:43:59"}
+{"level":"error","message":"MONGO_URI is not defined. Database connection skipped.","service":"api","timestamp":"2025-06-27 21:50:13"}
+{"level":"error","message":"MONGO_URI is not defined. Database connection skipped.","service":"api","timestamp":"2025-06-28 02:08:29"}
+{"level":"error","message":"MONGO_URI is not defined. Database connection skipped.","service":"api","timestamp":"2025-06-28 02:16:24"}
+{"level":"error","message":"MONGO_URI is not defined. Database connection skipped.","service":"api","timestamp":"2025-06-28 02:17:14"}

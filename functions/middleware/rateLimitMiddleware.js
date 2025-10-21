@@ -154,11 +154,24 @@ const apiLimiter = createRateLimiter({
  */
 const authLimiter = createRateLimiter({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: process.env.NODE_ENV === 'production' ? 20 : 100, // More lenient in development
+  max: process.env.NODE_ENV === 'production' ? 100 : 200, // Increased from 20 to 100 in production
   message: {
     success: false,
     message: 'Too many authentication attempts from this IP, please try again after an hour',
     code: 'AUTH_RATE_LIMIT_EXCEEDED'
+  }
+});
+
+/**
+ * CSRF token rate limiter - more lenient since it's called frequently
+ */
+const csrfLimiter = createRateLimiter({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200, // 200 requests per 15 minutes
+  message: {
+    success: false,
+    message: 'Too many CSRF token requests, please try again after 15 minutes',
+    code: 'CSRF_RATE_LIMIT_EXCEEDED'
   }
 });
 
@@ -329,6 +342,7 @@ module.exports = {
   basicLimiter,
   apiLimiter,
   authLimiter,
+  csrfLimiter,
   strictLimiter,
   loginRateLimiter,
   resetLoginRateLimit

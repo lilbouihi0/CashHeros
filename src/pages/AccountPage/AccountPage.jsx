@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import styles from './AccountPage.module.css';
+import { getPlaceholderImage } from '../../utils/imageUtils';
 
 export const AccountPage = () => {
   const { user } = useContext(AuthContext);
@@ -16,7 +17,7 @@ export const AccountPage = () => {
       <h1>Account</h1>
       
       <div className={styles.userHeader}>
-        <img src="https://via.placeholder.com/50" alt="User Avatar" className={styles.avatar} />
+        <img src={getPlaceholderImage(50, 50)} alt="User Avatar" className={styles.avatar} />
         <div className={styles.userInfo}>
           <h2>Hello, {user?.name || 'User'}!</h2>
           <p>{user?.email || 'user@example.com'}</p>

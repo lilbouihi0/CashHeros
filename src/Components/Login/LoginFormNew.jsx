@@ -72,10 +72,16 @@ const LoginFormNew = () => {
           showNotification('Login successful! Welcome back.', 'success');
           navigate('/');
         }, {
-          errorMessage: 'Login failed. Please check your credentials and try again.'
+          errorMessage: 'Password Incorrect'
         });
       } catch (err) {
-        // Error is already handled by the useAsyncOperation hook
+        if (err.type === 'AUTHENTICATION_ERROR') {
+          loginOperation.setError(err.message || 'Password Incorrect');
+        } else if (err.type === 'NETWORK_ERROR') {
+          loginOperation.setError('Unable to connect to the server. Please check your internet connection.');
+        } else {
+          loginOperation.setError(err.message || 'Login failed. Please try again.');
+        }
         console.error('Login error:', err);
       }
     }

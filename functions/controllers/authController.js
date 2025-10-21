@@ -216,7 +216,7 @@ exports.login = async (req, res) => {
       
       return res.status(401).json({ 
         success: false,
-        message: 'Invalid credentials',
+        message: 'Password Incorrect',
         code: 'INVALID_CREDENTIALS',
         attemptsLeft: 5 - user.loginAttempts
       });

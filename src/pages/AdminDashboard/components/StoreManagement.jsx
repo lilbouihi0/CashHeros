@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaPlus, FaEdit, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 import styles from '../AdminDashboard.module.css';
 import { mockServices } from '../../../services/mockServices';
+import { getPlaceholderImage } from '../../../utils/imageUtils';
 
 const StoreManagement = () => {
   const { accessToken } = useContext(AuthContext);
@@ -358,7 +359,7 @@ const StoreManagement = () => {
                           onError={(e) => {
                             console.log('Image failed to load:', store.logo);
                             e.target.onerror = null;
-                            e.target.src = 'https://via.placeholder.com/40?text=Error';
+                            e.target.src = getPlaceholderImage(40, 40, 'Error');
                           }}
                         />
                       ) : (

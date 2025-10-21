@@ -13,7 +13,7 @@ const getCachedItem = (key) => null;
 const setCachedItem = (key, data) => {};
 
 // Base API configuration
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://api-gablgtu7na-uc.a.run.app/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://cashheros-api-gablgtu7na-uc.a.run.app/api';
 const DEFAULT_TIMEOUT = 15000; // 15 seconds
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
@@ -337,8 +337,18 @@ api.interceptors.response.use(
     console.error(`[API] ${config.method.toUpperCase()} ${config.url} - ${response?.status || 'NETWORK ERROR'} (${duration}ms)`);
     
     // Handle token expiration (401 Unauthorized)
-    if (response && response.status === 401 && !config.url.includes('/auth/refresh')) {
-      if (!isRefreshing) {
+    // Don't try to refresh tokens for auth endpoints (login, register, etc.)
+    const isAuthEndpoint = config.url.includes('/auth/login') || 
+                          config.url.includes('/auth/register') || 
+                          config.url.includes('/auth/refresh') ||
+                          config.url.includes('/auth/forgot-password') ||
+                          config.url.includes('/auth/reset-password');
+    
+    if (response && response.status === 401 && !isAuthEndpoint) {
+      // Check if we have a refresh token before attempting refresh
+      const storedRefreshToken = localStorage.getItem('refreshToken');
+      
+      if (storedRefreshToken && !isRefreshing) {
         isRefreshing = true;
         
         try {
@@ -359,7 +369,7 @@ api.interceptors.response.use(
           isRefreshing = false;
           return Promise.reject(refreshError);
         }
-      } else {
+      } else if (storedRefreshToken && isRefreshing) {
         // Token refresh is already in progress, wait for it to complete
         return new Promise((resolve) => {
           subscribeTokenRefresh((token) => {
@@ -367,6 +377,15 @@ api.interceptors.response.use(
             resolve(api(config));
           });
         });
+      } else {
+        // No refresh token available, clear tokens and redirect to login
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        
+        // Only redirect if not already on login page
+        if (!window.location.pathname.includes('/login')) {
+          window.location.href = '/login?session=expired';
+        }
       }
     }
     

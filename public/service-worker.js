@@ -3,10 +3,10 @@
 // Clean service worker without Workbox dependencies
 // This provides basic caching without causing registration errors
 
-console.log('[SW] Clean Service Worker loaded - v4');
+console.log('[SW] Clean Service Worker loaded - v6');
 
 // Cache names with versioning
-const CACHE_VERSION = '4';
+const CACHE_VERSION = '6';
 const STATIC_CACHE = `static-cache-v${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-cache-v${CACHE_VERSION}`;
 const API_CACHE = `api-cache-v${CACHE_VERSION}`;
@@ -22,6 +22,7 @@ const STATIC_ASSETS = [
 // Install event - cache static assets
 self.addEventListener('install', event => {
   console.log('[SW] Installing...');
+  // Force immediate activation
   self.skipWaiting();
   
   event.waitUntil(
@@ -45,6 +46,7 @@ self.addEventListener('install', event => {
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
   console.log('[SW] Activating...');
+  // Claim all clients immediately
   self.clients.claim();
   
   const currentCaches = [STATIC_CACHE, DYNAMIC_CACHE, API_CACHE];
@@ -67,8 +69,9 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // Skip cross-origin requests
+  // Skip cross-origin requests entirely - let browser handle them
   if (url.origin !== self.location.origin) {
+    console.log('[SW] Skipping cross-origin request:', url.origin);
     return;
   }
   
@@ -89,8 +92,14 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // Handle image requests with cache-first strategy
+  // Handle image requests with network-first strategy for placeholder images
   if (event.request.destination === 'image') {
+    // Use network-first for placeholder images to avoid caching old versions
+    if (url.pathname.includes('placeholder') || url.pathname.includes('proxy-image')) {
+      event.respondWith(networkFirstStrategy(event.request));
+      return;
+    }
+    // Use cache-first for other images
     event.respondWith(cacheFirstStrategy(event.request));
     return;
   }
@@ -147,7 +156,7 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Network-first strategy for API requests
+// Network-first strategy for API requests and placeholder images
 function networkFirstStrategy(request) {
   return fetch(request)
     .then(response => {
